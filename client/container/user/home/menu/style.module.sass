@@ -1,0 +1,29 @@
+.menu
+  background: #FFFFFF
+  box-shadow: 0 2px 4px 0 rgba(51,51,51,0.20)
+  border-radius: 4px
+  height: 105px
+  display: flex
+  .menu-item
+    font-family: PingFangSC-Medium
+    font-size: 14px
+    color: #999999
+    flex: 1
+    margin: 22px auto
+    display: flex
+    justify-content: center
+    align-items: flex-end
+    line-height: 20px
+    &.person, &.customer, &.wallet
+      background-repeat: no-repeat
+      background-position: center 0px
+    &.person
+      background-image: url('client/assets/icon_my@3x.png')
+      background-size: 24.7px 26px
+    &.customer
+      background-image: url('client/assets/icon_women@3x.png')
+      background-size: 33px 26px
+    &.wallet
+      background-image: url('client/assets/icon_moeny@3x.png')
+      background-size: 27px 26px
+      
