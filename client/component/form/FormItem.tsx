@@ -5,11 +5,12 @@ interface Props {
   label?: string
   required?: boolean
   right?: React.ReactNode
+  className?: string
 }
 class Main extends React.Component<Props> {
   render () {
     return (
-      <div className={cx('form-item')}>
+      <div className={cx('form-item', this.props.className)}>
         {
           this.props.label && (
             <div className={cx('label')}>
