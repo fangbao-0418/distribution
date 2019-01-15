@@ -2,6 +2,7 @@ import React from 'react'
 import classnames from 'classnames/bind'
 import FormItem from 'client/component/form/FormItem'
 import Button from 'client/component/button'
+import ValidateCode from './ValidateCode'
 import { Toast } from 'antd-mobile'
 const cx = classnames.bind(require('./style.module.sass'))
 class Main extends React.Component {
@@ -23,6 +24,18 @@ class Main extends React.Component {
           </FormItem>
           <FormItem
             label='验证码'
+            required
+            right={(
+              <ValidateCode/>
+            )}
+          >
+            <input
+              type={showPassWord ? 'text' : 'password'}
+              placeholder='请输入密码'
+            />
+          </FormItem>
+          <FormItem
+            label='密码'
             required
             right={(
               <div
