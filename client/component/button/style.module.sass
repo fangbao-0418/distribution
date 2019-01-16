@@ -1,8 +1,8 @@
 .button
   height: 44px
+  line-height: 44px
   background-image: linear-gradient(-90deg, #55A4FF 0%, #0C7AFA 100%)
   border-radius: 4px
-  line-height: 44px
   font-family: PingFangSC-Regular
   font-size: 16px
   color: #FFFFFF
@@ -11,6 +11,9 @@
   cursor: pointer
   outline: 0 none
   // transition: all 200ms
+  &.small
+    height: 35px
+    line-height: 35px
   &.active
     opacity: 0.5
     background-image: linear-gradient(-90deg, #55A4FF 0%, #0C7AFA 100%)

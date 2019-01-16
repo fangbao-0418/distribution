@@ -2,7 +2,9 @@ import React from 'react'
 import classnames from 'classnames/bind'
 import { Toast } from 'antd-mobile'
 const cx = classnames.bind(require('./style.module.sass'))
-interface Props extends React.ButtonHTMLAttributes<any> {}
+interface Props extends React.ButtonHTMLAttributes<any> {
+  size: 'large' | 'small'
+}
 class Main extends React.Component<Props> {
   el: any
   public componentDidMount () {
@@ -21,7 +23,7 @@ class Main extends React.Component<Props> {
       <div
         ref='button'
         {...this.props}
-        className={cx('button', this.props.className)}
+        className={cx('button', this.props.className, cx(this.props.size || 'large'))}
       >
         {this.props.children}
       </div>
