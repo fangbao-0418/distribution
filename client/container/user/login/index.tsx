@@ -58,7 +58,15 @@ class Main extends React.Component {
             登录
           </Button>
           <div className={cx('tab')}>
-            <div className={cx('con')} style={{color: '#2D8EFF'}}>立即注册</div>
+            <div 
+              className={cx('con')}
+              style={{color: '#2D8EFF'}}
+              onClick={() => {
+                APP.history.push('/registry')
+              }}
+            >
+              立即注册
+            </div>
             <div className={cx('line')}></div>
             <div
               className={cx('con')}
