@@ -50,7 +50,7 @@ export default class View extends React.Component<any> {
         {/* <!-- UC应用模式 --> */}
         <meta name="browsermode" content="application" />
         {/* <!-- QQ强制竖屏 --> */}
-        <meta name="x5-orientation" content="portrait" />
+         <meta name="x5-orientation" content="portrait" />
         {/* <!-- QQ强制全屏 --> */}
         <meta name="x5-fullscreen" content="true" />
         {/* <!-- QQ应用模式 --> */}

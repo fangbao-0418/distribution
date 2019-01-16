@@ -18,7 +18,6 @@ class Main extends React.Component<Props> {
   }
   render () {
     const { clicked } = this.state 
-    console.log(clicked, 'clicked')
     return (
       <span
         style={this.props.style}

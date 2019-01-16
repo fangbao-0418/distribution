@@ -2,14 +2,59 @@
   height: 100%
   display: flex
   flex-direction: column
-.filter
-  padding: 0 15px
-  height: 36px
-.scroll
-  flex: 1
-  overflow: auto
-.bottom
-  height: 60px
+  .filter
+    padding: 0 15px 4px
+    height: 36px
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10)
+  .scroll
+    margin: 10px 0
+    padding: 0 15px
+    flex: 1
+    overflow: auto
+    .item
+      background: #FFFFFF
+      box-shadow: 0 2px 8px 0 rgba(51,51,51,0.10)
+      border-radius: 4px
+      display: flex
+      font-size: 13px
+      padding: 15px
+      margin-bottom: 15px
+      .avatar
+        width: 30px
+        height: 30px
+        line-height: 30px
+        border: 1px solid #FFB43F
+        border-radius: 50%
+        color: #FFB43F
+        text-align: center
+        font-size: 14px
+        margin-right: 9px
+      .item-right
+        flex: 1
+        h3
+          font-family: PingFangSC-Medium
+          font-size: 15px
+          color: #333333
+          margin: 0
+          padding: 0
+          height: 20px
+          line-height: 20px
+          span
+            float: right
+            font-family: PingFangSC-Regular
+            font-size: 12px
+            color: #999999
+        p
+          font-family: PingFangSC-Regular
+          font-size: 13px
+          color: #666666
+          margin: 0
+          padding: 0
+  .bottom
+    padding: 0 15px
+    height: 60px
+    background: #FFFFFF
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.21)
 .date-select
   &>div
     display: inline-block
@@ -22,3 +67,31 @@
     font-size: 15px
     color: #333333
     letter-spacing: 0.38px
+.search
+  border: 1px solid #DEDEDE
+  border-radius: 100px
+  height: 30px
+  overflow: hidden
+  position: relative
+  .search-input
+    margin-right: 35px
+    padding: 0 15px
+    input
+      width: 100%
+      height: 30px
+      color: #333333
+      font-size: 14px
+      vertical-align: super
+      border: 0
+      margin: 0
+      padding: 0
+  span
+    content: ''
+    display: inline-block
+    width: 20px
+    height: 30px
+    background: url('client/assets/icon_soecer@3x.png') center center / 15.2px 16px no-repeat
+    position: absolute
+    right: 15px
+    top: 0
+      

@@ -2,7 +2,8 @@ import React from 'react'
 import classnames from 'classnames/bind'
 const cx = classnames.bind(require('./style.module.sass'))
 interface Props {
-  title: React.ReactNode
+  title?: React.ReactNode
+  goBack?: () => void
 }
 class Main extends React.Component<Props> {
   render () {
@@ -11,7 +12,16 @@ class Main extends React.Component<Props> {
         className={cx('top')}
       >
         <div className={cx('left')}>
-          <div className={cx('goback')}></div>
+          <div
+            className={cx('goback')}
+            onClick={() => {
+              if (this.props.goBack) {
+                this.props.goBack()
+              } else {
+                APP.history.goBack()
+              }
+            }}
+          />
         </div>
         <div className={cx('center')}>
           {this.props.title}

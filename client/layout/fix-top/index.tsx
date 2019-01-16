@@ -3,7 +3,9 @@ import Top from 'client/component/top'
 import classnames from 'classnames/bind'
 const cx = classnames.bind(require('./style.module.sass'))
 interface Props {
-  title: React.ReactNode
+  title?: React.ReactNode
+  contentStyle?: React.CSSProperties
+  goBack?: () => void
 }
 class Main extends React.Component<Props> {
   render () {
@@ -12,9 +14,13 @@ class Main extends React.Component<Props> {
         className={cx('layout')}
       >
         <Top
+          goBack={this.props.goBack}
           title={this.props.title}
         />
-        <div className={cx('content')}>
+        <div
+          style={this.props.contentStyle}
+          className={cx('content')}
+        >
           {this.props.children}
         </div>
       </div>

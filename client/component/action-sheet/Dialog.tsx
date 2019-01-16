@@ -35,81 +35,76 @@ class Main extends React.Component<Props> {
       in: false
     })
   }
-  // render () {
-  //   return (
-  //     <div>
-  //       <Transition
-  //         in={this.state.in}
-  //         timeout={{
-  //           enter: 50,
-  //           exit: 100
-  //         }}
-  //         onEnter={() => {
-  //           this.setState({
-  //             in: true
-  //           })
-  //         }}
-  //         onExited={() => {
-  //           setTimeout(() => {
-  //             if (this.props.onExited) {
-  //               this.props.onExited()
-  //             }
-  //           }, 100)
-  //         }}
-  //       >
-  //         {(status) => {
-  //           return (
-  //           <div
-  //             onClick={() => {
-  //               this.setState({
-  //                 in: !this.state.in
-  //               })
-  //             }}
-  //             style={{
-  //               top: '100px',
-  //               ...this.props.maskStyle,
-  //               ...transitionStyles[status]
-  //             }}
-  //             className={`custom-action-sheet-mask fade-${status}`}
-  //           >
-  //           </div>
-  //         )}}
-  //       </Transition>
-  //       <Transition
-  //         in={this.state.in}
-  //         timeout={{
-  //           enter: 50,
-  //           exit: 50
-  //         }}
-  //       >
-  //         {(status) => {
-  //           return (
-  //           <div
-  //             onClick={() => {
-  //               // this.setState({
-  //               //   in: !this.state.in
-  //               // })
-  //             }}
-  //             style={this.props.wrapStyle}
-  //             className={`custom-action-sheet-wrap fade-${status}`}
-  //           >
-  //             <div
-  //               className={`custom-action-sheet-content`}
-  //               style={{
-  //                 ...contentTransitionStyles[status]
-  //               }}
-  //             >
-  //               {this.props.overlay}
-  //             </div>
-  //           </div>
-  //         )}}
-  //       </Transition>
-  //     </div>
-  //   )
-  // }
   render () {
     return (
-      this.props.overlay
+      <div>
+        <Transition
+          in={this.state.in}
+          timeout={{
+            enter: 50,
+            exit: 100
+          }}
+          onEnter={() => {
+            this.setState({
+              in: true
+            })
+          }}
+          onExited={() => {
+            setTimeout(() => {
+              if (this.props.onExited) {
+                this.props.onExited()
+              }
+            }, 100)
+          }}
+        >
+          {(status) => {
+            return (
+            <div
+              onClick={() => {
+                this.setState({
+                  in: !this.state.in
+                })
+              }}
+              style={{
+                top: '100px',
+                ...this.props.maskStyle,
+                ...transitionStyles[status]
+              }}
+              className={`custom-action-sheet-mask fade-${status}`}
+            >
+            </div>
+          )}}
+        </Transition>
+        <Transition
+          in={this.state.in}
+          timeout={{
+            enter: 50,
+            exit: 50
+          }}
+        >
+          {(status) => {
+            return (
+            <div
+              onClick={() => {
+                // this.setState({
+                //   in: !this.state.in
+                // })
+              }}
+              style={this.props.wrapStyle}
+              className={`custom-action-sheet-wrap fade-${status}`}
+            >
+              <div
+                className={`custom-action-sheet-content`}
+                style={{
+                  ...contentTransitionStyles[status]
+                }}
+              >
+                {this.props.overlay}
+              </div>
+            </div>
+          )}}
+        </Transition>
+      </div>
     )
   }
 }

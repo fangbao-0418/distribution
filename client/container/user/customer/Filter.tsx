@@ -60,7 +60,7 @@ class Main extends React.Component {
             this.customerStatus = ref
           }}
           style={{
-            top: '100px'
+            top: '94px'
           }}
           onExited={() => {
             this.setState({
