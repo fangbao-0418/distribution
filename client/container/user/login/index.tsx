@@ -2,11 +2,13 @@ import React from 'react'
 import classnames from 'classnames/bind'
 import FormItem from 'client/component/form/FormItem'
 import Button from 'client/component/button'
+import ValidateCode from 'client/container/user/registry/ValidateCode'
 import { Toast } from 'antd-mobile'
 const cx = classnames.bind(require('./style.module.sass'))
 class Main extends React.Component {
   state = {
-    showPassWord: false
+    showPassWord: false,
+    showAccount: true
   }
   render () {
     const { showPassWord } = this.state
@@ -14,10 +16,13 @@ class Main extends React.Component {
       <div className={cx('login')}>
         <div className={cx('card')}>
           <FormItem>
-            <input placeholder='请输入账户'/>
+            <input
+              placeholder={this.state.showAccount ? '请输入账号' : '请输入手机号'}
+            />
           </FormItem>
           <FormItem
             right={(
+              this.state.showAccount ?
               <div
                 onClick={() => {
                   this.setState({
@@ -35,12 +40,13 @@ class Main extends React.Component {
                     }
                   />
                 }
-              </div>
+              </div> :
+              <ValidateCode/>
             )}
           >
             <input
               type={showPassWord ? 'text' : 'password'}
-              placeholder='请输入密码'
+              placeholder={this.state.showAccount ? '请输入密码' : '请输入验证码'}
             />
           </FormItem>
           <Button
@@ -49,8 +55,24 @@ class Main extends React.Component {
               // Toast.info('xxx')
             }}
           >
-            登陆
+            登录
           </Button>
+          <div className={cx('tab')}>
+            <div className={cx('con')} style={{color: '#2D8EFF'}}>立即注册</div>
+            <div className={cx('line')}></div>
+            <div
+              className={cx('con')}
+              onClick={() => {
+                this.setState({
+                  showAccount: !this.state.showAccount
+                })
+              }}
+            >
+              {
+                this.state.showAccount ? '短信登录' : '账号密码'
+              }
+            </div>
+          </div>
         </div>
       </div>
     )
