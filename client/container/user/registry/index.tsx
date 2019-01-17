@@ -81,6 +81,7 @@ class Main extends React.Component {
             className='mt26'
             onClick={() => {
               // Toast.info('xxx')
+              APP.history.push('/registry/success')
             }}
           >
             提交
