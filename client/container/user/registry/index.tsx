@@ -20,7 +20,7 @@ class Main extends React.Component {
             label='账号'
             required
           >
-            <input placeholder='请输入账户'/>
+            <input placeholder='请输入手机号码'/>
           </FormItem>
           <FormItem
             label='验证码'
@@ -30,8 +30,7 @@ class Main extends React.Component {
             )}
           >
             <input
-              type={showPassWord ? 'text' : 'password'}
-              placeholder='请输入密码'
+              placeholder='请输入6位验证码'
             />
           </FormItem>
           <FormItem
@@ -60,13 +59,29 @@ class Main extends React.Component {
           >
             <input
               type={showPassWord ? 'text' : 'password'}
-              placeholder='请输入密码'
+              placeholder='请输入密码6-12位字符'
             />
+          </FormItem>
+          <FormItem
+            label='确认密码'
+            required
+          >
+            <input
+              type={showPassWord ? 'text' : 'password'}
+              placeholder='重新输入密码'
+            />
+          </FormItem>
+          <FormItem
+            label='城市'
+            required
+          >
+            <input/>
           </FormItem>
           <Button
             className='mt26'
             onClick={() => {
               // Toast.info('xxx')
+              APP.history.push('/registry/success')
             }}
           >
             提交

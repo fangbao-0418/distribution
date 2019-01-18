@@ -5,6 +5,7 @@ import Registry from './registry'
 import User from './index'
 import Customer from './customer'
 import CustomerAdd from './customer/add'
+import RegistrySuccess from './registry/RegistrySuccess'
 class Main extends React.Component {
   render () {
     return (
@@ -14,6 +15,7 @@ class Main extends React.Component {
         <Route path='/user/customer/add' component={CustomerAdd} />
         <Route path='/login' exact component={Login} />
         <Route path='/registry' exact component={Registry} />
+        <Route path='/registry/success' exact component={RegistrySuccess} />
       </Switch>
     )
   }
