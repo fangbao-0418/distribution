@@ -2,12 +2,14 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import UserRouter from '../user/router'
 import Active from '../activities/bookkeeping'
+import City from './city'
 class Main extends React.Component {
   render () {
     return (
       <Switch>
-        <UserRouter />
+        <Route path='/city' component={City} />
         <Route path='/bookkeeping' component={Active} />
+        <UserRouter />
       </Switch>
     )
   }

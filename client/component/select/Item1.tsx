@@ -7,6 +7,8 @@ interface Props {
   flex?: number
   onChange?: (value: any) => void
   value?: any
+  type?: 'radio' | 'checkbox'
+  theme?: '1' | '2' | '3'
 }
 class Main extends React.Component<Props> {
   state = {

@@ -39,7 +39,7 @@ class Main extends React.Component {
                 marginTop: '12.5px'
               }}
               onClick={() => {
-                APP.history.push('/user/addcustomer')
+                APP.history.push('/user/customer/add')
               }}
             >
               新增客户

@@ -5,12 +5,22 @@ interface Props {
   label?: string
   required?: boolean
   right?: React.ReactNode
+  style?: React.CSSProperties
   className?: string
+  onClick?: () => void
 }
 class Main extends React.Component<Props> {
   render () {
     return (
-      <div className={cx('form-item', this.props.className)}>
+      <div
+        style={this.props.style}
+        className={cx('form-item', this.props.className)}
+        onClick={() => {
+          if (this.props.onClick) {
+            this.props.onClick()
+          }
+        }}
+      >
         {
           this.props.label && (
             <div className={cx('label')}>

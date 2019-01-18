@@ -1,6 +1,6 @@
 import http from './http'
 
-/** 获取bi首页-订单成交量&处理凭证张数&处理票据张数 */
-export const fetchHomeTotal = () => {
-  http('/api/v1/home/total', 'GET')
+/** 获取城市列表 */
+export const fetchCities = () => {
+  return http('/product/v1/api/region/cities?wapOpen=true', 'GET')
 }

@@ -3,8 +3,10 @@ import React from 'react'
 import Router from './router'
 import { withRouter, RouteComponentProps } from 'react-router'
 class Main extends React.Component<RouteComponentProps> {
-  componentDidMount () {
-    APP.history = this.props.history
+  componentWillMount () {
+    if (__CLIENT__) {
+      APP.history = this.props.history
+    }
   }
   render () {
     return (

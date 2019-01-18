@@ -10,12 +10,8 @@ export default class View extends React.Component<any> {
   static defaultProps = {
     title: '分销'
   }
-  static getStore({ from }) {
-    const store = configureStore({
-      demo: from,
-    });
-
-    return store;
+  static configureStore (initialState?: any) {
+    return configureStore(initialState)
   }
   static getPartial({ store, ctx }) {
     const html = (
@@ -102,7 +98,8 @@ export default class View extends React.Component<any> {
   }
 }
 if (__CLIENT__) {
-  const store = configureStore(window.__INITIAL_STATE__);
+  const store = configureStore(window.__INITIAL_STATE__)
+  APP.dispatch = store.dispatch
   const app = (
     <Provider store={store}>
       <Router/>

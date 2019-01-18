@@ -5,8 +5,9 @@ export default (app: Application) => {
   router.get('/check', async (ctx) => {
     ctx.body = ''
   });
-  router.get('/', async (ctx) => {
-    ctx.redirect('/home')
-  });
+  // router.get('/', async (ctx) => {
+  //   ctx.redirect('/home')
+  // });
+  router.get('/city', controller.home.city);
   router.get('/*', controller.home.index);
 };

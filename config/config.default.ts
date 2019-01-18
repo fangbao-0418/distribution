@@ -4,8 +4,7 @@ export default () => {
   return {
     keys: 'secret',
     proxy: {
-      host: 'https://www.easy-mock.com',
-      // host: 'https://x-sys.i-counting.cn',
+      host: 'https://x-sys.i-counting.cn',
       match: /\/(json|sys|mock)/
     },
     react: {

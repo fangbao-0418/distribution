@@ -16,8 +16,7 @@ const http = (url: string, type: RequestTypeProps, config: AjaxConfigProps = {})
     ContentType: config.contentType !== undefined ? config.contentType : 'application/json; charset=utf-8',
   })
   let ajaxConfig: AjaxConfigProps = {
-    // url: '/sys' + url,
-    url: '/mock/5c356434c55255212f1a3409/bi' + url,
+    url: '/sys' + url,
     method: type,
     headers,
     data

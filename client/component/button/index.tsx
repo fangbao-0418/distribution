@@ -32,7 +32,7 @@ class Main extends React.Component<Props> {
         className={
           cx('button', this.props.className,
             cx({
-              [this.props.size || 'large']: true
+              [this.props.size || 'small']: true
             })
           )
         }

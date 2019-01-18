@@ -1,11 +1,18 @@
-
 declare namespace APP {
-  export interface Props {
-    history: any
-    token: string
+  export interface Action<T = any> {
+    type: T
   }
-  // export const Icon: React.ComponentType<Icon.Props>
+  export interface AnyAction extends Action {
+    [extraProps: string]: any
+  }
+  interface Dispatch<A extends Action = AnyAction> {
+    <T extends A>(action: T): T
+  }
+  export interface Props {
+    dispatch: Dispatch
+    history: {
+      push: (path: string) => void
+      goBack: any
+    }
+  }
 }
-declare const APP: APP.Props
-
-

@@ -1,24 +1,7 @@
 import { combineReducers } from 'redux'
-import { handleActions } from 'redux-actions';
-
-const initialState = {
-  home: {
-    orderTotal: 0,
-    voucherTotal: 0,
-    billTotal: 0
-  },
-};
-const demo = handleActions(
-  {
-    'demo data': (state, { payload: { home } }) => ({
-      ...state,
-      home,
-    }),
-  },
-  initialState,
-);
+import common from './common'
 
 const reducers = combineReducers({
-  demo
+  common
 })
 export default reducers
