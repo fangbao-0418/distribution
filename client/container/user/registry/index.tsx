@@ -117,6 +117,7 @@ class Main extends React.Component<Props> {
           <Button
             className='mt26'
             onClick={() => {
+              APP.toast('注册成功')
               // Services.registry(this.props.registry).then((res) => {
               //   if (res && res.status === 400) {
               //     alert(res.message)
