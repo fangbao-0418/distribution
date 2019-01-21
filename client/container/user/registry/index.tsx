@@ -3,7 +3,6 @@ import classnames from 'classnames/bind'
 import FormItem from 'client/component/form/FormItem'
 import Button from 'client/component/button'
 import ValidateCode from './ValidateCode'
-import { Toast } from 'antd-mobile'
 import CitySelect from 'client/component/form/CitySelect'
 import { connect } from 'react-redux'
 import actions from 'client/actions'
@@ -25,110 +24,114 @@ class Main extends React.Component<Props> {
   render () {
     const { showPassWord } = this.state
     const { registry } = this.props
-    console.log(registry, 'render')
     return (
-      <div className={cx('registry')}>
-        <div className={cx('card')}>
-          <div className={cx('title')}>注册账号</div>
-          <FormItem
-            className='mt23'
-            label='账号'
-            required
-          >
-            <input
-              placeholder='请输入手机号码'
-              value={registry.phone}
-              onChange={(e) => {
-                this.handleForm('phone', e.target.value)
-              }}
-            />
-          </FormItem>
-          <FormItem
-            label='验证码'
-            required
-            right={(
-              <ValidateCode
-                mobile={this.payload.phone}
-              />
-            )}
-          >
-            <input
-              placeholder='请输入6位验证码'
-              maxLength={6}
-              value={registry.checkCode}
-              onChange={(e) => {
-                const value = e.target.value
-                this.handleForm('checkCode', value)
-              }}
-            />
-          </FormItem>
-          <FormItem
-            label='密码'
-            required
-            right={(
-              <div
-                onClick={() => {
-                  this.setState({
-                    showPassWord: !showPassWord
-                  })
+      <div className={cx('container')}>
+        <div className={cx('registry')}>
+          <div className={cx('logo')}></div>
+          <div className={cx('title')}></div>
+          <div className={cx('card')}>
+            <div className={cx('title')}>注册账号</div>
+            <FormItem
+              className='mt23'
+              label='账号'
+              required
+            >
+              <input
+                placeholder='请输入手机号码'
+                value={registry.phone}
+                onChange={(e) => {
+                  this.handleForm('phone', e.target.value)
                 }}
-              >
-                {
-                  <img
-                    className={cx('show-password')}
-                    src={showPassWord ?
-                      require('client/assets/icon_zanshi@3x.png')
-                      :
-                      require('client/assets/icon_yican@3x.png')
-                    }
-                  />
-                }
-              </div>
-            )}
-          >
-            <input
-              type={showPassWord ? 'text' : 'password'}
-              placeholder='请输入密码6-12位字符'
-              value={registry.password}
-              onChange={(e) => {
-                this.handleForm('password', e.target.value)
+              />
+            </FormItem>
+            <FormItem
+              label='验证码'
+              required
+              right={(
+                <ValidateCode
+                  mobile={this.payload.phone}
+                />
+              )}
+            >
+              <input
+                placeholder='请输入6位验证码'
+                maxLength={6}
+                value={registry.checkCode}
+                onChange={(e) => {
+                  const value = e.target.value
+                  this.handleForm('checkCode', value)
+                }}
+              />
+            </FormItem>
+            <FormItem
+              label='密码'
+              required
+              right={(
+                <div
+                  onClick={() => {
+                    this.setState({
+                      showPassWord: !showPassWord
+                    })
+                  }}
+                >
+                  {
+                    <img
+                      className={cx('show-password')}
+                      src={showPassWord ?
+                        require('client/assets/icon_zanshi@3x.png')
+                        :
+                        require('client/assets/icon_yican@3x.png')
+                      }
+                    />
+                  }
+                </div>
+              )}
+            >
+              <input
+                type={showPassWord ? 'text' : 'password'}
+                placeholder='请输入密码6-12位字符'
+                value={registry.password}
+                onChange={(e) => {
+                  this.handleForm('password', e.target.value)
+                }}
+              />
+            </FormItem>
+            <FormItem
+              label='确认密码'
+              required
+            >
+              <input
+                type={showPassWord ? 'text' : 'password'}
+                placeholder='重新输入密码'
+                value={registry.surePassword}
+                onChange={(e) => {
+                  this.handleForm('surePassword', e.target.value)
+                }}
+                onBlur={() => {
+                  if (registry.password !== registry.surePassword) {
+                    console.log('两次密码不一致，请重新输入')
+                  }
+                }}
+              />
+            </FormItem>
+            <CitySelect />
+            <Button
+              className='mt26'
+              onClick={() => {
+                APP.toast('注册成功')
+                // Services.registry(this.props.registry).then((res) => {
+                //   if (res && res.status === 400) {
+                //     alert(res.message)
+                //   } else {
+                //     APP.history.push('/registry/success')
+                //   }
+                // })
               }}
-            />
-          </FormItem>
-          <FormItem
-            label='确认密码'
-            required
-          >
-            <input
-              type={showPassWord ? 'text' : 'password'}
-              placeholder='重新输入密码'
-              value={registry.surePassword}
-              onChange={(e) => {
-                this.handleForm('surePassword', e.target.value)
-              }}
-              onBlur={() => {
-                if (registry.password !== registry.surePassword) {
-                  console.log('两次密码不一致，请重新输入')
-                }
-              }}
-            />
-          </FormItem>
-          <CitySelect />
-          <Button
-            className='mt26'
-            onClick={() => {
-              APP.toast('注册成功')
-              // Services.registry(this.props.registry).then((res) => {
-              //   if (res && res.status === 400) {
-              //     alert(res.message)
-              //   } else {
-              //     APP.history.push('/registry/success')
-              //   }
-              // })
-            }}
-          >
-            提交
-          </Button>
+            >
+              提交
+            </Button>
+          </div>
+          <div className={cx('bottom')}></div>
         </div>
       </div>
     )

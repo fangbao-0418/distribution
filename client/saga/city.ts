@@ -48,7 +48,7 @@ function* fetchCityList () {
 }
 function* fetchLocation () {
   try {
-    const data = (yield call(Services.fetchLocation) || {data: []}).data
+    const data = yield call(Services.fetchLocation) || {}
     yield put(actions.city.select(data))
   } catch (e) {
   }

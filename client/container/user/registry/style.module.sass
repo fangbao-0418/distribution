@@ -1,15 +1,28 @@
-.registry
-  background: url('client/assets/label_zuce@3x.png') 0 0 / 100% auto no-repeat
+.container
+  background: rgb(221, 236, 252)
   height: 100%
+  overflow: auto
+.registry
+  background: url('client/assets/label_bge@3x.png') 0 0 / 100% auto no-repeat
   position: relative
+  .logo
+    position: relative
+    background: url('client/assets/label_logo@3x.png') 0 0 / 50px 18.1px no-repeat
+    height: 18.1px
+    top: 20px
+    margin-left: 15px
+  .title
+    position: relative
+    background: url('client/assets/label_wenzi@3x.png') center center / 272px auto no-repeat
+    height: 60px
+    top: 30px
   .card
-    position: absolute
+    position: relative
     background: #FFFFFF
-    top: 200px
-    left: 15px
-    right: 15px
-    padding: 15px
+    top: 100px
+    padding: 15px 15px 15px
     border-radius: 4px
+    margin: 0px 15px 120px
     .title
       position: absolute
       width: 162px
@@ -46,6 +59,7 @@
     padding: 15px
     border-radius: 4px
     box-shadow: 0 2px 8px 0 rgba(51,51,51,0.20)
+    margin-bottom: 120px
     .title
       position: absolute
       top: -32px

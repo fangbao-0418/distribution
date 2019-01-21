@@ -1,5 +1,6 @@
 import React from 'react'
 import classnames from 'classnames/bind'
+import QRcode from './QRcode'
 import Menu from './menu'
 const cx = classnames.bind(require('./style.module.sass'))
 class Main extends React.Component {
@@ -26,10 +27,7 @@ class Main extends React.Component {
               153678972183
             </div>
             <div>
-              <img
-                className={cx('qr-code', 'mt10')}
-                src={require('client/assets/icon_erweima@3x.png')}
-              />
+              <QRcode />
             </div>
           </div>
         </div>

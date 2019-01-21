@@ -4,7 +4,6 @@ import FormItem from 'client/component/form/FormItem'
 import Button from 'client/component/button'
 import ValidateCode from 'client/container/user/registry/ValidateCode'
 import * as Services from 'client/utils/service'
-import { Toast } from 'antd-mobile'
 const cx = classnames.bind(require('./style.module.sass'))
 class Main extends React.Component {
   state = {
@@ -67,18 +66,22 @@ class Main extends React.Component {
           <Button
             className='mt26'
             onClick={() => {
-              console.log(this.state.account, this.state.password, '111')
               const params = {
                 phone: this.state.account,
                 password: this.state.password
               }
               if (this.state.showAccount) {
                 Services.loginAccount(params).then((res) => {
-                  console.log(res, 'aaa')
+                  if (res.status === 400) {
+                    APP.toast(res.message)
+                  }
                 })
               } else {
                 Services.loginPhone(params).then((res) => {
-                  console.log(res, 'aaa')
+                  console.log(res.status === 400, 'aaa')
+                  if (res.status === 400) {
+                    APP.toast(res.message)
+                  }
                 })
               }
             }}
