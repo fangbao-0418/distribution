@@ -5,7 +5,8 @@ declare namespace State {
     selectCity: CityProps
   }
   export interface Form {
-    registry: any
+    registry: RegistryFormProps,
+    customer: CustomerFormProps
   }
   export interface Props {
     common: Common,

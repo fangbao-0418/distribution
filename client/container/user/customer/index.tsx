@@ -5,8 +5,14 @@ import Button from 'client/component/button'
 import Filter from './Filter'
 import Search from './Search'
 import Item from './Item'
+import * as Services from 'client/utils/service'
 const cx = classnames.bind(require('./style.module.sass'))
 class Main extends React.Component {
+  componentWillMount () {
+    Services.getCustomerList(1, 20).then((res) => {
+      console.log(res)
+    })
+  }
   render () {
     return (
       <Layout

@@ -1,7 +1,8 @@
 import { handleActions } from 'redux-actions'
 import actions from '../actions'
 const initialState = {
-  registry: {}
+  registry: {},
+  customer: {}
 };
 export default handleActions(
   {
@@ -10,10 +11,15 @@ export default handleActions(
       initialState,
     }),
     [actions.form.registry]: (state, { payload }) => {
-      // console.log(payload, 'reducer')
       return ({
         ...state,
         registry: payload
+      })
+    },
+    [actions.form.customer]: (state, { payload }) => {
+      return ({
+        ...state,
+        customer: payload
       })
     }
   },

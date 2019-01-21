@@ -23,9 +23,8 @@ class Main extends React.Component {
               <span className={cx('down')}>下载二维码</span>
             </div>
             <div className={cx('text-center', 'mt10')}>
-              <img className={cx('or-code')} src={require('client/assets/icon_zanshi@3x.png')}/>
+              <img className={cx('or-code')} src={'https://pilipa-ml.oss-cn-beijing.aliyuncs.com/pilipa/distributor/qr/201901/1087260110466682882.png'}/>
             </div>
-            <div className={cx('text-center', 'mt10', 'phone')}>159868</div>
           </div>
           <div>
             <Button
