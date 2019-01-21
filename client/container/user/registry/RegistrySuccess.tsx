@@ -32,6 +32,7 @@ class Main extends React.Component {
               className='mt10'
               onClick={() => {
                 // Toast.info('xxx')
+                APP.history.push('/user')
               }}
             >
               进入我的个人中心

@@ -5,6 +5,7 @@ import Button from 'client/component/button'
 import { Toast } from 'antd-mobile'
 import Select from 'client/component/form/select'
 import { connect } from 'react-redux'
+import CitySelect from 'client/component/form/CitySelect'
 interface Props {
   form: any
   selectCity: CityProps
@@ -50,29 +51,7 @@ class Main extends React.Component<Props> {
         >
           <input {...getFieldProps('telphone')}/>
         </FormItem>
-        <FormItem
-          required
-          label='所在城市'
-          right={(
-            <img
-              onClick={this.selectCity.bind(this)}
-              src={require('client/assets/icon_left@3x.png')} width='5px' height='9px'
-            />
-          )}
-        >
-          <div
-            onClick={this.selectCity.bind(this)}
-          >
-          <img
-            style={{
-              verticalAlign: 'middle',
-              marginRight: '6px'
-            }}
-            src={require('client/assets/icon_diz@3x.png')} width='12px' height='14.6px'
-          />
-            {selectCity.name}
-          </div>
-        </FormItem>
+        <CitySelect />
         <FormItem
           style={{
             border: 'none'

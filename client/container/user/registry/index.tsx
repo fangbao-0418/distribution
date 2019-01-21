@@ -4,6 +4,7 @@ import FormItem from 'client/component/form/FormItem'
 import Button from 'client/component/button'
 import ValidateCode from './ValidateCode'
 import { Toast } from 'antd-mobile'
+import CitySelect from 'client/component/form/CitySelect'
 const cx = classnames.bind(require('./style.module.sass'))
 class Main extends React.Component {
   state = {
@@ -71,12 +72,7 @@ class Main extends React.Component {
               placeholder='重新输入密码'
             />
           </FormItem>
-          <FormItem
-            label='城市'
-            required
-          >
-            <input/>
-          </FormItem>
+          <CitySelect />
           <Button
             className='mt26'
             onClick={() => {
