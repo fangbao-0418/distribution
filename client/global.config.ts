@@ -15,3 +15,13 @@ interface CityProps {
   /** 城市code */
   code: string
 }
+/** 注册 */
+interface RegistryFormProps {
+  phone?: string
+  password?: string
+  surePassword?: string
+  cityCode?: string
+  cityName?: string
+  /** 验证码 */
+  checkCode?: string
+}

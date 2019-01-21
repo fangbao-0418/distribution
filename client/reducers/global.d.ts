@@ -4,7 +4,11 @@ declare namespace State {
     sourceCities: CityProps[]
     selectCity: CityProps
   }
+  export interface Form {
+    registry: any
+  }
   export interface Props {
-    common: Common
+    common: Common,
+    form: Form
   }
 }

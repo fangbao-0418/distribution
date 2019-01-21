@@ -5,13 +5,28 @@ import Button from 'client/component/button'
 import ValidateCode from './ValidateCode'
 import { Toast } from 'antd-mobile'
 import CitySelect from 'client/component/form/CitySelect'
+import { connect } from 'react-redux'
+import actions from 'client/actions'
+import * as Services from 'client/utils/service'
 const cx = classnames.bind(require('./style.module.sass'))
-class Main extends React.Component {
+interface Props {
+  registry: RegistryFormProps
+}
+class Main extends React.Component<Props> {
+  payload: RegistryFormProps = {}
   state = {
-    showPassWord: false
+    showPassWord: false,
+    surePassword: ''
+  }
+  handleForm (field, value) {
+    this.payload[field] = value
+    console.log(this.payload)
+    APP.dispatch(actions.form.registry(this.payload))
   }
   render () {
     const { showPassWord } = this.state
+    const { registry } = this.props
+    console.log(registry, 'render')
     return (
       <div className={cx('registry')}>
         <div className={cx('card')}>
@@ -21,17 +36,30 @@ class Main extends React.Component {
             label='账号'
             required
           >
-            <input placeholder='请输入手机号码'/>
+            <input
+              placeholder='请输入手机号码'
+              value={registry.phone}
+              onChange={(e) => {
+                console.log(e.target.value)
+               this.handleForm('phone', e.target.value)
+              }}
+            />
           </FormItem>
           <FormItem
             label='验证码'
             required
             right={(
-              <ValidateCode/>
+              <ValidateCode
+                mobile={this.props.registry.phone}
+              />
             )}
           >
             <input
               placeholder='请输入6位验证码'
+              value={registry.checkCode}
+              onChange={(e) => {
+                this.handleForm('checkCode', e.target.value)
+              }}
             />
           </FormItem>
           <FormItem
@@ -61,6 +89,10 @@ class Main extends React.Component {
             <input
               type={showPassWord ? 'text' : 'password'}
               placeholder='请输入密码6-12位字符'
+              value={registry.password}
+              onChange={(e) => {
+                this.handleForm('password', e.target.value)
+              }}
             />
           </FormItem>
           <FormItem
@@ -70,14 +102,29 @@ class Main extends React.Component {
             <input
               type={showPassWord ? 'text' : 'password'}
               placeholder='重新输入密码'
+              value={registry.surePassword}
+              onChange={(e) => {
+                this.handleForm('surePassword', e.target.value)
+              }}
+              onBlur={() => {
+                if (registry.password !== registry.surePassword) {
+                  console.log('两次密码不一致，请重新输入')
+                }
+              }}
             />
           </FormItem>
           <CitySelect />
           <Button
             className='mt26'
             onClick={() => {
-              // Toast.info('xxx')
-              APP.history.push('/registry/success')
+              console.log(this.props.registry, '注册')
+              // Services.registry(this.props.registry).then((res) => {
+              //   if (res && res.status === 400) {
+              //     alert(res.message)
+              //   } else {
+              //     APP.history.push('/registry/success')
+              //   }
+              // })
             }}
           >
             提交
@@ -87,4 +134,8 @@ class Main extends React.Component {
     )
   }
 }
-export default Main
+export default connect((state: State.Props) => {
+  return {
+    registry: state.form.registry
+  }
+})(Main)

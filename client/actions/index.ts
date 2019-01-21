@@ -7,5 +7,8 @@ export default createActions({
     FILTER_RESULT: data => data,
     FETCH_SUCCESS: data => data,
     SELECT: data => data
+  },
+  FORM: {
+    REGISTRY: data => data
   }
 });
