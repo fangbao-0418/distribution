@@ -21,3 +21,6 @@ require('@babel/register')({
   extensions: ['.jsx', '.mjs', '.ts', '.tsx'],
   cache: false,
 });
+module.exports = () => {
+  global.APP = {}
+}

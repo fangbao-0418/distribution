@@ -14,5 +14,7 @@ declare namespace APP {
       push: (path: string) => void
       goBack: any
     }
+    /** 提示信息 */
+    toast: (message: string) => void
   }
 }

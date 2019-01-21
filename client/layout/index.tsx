@@ -5,6 +5,7 @@ import configureStore from '../store';
 import { run } from '../saga';
 import Router from '../router/router';
 import 'client/styles/common'
+Object.assign(APP, require('client/utils/app'))
 export default class View extends React.Component<any> {
   static doctype = '<!DOCTYPE html>';
   static defaultProps = {
