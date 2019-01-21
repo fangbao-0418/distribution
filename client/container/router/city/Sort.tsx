@@ -33,7 +33,6 @@ class Main extends React.Component<Props> {
   }
   render () {
     const { cities } = this.props
-    console.log(cities, 'render')
     return (
       <div className={cx('sort')}>
         {

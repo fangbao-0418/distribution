@@ -37,7 +37,7 @@ function* filterData ({payload}) {
   const result = sorter(data)
   yield put(actions.city.filterResult(result))
 }
-function* fetchData () {
+function* fetchCityList () {
   try {
     const cities = (yield call(Services.fetchCities) || {data: []}).data
     const data = sorter(cities)
@@ -46,8 +46,15 @@ function* fetchData () {
   } catch (e) {
   }
 }
-
+function* fetchLocation () {
+  try {
+    const data = (yield call(Services.fetchLocation) || {data: []}).data
+    yield put(actions.city.select(data))
+  } catch (e) {
+  }
+}
 export default function* () {
-  yield takeLatest(actions.city.fetch, fetchData)
+  yield takeLatest(actions.city.fetch, fetchCityList)
   yield takeLatest(actions.city.filter, filterData)
+  yield takeLatest(actions.city.fetchLocation, fetchLocation)
 }

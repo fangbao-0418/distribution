@@ -60,7 +60,6 @@ class Main extends React.Component<Props> {
     const { type, itemStyle, itemClassName } = this.props
     const Control = ControlOptions[`${type}${theme}`]
     let nodes = []
-    console.log(value, 'value')
     return (
       <div className={cx('select')}>
         {
