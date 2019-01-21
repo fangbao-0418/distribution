@@ -16,7 +16,7 @@ module.exports = {
     return this.curl(url, {
       method,
       headers: {
-        from: 4
+        from: 2
       }
     }).then((response) => {
       const { status, data } = response
