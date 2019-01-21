@@ -11,6 +11,7 @@ class Main extends React.Component<Props> {
     count: 60
   }
   public render () {
+    console.log(this.props.mobile, 'mobile')
     return (
       <div
         onClick={() => {

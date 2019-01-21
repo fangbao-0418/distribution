@@ -20,8 +20,7 @@ class Main extends React.Component<Props> {
   }
   handleForm (field, value) {
     this.payload[field] = value
-    console.log(this.payload)
-    APP.dispatch(actions.form.registry(this.payload))
+    APP.dispatch(actions.form.registry(Object.assign({}, this.payload)))
   }
   render () {
     const { showPassWord } = this.state
@@ -40,8 +39,7 @@ class Main extends React.Component<Props> {
               placeholder='请输入手机号码'
               value={registry.phone}
               onChange={(e) => {
-                console.log(e.target.value)
-               this.handleForm('phone', e.target.value)
+                this.handleForm('phone', e.target.value)
               }}
             />
           </FormItem>
@@ -50,15 +48,17 @@ class Main extends React.Component<Props> {
             required
             right={(
               <ValidateCode
-                mobile={this.props.registry.phone}
+                mobile={this.payload.phone}
               />
             )}
           >
             <input
               placeholder='请输入6位验证码'
+              maxLength={6}
               value={registry.checkCode}
               onChange={(e) => {
-                this.handleForm('checkCode', e.target.value)
+                const value = e.target.value
+                this.handleForm('checkCode', value)
               }}
             />
           </FormItem>
@@ -117,7 +117,6 @@ class Main extends React.Component<Props> {
           <Button
             className='mt26'
             onClick={() => {
-              console.log(this.props.registry, '注册')
               // Services.registry(this.props.registry).then((res) => {
               //   if (res && res.status === 400) {
               //     alert(res.message)

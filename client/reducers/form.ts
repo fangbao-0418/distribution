@@ -10,6 +10,7 @@ export default handleActions(
       initialState,
     }),
     [actions.form.registry]: (state, { payload }) => {
+      // console.log(payload, 'reducer')
       return ({
         ...state,
         registry: payload
