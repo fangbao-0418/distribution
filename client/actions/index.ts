@@ -10,6 +10,7 @@ export default createActions({
     SELECT: data => data
   },
   FORM: {
-    REGISTRY: data => data
+    REGISTRY: data => data,
+    CUSTOMER: data => data
   }
 })

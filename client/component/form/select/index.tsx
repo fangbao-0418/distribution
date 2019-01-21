@@ -51,6 +51,10 @@ class Main extends React.Component<Props> {
       this.setState({
         value: oldValue
       })
+      value = oldValue
+    }
+    if (this.props.onChange) {
+      this.props.onChange(value)
     }
   }
   render () {

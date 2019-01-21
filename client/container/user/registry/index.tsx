@@ -7,6 +7,7 @@ import CitySelect from 'client/component/form/CitySelect'
 import { connect } from 'react-redux'
 import actions from 'client/actions'
 import * as Services from 'client/utils/service'
+import _ from 'lodash'
 const cx = classnames.bind(require('./style.module.sass'))
 interface Props {
   registry: RegistryFormProps
@@ -14,8 +15,7 @@ interface Props {
 class Main extends React.Component<Props> {
   payload: RegistryFormProps = {}
   state = {
-    showPassWord: false,
-    surePassword: ''
+    showPassWord: false
   }
   handleForm (field, value) {
     this.payload[field] = value
@@ -118,20 +118,23 @@ class Main extends React.Component<Props> {
             <Button
               className='mt26'
               onClick={() => {
-                APP.toast('注册成功')
-                // Services.registry(this.props.registry).then((res) => {
-                //   if (res && res.status === 400) {
-                //     alert(res.message)
-                //   } else {
-                //     APP.history.push('/registry/success')
-                //   }
-                // })
+                console.log(this.props.registry)
+                const params: RegistryFormProps = _.cloneDeep(this.props.registry)
+                params.cityCode = '110000'
+                params.cityName = '北京市'
+                delete params.surePassword
+                Services.registry(params).then((res) => {
+                  if (res && res.status === 400) {
+                    APP.toast(res.message)
+                  } else {
+                    APP.history.push('/registry/success')
+                  }
+                })
               }}
             >
               提交
             </Button>
           </div>
-          <div className={cx('bottom')}></div>
         </div>
       </div>
     )

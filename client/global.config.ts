@@ -24,3 +24,15 @@ interface RegistryFormProps {
   /** 验证码 */
   checkCode?: string
 }
+/** 新增客户 */
+interface CustomerFormProps {
+  contactPerson?: string
+  contactPhone?: string
+  customerName?: string
+  cityCode?: string
+  cityName?: string
+  /** 纳税人类别 */
+  payTaxesNature?: string
+  /** 需求状态 */
+  demandType?: string
+}
