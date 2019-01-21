@@ -1,7 +1,11 @@
 import React from 'react'
 import classnames from 'classnames/bind'
+import * as Services from 'client/utils/service'
 const cx = classnames.bind(require('./style.module.sass'))
-class Main extends React.Component {
+interface Props {
+  mobile?: string
+}
+class Main extends React.Component<Props> {
   state = {
     validateCode: true,
     count: 60
@@ -11,6 +15,9 @@ class Main extends React.Component {
       <div
         onClick={() => {
           if (!this.state.validateCode) {
+            return
+          }
+          if (!this.props.mobile) {
             return
           }
           this.setState({
@@ -28,6 +35,9 @@ class Main extends React.Component {
               clearInterval(timeStop)
             }
           }, 1000)
+          Services.getMobileCode(this.props.mobile).then((res) => {
+            console.log('发送成功提示')
+          })  
         }}
       >
         {

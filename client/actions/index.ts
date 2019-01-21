@@ -8,5 +8,8 @@ export default createActions({
     FETCH_SUCCESS: data => data,
     FETCH_LOCATION: undefined,
     SELECT: data => data
+  },
+  FORM: {
+    REGISTRY: data => data
   }
 })
