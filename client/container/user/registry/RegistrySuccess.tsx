@@ -1,8 +1,12 @@
 import React from 'react'
 import Button from 'client/component/button'
 import classnames from 'classnames/bind'
+import { connect } from 'react-redux'
 const cx = classnames.bind(require('./style.module.sass'))
-class Main extends React.Component {
+interface Props {
+  user: UserProps
+}
+class Main extends React.Component<Props> {
   render () {
     return (
       <div className={cx('registry-success')}>
@@ -23,7 +27,7 @@ class Main extends React.Component {
               <span className={cx('down')}>下载二维码</span>
             </div>
             <div className={cx('text-center', 'mt10')}>
-              <img className={cx('or-code')} src={'https://pilipa-ml.oss-cn-beijing.aliyuncs.com/pilipa/distributor/qr/201901/1087260110466682882.png'}/>
+              <img className={cx('or-code')} src={this.props.user.qrCodeImageUrl}/>
             </div>
           </div>
           <div>
@@ -42,4 +46,8 @@ class Main extends React.Component {
     )
   }
 }
-export default Main
+export default connect(({common}: State.Props) => {
+  return {
+    user: common.user
+  }
+})(Main)

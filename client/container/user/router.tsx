@@ -15,11 +15,11 @@ class Main extends React.Component {
         <Route path='/login' exact component={Login} />
         <Route path='/logout' exact component={Logout} />
         <Route path='/registry' exact component={Registry} />
-        <Route path='/registry/success' exact component={RegistrySuccess} />
         <Auth>
           <Route path='/user' exact component={User} />
           <Route path='/user/customer' exact component={Customer} />
           <Route path='/user/customer/add' component={CustomerAdd} />
+          <Route path='/registry/success' exact component={RegistrySuccess} />
         </Auth>
       </Switch>
     )

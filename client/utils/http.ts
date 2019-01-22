@@ -10,6 +10,7 @@ const http = (url: string, type: RequestTypeProps, config: AjaxConfigProps = {})
     config.data = data
   }
   data = config.data || config || undefined
+  const params = config.params
   const headers = Object.assign({}, config.headers, {
     token: APP.token,
     from: 2,
@@ -19,7 +20,8 @@ const http = (url: string, type: RequestTypeProps, config: AjaxConfigProps = {})
     url: '/sys' + url,
     method: type,
     headers,
-    data
+    data,
+    params
   }
   return axios(ajaxConfig).then((res) => {
     return res.data
