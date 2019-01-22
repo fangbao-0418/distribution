@@ -9,11 +9,16 @@ class Main extends React.Component {
   state = {
     showPassWord: false,
     showAccount: true,
+    /** 账号 */
     account: '',
-    password: ''
+    /** 密码 */
+    password: '',
+    /** 验证码 */
+    code: ''
   }
   render () {
-    const { showPassWord } = this.state
+    const { showPassWord, account, showAccount, password, code } = this.state
+    console.log(showPassWord, 'showPassWord')
     return (
       <div className={cx('login')}>
         <div className={cx('card')}>
@@ -54,11 +59,13 @@ class Main extends React.Component {
             )}
           >
             <input
-              type={showPassWord ? 'text' : 'password'}
+              type={(!showAccount || showPassWord) ? 'text' : 'password'}
               placeholder={this.state.showAccount ? '请输入密码' : '请输入验证码'}
+              maxLength={!showAccount ? 6 : undefined}
+              value={showAccount ? password : code}
               onChange={(e) => {
                 this.setState({
-                  password: e.target.value
+                  [showAccount ? 'password' : 'code']: e.target.value
                 })
               }}
             />
@@ -67,19 +74,22 @@ class Main extends React.Component {
             className='mt26'
             onClick={() => {
               const params = {
-                phone: this.state.account,
-                password: this.state.password
+                phone: account,
+                password: showAccount ? password : code
               }
-              if (this.state.showAccount) {
+              if (showAccount) {
                 Services.loginAccount(params).then((res) => {
-                  if (res.status === 400) {
+                  if (res.token) {
+                    APP.history.push('/user')
+                  } else if (res.message) {
                     APP.toast(res.message)
                   }
                 })
               } else {
                 Services.loginPhone(params).then((res) => {
-                  console.log(res.status === 400, 'aaa')
-                  if (res.status === 400) {
+                  if (res.token) {
+                    APP.history.push('/user')
+                  } else if (res.message) {
                     APP.toast(res.message)
                   }
                 })
@@ -103,12 +113,12 @@ class Main extends React.Component {
               className={cx('con')}
               onClick={() => {
                 this.setState({
-                  showAccount: !this.state.showAccount
+                  showAccount: !showAccount
                 })
               }}
             >
               {
-                this.state.showAccount ? '短信登录' : '账号密码'
+                showAccount ? '短信登录' : '账号密码'
               }
             </div>
           </div>

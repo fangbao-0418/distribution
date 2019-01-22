@@ -11,8 +11,8 @@ const http = (url: string, type: RequestTypeProps, config: AjaxConfigProps = {})
   }
   data = config.data || config || undefined
   const headers = Object.assign({}, config.headers, {
-    // token: `${APP.token}`,
-    from: 4,
+    token: APP.token,
+    from: 2,
     ContentType: config.contentType !== undefined ? config.contentType : 'application/json; charset=utf-8',
   })
   let ajaxConfig: AjaxConfigProps = {
@@ -22,9 +22,11 @@ const http = (url: string, type: RequestTypeProps, config: AjaxConfigProps = {})
     data
   }
   return axios(ajaxConfig).then((res) => {
+    console.log('success')
     return res.data
-  }, (err) => {
-    return err
+  }, function (err) {
+    // console.log(arguments, 'error')
+    throw Error(err)
   })
 }
 export default http

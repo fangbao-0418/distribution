@@ -48,8 +48,10 @@ function* fetchCityList () {
 }
 function* fetchLocation () {
   try {
-    const data = yield call(Services.fetchLocation) || {}
-    yield put(actions.city.select(data))
+    const res = yield call(Services.fetchLocation) || {data: {}}
+    if (res.status === 200) {
+      yield put(actions.city.select(res.data))
+    }
   } catch (e) {
   }
 }

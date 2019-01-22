@@ -16,5 +16,6 @@ declare namespace APP {
     }
     /** 提示信息 */
     toast: (message: string) => void
+    token: string
   }
 }

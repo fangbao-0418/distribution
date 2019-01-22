@@ -39,6 +39,7 @@
     "beidou-core": "^1.0.10",
     "egg": "^2.10.0",
     "egg-ts-helper": "^1.9.2",
+    "js-cookie": "^2.2.0",
     "rc-form": "^2.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
