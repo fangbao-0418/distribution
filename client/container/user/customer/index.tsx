@@ -9,7 +9,11 @@ import * as Services from 'client/utils/service'
 const cx = classnames.bind(require('./style.module.sass'))
 class Main extends React.Component {
   componentWillMount () {
-    Services.getCustomerList(1, 20).then((res) => {
+    const params = {
+      pageCurrent: 1,
+      pageSize: 20
+    }
+    Services.getCustomerList(params).then((res) => {
       console.log(res)
     })
   }

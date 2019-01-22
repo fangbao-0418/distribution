@@ -11,6 +11,7 @@ import _ from 'lodash'
 const cx = classnames.bind(require('./style.module.sass'))
 interface Props {
   registry: RegistryFormProps
+  selectCity: CityProps
 }
 class Main extends React.Component<Props> {
   payload: RegistryFormProps = {}
@@ -118,10 +119,26 @@ class Main extends React.Component<Props> {
             <Button
               className='mt26'
               onClick={() => {
-                console.log(this.props.registry)
+                console.log(registry)
+                if (!registry.phone) {
+                  APP.toast('请填写账号')
+                  return
+                }
+                if (!registry.checkCode) {
+                  APP.toast('请填写验证码')
+                  return
+                }
+                if (!registry.password) {
+                  APP.toast('请填写密码')
+                  return
+                }
+                if (!registry.surePassword) {
+                  APP.toast('请再次输入密码')
+                  return
+                }
                 const params: RegistryFormProps = _.cloneDeep(this.props.registry)
-                params.cityCode = '110000'
-                params.cityName = '北京市'
+                params.cityCode = this.props.selectCity.code
+                params.cityName = this.props.selectCity.name
                 delete params.surePassword
                 Services.registry(params).then((res) => {
                   if (res && res.status === 400) {
@@ -140,8 +157,9 @@ class Main extends React.Component<Props> {
     )
   }
 }
-export default connect((state: State.Props) => {
+export default connect(({common, form}: State.Props) => {
   return {
-    registry: state.form.registry
+    selectCity: common.selectCity,
+    registry: form.registry
   }
 })(Main)

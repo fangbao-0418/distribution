@@ -47,8 +47,8 @@ export const registry = (payload: RegistryFormProps) => {
   return http('/shop-user/v1/api/distribute/add_distributor', 'POST', payload)
 }
 /** 我的客户列表 */
-export const getCustomerList = (pageCurrent: number, pageSize: number) => {
-  return http(`/shop-user/v1/api/distribute/customers?pageCurrent=${pageCurrent}&pageSize=${pageSize}`, 'GET')
+export const getCustomerList = (payload) => {
+  return http('/shop-user/v1/api/distribute/customers', 'GET', payload)
 }
 /** 新增客户 */
 export const addCustomer = (payload: CustomerFormProps) => {
