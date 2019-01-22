@@ -2,7 +2,6 @@ import React from 'react'
 import { createForm } from 'rc-form'
 import FormItem from 'client/component/form/FormItem'
 import Button from 'client/component/button'
-import { Toast } from 'antd-mobile'
 import Select from 'client/component/form/select'
 import { connect } from 'react-redux'
 import actions from 'client/actions'
@@ -130,17 +129,17 @@ class Main extends React.Component<Props> {
           onClick={() => {
             console.log(this.props.customer)
             if (!this.props.customer.contactPerson) {
-              Toast.info('请填写联系人')
+              APP.toast('请填写联系人')
               return
             }
             if (!this.props.customer.contactPhone) {
-              Toast.info('请填写联系人电话')
+              APP.toast('请填写联系人电话')
               return
             }
             const params: any = _.cloneDeep(this.props.customer)
             params.demandType = params.demandType && params.demandType.length > 0 ? params.demandType.join(',') : ''
-            params.cityCode = this.props.selectCity.code
-            params.cityName = this.props.selectCity.name
+            params.cityCode = selectCity.code
+            params.cityName = selectCity.name
             Services.addCustomer(params).then((res) => {
               if (res && res.status === 200) {
                 APP.history.push('/user/customer')
