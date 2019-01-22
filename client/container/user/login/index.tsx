@@ -16,6 +16,13 @@ class Main extends React.Component {
     /** 验证码 */
     code: ''
   }
+  public componentWillMount () {
+    if (__CLIENT__) {
+      if (APP.token) {
+        APP.history.push('/user')
+      }
+    }
+  }
   render () {
     const { showPassWord, account, showAccount, password, code } = this.state
     console.log(showPassWord, 'showPassWord')
@@ -79,17 +86,17 @@ class Main extends React.Component {
               }
               if (showAccount) {
                 Services.loginAccount(params).then((res) => {
-                  if (res.token) {
+                  if (res.status === 200) {
                     APP.history.push('/user')
-                  } else if (res.message) {
+                  } else {
                     APP.toast(res.message)
                   }
                 })
               } else {
                 Services.loginPhone(params).then((res) => {
-                  if (res.token) {
+                  if (res.status === 200) {
                     APP.history.push('/user')
-                  } else if (res.message) {
+                  } else {
                     APP.toast(res.message)
                   }
                 })

@@ -2,9 +2,14 @@ import React from 'react'
 import classnames from 'classnames/bind'
 import QRcode from './QRcode'
 import Menu from './menu'
+import { connect } from 'react-redux'
 const cx = classnames.bind(require('./style.module.sass'))
-class Main extends React.Component {
+interface Props {
+  user: UserProps
+}
+class Main extends React.Component<Props> {
   render () {
+    const { user } = this.props
     return (
       <div
         className={cx('container')}
@@ -24,7 +29,7 @@ class Main extends React.Component {
             <div
               className='font18'
             >
-              153678972183
+              {user.phone}
             </div>
             <div>
               <QRcode />
@@ -36,4 +41,8 @@ class Main extends React.Component {
     )
   }
 }
-export default Main
+export default connect(({common}: State.Props) => {
+  return {
+    user: common.user
+  }
+})(Main)

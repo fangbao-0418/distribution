@@ -3,7 +3,8 @@ import actions from '../actions'
 const initialState = {
   sourceCities: [],
   cities: [],
-  selectCity: {}
+  selectCity: {},
+  user: {}
 };
 export default handleActions(
   {
@@ -27,6 +28,13 @@ export default handleActions(
       return ({
         ...state,
         selectCity: payload
+      })
+    },
+    [actions.user.info]: (state, { payload }) => {
+      console.log(payload, 'user info')
+      return ({
+        ...state,
+        user: payload
       })
     }
   },

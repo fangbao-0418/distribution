@@ -3,6 +3,7 @@ declare namespace State {
     cities: Array<{key: string, list: CityProps[]}>
     sourceCities: CityProps[]
     selectCity: CityProps
+    user: UserProps
   }
   export interface Form {
     registry: RegistryFormProps,

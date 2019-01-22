@@ -12,5 +12,9 @@ export default createActions({
   FORM: {
     REGISTRY: data => data,
     CUSTOMER: data => data
+  },
+  USER: {
+    FETCH: undefined,
+    INFO: data => data
   }
 })

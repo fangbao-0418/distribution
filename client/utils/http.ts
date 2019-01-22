@@ -22,11 +22,9 @@ const http = (url: string, type: RequestTypeProps, config: AjaxConfigProps = {})
     data
   }
   return axios(ajaxConfig).then((res) => {
-    console.log('success')
     return res.data
   }, function (err) {
-    // console.log(arguments, 'error')
-    throw Error(err)
+    return Promise.reject(err)
   })
 }
 export default http

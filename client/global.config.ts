@@ -36,3 +36,9 @@ interface CustomerFormProps {
   /** 需求状态 */
   demandType?: string
 }
+/** 用户信息 */
+interface UserProps {
+  phone: string
+  /** 二维码地址 */
+  qrCodeImageUrl: string
+}

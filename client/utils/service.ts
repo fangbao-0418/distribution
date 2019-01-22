@@ -10,7 +10,13 @@ export const fetchLocation = () => {
 }
 /** 获取个人中心查询 */
 export const fetchUserInfo = () => {
-  return http('/v1/api/distribute/get_distributor', 'GET')
+  return http('/shop-user/v1/api/distribute/get_distributor', 'GET').then((res) => {
+    console.log(res, 'user success')
+    return res
+  }, (err) => {
+    console.log(err, 'user err')
+    APP.history.push('/logout')
+  })
 }
 /** 获取手机号验证码 */
 export const getMobileCode = (mobile) => {
@@ -19,8 +25,8 @@ export const getMobileCode = (mobile) => {
 /** 账号密码登录 */
 export const loginAccount = (payload) => {
   return http('/shop-user/v1/api/distribute/login', 'POST', payload).then((res) => {
-    if (res.token) {
-      APP.token = res.token
+    if (res.status === 200) {
+      APP.token = res.data.token
     }
     return res
   }, (err) => {
