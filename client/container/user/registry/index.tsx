@@ -119,7 +119,8 @@ class Main extends React.Component<Props> {
                 }}
                 onBlur={() => {
                   if (registry.password !== registry.surePassword) {
-                    console.log('两次密码不一致，请重新输入')
+                    APP.toast('两次密码不一致，请重新输入')
+
                   }
                 }}
               />
@@ -143,6 +144,10 @@ class Main extends React.Component<Props> {
                 }
                 if (!registry.surePassword) {
                   APP.toast('请再次输入密码')
+                  return
+                }
+                if (registry.surePassword !== registry.password) {
+                  APP.toast('两次密码不一致，请重新输入')
                   return
                 }
                 const params: RegistryFormProps = _.cloneDeep(this.props.registry)
