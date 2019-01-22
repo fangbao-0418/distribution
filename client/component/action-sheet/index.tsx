@@ -46,9 +46,13 @@ class Main extends React.Component<Props> {
       }
     }
   }
-  hide () {
-    if (this.dalog && document.body.contains(this.dalogEl)) {
-      this.dalog.destroy()
+  hide (time?: number) {
+    if (time === 0 && document.body.contains(this.dalogEl)) {
+      document.body.removeChild(this.dalogEl)
+    } else {
+      if (this.dalog && document.body.contains(this.dalogEl)) {
+        this.dalog.destroy()
+      }
     }
   }
   render () {

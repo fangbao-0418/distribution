@@ -42,7 +42,7 @@ class Main extends React.Component<Props> {
                     this.handleForm('phone', '')
                   }}
                   hidden={!registry.phone}
-                  src={require('client/assets/icon_dele@3x.png')} width={15.4} height={15.4}
+                  src={require('client/assets/icon_dele@3x.png')} width='15.4px' height='15.4px'
                 />
               )}
             >

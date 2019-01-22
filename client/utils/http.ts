@@ -26,6 +26,9 @@ const http = (url: string, type: RequestTypeProps, config: AjaxConfigProps = {})
   return axios(ajaxConfig).then((res) => {
     return res.data
   }, function (err) {
+    if (err.response.status === 500) {
+      APP.toast('服务端异常')
+    }
     return Promise.reject(err)
   })
 }

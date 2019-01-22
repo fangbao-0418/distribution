@@ -36,6 +36,10 @@ class Main extends React.Component {
     dateStatusClicked: false
   }
   customerStatus: any
+  componentWillUnmount () {
+    this.customerStatus.hide(0)
+    console.log('will unmount')
+  }
   onCustomerClick () {
     const { customerStatusClicked } = this.state
     this.setState({
