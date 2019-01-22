@@ -143,6 +143,7 @@ class Main extends React.Component<Props> {
             Services.addCustomer(params).then((res) => {
               if (res && res.status === 200) {
                 APP.history.push('/user/customer')
+                APP.dispatch(actions.form.customer({}))
               }
             })
           }}
