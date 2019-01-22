@@ -98,6 +98,7 @@ class Main extends React.Component<Props> {
               )}
             >
               <input
+                maxLength={12}
                 type={showPassWord ? 'text' : 'password'}
                 placeholder='请输入密码6-12位字符'
                 value={registry.password}
@@ -111,6 +112,7 @@ class Main extends React.Component<Props> {
               required
             >
               <input
+                maxLength={12}
                 type={showPassWord ? 'text' : 'password'}
                 placeholder='重新输入密码'
                 value={registry.surePassword}
@@ -138,8 +140,16 @@ class Main extends React.Component<Props> {
                   APP.toast('请填写验证码')
                   return
                 }
+                if (registry.checkCode.length != 6) {
+                  APP.toast('请填写验证码')
+                  return
+                }
                 if (!registry.password) {
                   APP.toast('请填写密码')
+                  return
+                }
+                if (registry.password.length < 6) {
+                  APP.toast('密码格式不正确')
                   return
                 }
                 if (!registry.surePassword) {
