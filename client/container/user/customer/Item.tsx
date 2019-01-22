@@ -8,6 +8,8 @@ interface Props {
     contractPhone: string
     demandType: string
     createTime: string
+    type: number
+    status: number
   }
 }
 class Main extends React.Component<Props> {
@@ -23,6 +25,7 @@ class Main extends React.Component<Props> {
   }
   render () {
     const data = this.props.data
+    console.log(data, 'data')
     return (
       <div className={cx('item')}>
         <div className={cx('avatar')}>
@@ -30,7 +33,7 @@ class Main extends React.Component<Props> {
         </div>
         <div className={cx('item-right')}>
           <h3>
-            {data.contractName}
+            {data.contractName}{data.type === 0 ? '（自留）' : ''}
             <span>
               {this.handleDate(data.createTime)}
             </span>
@@ -39,7 +42,7 @@ class Main extends React.Component<Props> {
           <p className='mt8'>
             {data.companyName}
             <div className={cx('tags')}>
-
+              {data.status === 0 ? '未成交' : '已成交'}
             </div>
           </p>
         </div>
