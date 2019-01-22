@@ -1,6 +1,5 @@
 import React from 'react'
 import classnames from 'classnames/bind'
-import { Toast } from 'antd-mobile'
 const cx = classnames.bind(require('./style.module.sass'))
 interface Props extends React.ButtonHTMLAttributes<any> {
   size?: 'large' | 'small'
@@ -10,6 +9,7 @@ class Main extends React.Component<Props> {
   public componentDidMount () {
     this.el = this.refs.button
     this.el.addEventListener('touchstart', (e) => {
+      console.log('touchstart')
       e.preventDefault()
       this.el.className = `${this.el.className} ${cx('active')}`.replace(new RegExp(cx('active'), 'g'), cx('active'))
     })

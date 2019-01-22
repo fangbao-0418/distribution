@@ -8,16 +8,33 @@ import Item from './Item'
 import * as Services from 'client/utils/service'
 const cx = classnames.bind(require('./style.module.sass'))
 class Main extends React.Component {
+  payload = {
+    pageCurrent: 1,
+    pageSize: 20
+  }
+  state = {
+    dataSource: []
+  }
   componentWillMount () {
-    const params = {
-      pageCurrent: 1,
-      pageSize: 20
+    if (__CLIENT__) {
+      this.fetchData()
     }
-    Services.getCustomerList(params).then((res) => {
-      console.log(res)
-    })
+  }
+  fetchData () {
+    const { dataSource } = this.state
+    if (__CLIENT__) {
+      Services.getCustomerList(this.payload).then((res) => {
+        if (res.status === 200) {
+          const { records, total } = res.data
+          this.setState({
+            dataSource: dataSource.concat(records)
+          })
+        }
+      })
+    }
   }
   render () {
+    const { dataSource } = this.state
     return (
       <Layout
         goBack={() => {
@@ -34,13 +51,13 @@ class Main extends React.Component {
           <Filter />
           <div className={cx('scroll')}>
             <Search className='mt10 mb15'/>
-            <Item></Item>
-            <Item></Item>
-            <Item></Item>
-            <Item></Item>
-            <Item></Item>
-            <Item></Item>
-            <Item></Item>
+            {
+              dataSource.map((item) => {
+                return (
+                  <Item data={item} />
+                )
+              })
+            }
           </div>
           <div className={cx('bottom')}>
             <Button
