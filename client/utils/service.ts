@@ -47,6 +47,7 @@ export const registry = (payload: RegistryFormProps) => {
 }
 /** 我的客户列表 */
 export const getCustomerList = (params) => {
+  console.log(params, 'getCustomerList')
   return http('/shop-user/v1/api/distribute/customers', 'GET', {params})
 }
 /** 新增客户 */

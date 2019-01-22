@@ -1,23 +1,43 @@
 import React from 'react'
 import classnames from 'classnames/bind'
 const cx = classnames.bind(require('./style.module.sass'))
-class Main extends React.Component {
+interface Props {
+  data: {
+    companyName: string
+    contractName: string
+    contractPhone: string
+    demandType: string
+    createTime: string
+  }
+}
+class Main extends React.Component<Props> {
+  handleDate (date: string) {
+    console.log(date, 'dat')
+    const res = date.match(/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/) || []
+    console.log(res)
+    if (res.length > 6) {
+      return `${res[2]}-${res[3]} ${res[4]}:${res[5]}`
+    } else {
+      return ''
+    }
+  }
   render () {
+    const data = this.props.data
     return (
       <div className={cx('item')}>
         <div className={cx('avatar')}>
-          张
+          {data.contractName.slice(0, 1)}
         </div>
         <div className={cx('item-right')}>
           <h3>
-            张女士
+            {data.contractName}
             <span>
-              09-01 12:00
+              {this.handleDate(data.createTime)}
             </span>
           </h3>
           <p className='mt8'>153****7066</p>
           <p className='mt8'>
-            北京****科技有限公司
+            {data.companyName}
             <div className={cx('tags')}>
 
             </div>
