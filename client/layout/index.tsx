@@ -55,9 +55,9 @@ export default class View extends React.Component<any> {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="https://cdn.staticfile.org/antd-mobile/2.2.8/antd-mobile.min.css"/>
         <link rel="stylesheet" href={helper.asset(`app.css`)} />
-        <script
+        {/* <script
           src="https://os.alipayobjects.com/rmsportal/lvEQQbNgHsIxVfXLkmuX.js"
-        />
+        /> */}
       </head>
       <body>
       <div id="app" dangerouslySetInnerHTML={{ __html: html }}/>
