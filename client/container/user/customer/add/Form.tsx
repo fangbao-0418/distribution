@@ -41,7 +41,7 @@ class Main extends React.Component<Props> {
   }
   handleForm (field, value) {
     this.payload[field] = value
-    APP.dispatch(actions.form.customer(Object.assign({}, this.payload)))
+    APP.dispatch(actions.form.customer(Object.assign(this.props.customer, this.payload)))
   }
   render () {
     const { selectCity, customer } = this.props
@@ -146,9 +146,6 @@ class Main extends React.Component<Props> {
                 APP.history.push('/user/customer')
               }
             })
-            // this.props.form.validateFields((error, value) => {
-            //   console.log(error, value) 
-            // })
           }}
         >
           提交
