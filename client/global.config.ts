@@ -28,7 +28,7 @@ interface RegistryFormProps {
 interface CustomerFormProps {
   contactPerson?: string
   contactPhone?: string
-  customerName?: string
+  companyName?: string
   cityCode?: string
   cityName?: string
   /** 纳税人类别 */
