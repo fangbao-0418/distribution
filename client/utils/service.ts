@@ -11,11 +11,10 @@ export const fetchLocation = () => {
 /** 获取个人中心查询 */
 export const fetchUserInfo = () => {
   return http('/shop-user/v1/api/distribute/get_distributor', 'GET').then((res) => {
-    console.log(res, 'user success')
+    if (res.status === 401) {
+      APP.history.push('/logout')
+    }
     return res
-  }, (err) => {
-    console.log(err, 'user err')
-    APP.history.push('/logout')
   })
 }
 /** 获取手机号验证码 */

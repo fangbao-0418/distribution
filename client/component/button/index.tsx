@@ -11,14 +11,14 @@ class Main extends React.Component<Props> {
     this.el = this.refs.button
     this.el.addEventListener('touchstart', (e) => {
       e.preventDefault()
-      if (this.props.onClick) {
-        this.props.onClick(e)
-      }
       this.el.className = `${this.el.className} ${cx('active')}`.replace(new RegExp(cx('active'), 'g'), cx('active'))
     })
     this.el.addEventListener('touchend', (e) => {
       e.preventDefault()
       this.el.className = this.el.className.replace(RegExp(cx('active'), 'g'), '')
+      if (this.props.onClick) {
+        this.props.onClick(e)
+      }
     })
   }
   render () {
@@ -26,7 +26,20 @@ class Main extends React.Component<Props> {
       <div
         ref='button'
         {...this.props}
+        // onPointerDown={(e) => {
+        //   e.preventDefault()
+        //   this.el.className = `${this.el.className} ${cx('active')}`.replace(new RegExp(cx('active'), 'g'), cx('active'))
+        // }}
+        // onPointerUp={(e) => {
+        //   console.log('pointer up')
+        //   e.preventDefault()
+        //   if (this.props.onClick) {
+        //     // this.props.onClick(e)
+        //   }
+        //   this.el.className = this.el.className.replace(RegExp(cx('active'), 'g'), '')
+        // }}
         onClick={(e) => {
+          e.preventDefault()
           return
         }}
         className={

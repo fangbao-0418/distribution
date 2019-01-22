@@ -6,7 +6,10 @@ module.exports = {
     }
   ) {
     const env = this.app.config.env
-    console.log(this, 'this')
+    const token = this.cookies.get('token', {
+      httpOnly: false,
+      signed: false
+    })
     let origin = this.origin
     if (env === 'local') {
       origin = 'https://x-sys.i-counting.cn'
@@ -16,7 +19,8 @@ module.exports = {
     return this.curl(url, {
       method,
       headers: {
-        from: 2
+        from: 2,
+        token: token
       }
     }).then((response) => {
       const { status, data } = response
