@@ -29,8 +29,24 @@ class Main extends React.Component {
     return (
       <div className={cx('login')}>
         <div className={cx('card')}>
-          <FormItem>
+          <FormItem
+            right={(
+              <img
+                onClick={() => {
+                  this.setState({
+                    account: '',
+                    password: '',
+                    code: ''
+                  })
+                }}
+                hidden={!account}
+                src={require('client/assets/icon_dele@3x.png')} width={15.4} height={15.4}
+              />
+            )}
+          >
             <input
+              type='text'
+              value={account}
               placeholder={this.state.showAccount ? '请输入账号' : '请输入手机号'}
               onChange={(e) => {
                 this.setState({

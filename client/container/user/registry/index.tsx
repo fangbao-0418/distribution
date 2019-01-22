@@ -14,7 +14,7 @@ interface Props {
   selectCity: CityProps
 }
 class Main extends React.Component<Props> {
-  payload: RegistryFormProps = {}
+  payload: RegistryFormProps = this.props.registry
   state = {
     showPassWord: false
   }
@@ -36,6 +36,15 @@ class Main extends React.Component<Props> {
               className='mt23'
               label='账号'
               required
+              right={(
+                <img
+                  onClick={() => {
+                    this.handleForm('phone', '')
+                  }}
+                  hidden={!registry.phone}
+                  src={require('client/assets/icon_dele@3x.png')} width={15.4} height={15.4}
+                />
+              )}
             >
               <input
                 placeholder='请输入手机号码'
@@ -119,7 +128,7 @@ class Main extends React.Component<Props> {
             <Button
               className='mt26'
               onClick={() => {
-                console.log(registry)
+                // APP.history.push('/registry/success')
                 if (!registry.phone) {
                   APP.toast('请填写账号')
                   return
@@ -141,9 +150,10 @@ class Main extends React.Component<Props> {
                 params.cityName = this.props.selectCity.name
                 delete params.surePassword
                 Services.registry(params).then((res) => {
-                  if (res && res.status === 400) {
+                  if (res.status !== 200) {
                     APP.toast(res.message)
                   } else {
+                    APP.token = res.data.token
                     APP.history.push('/registry/success')
                   }
                 })

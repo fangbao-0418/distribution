@@ -8,6 +8,7 @@ interface Props {
 class Main extends React.Component<Props> {
   componentWillMount () {
     if (__CLIENT__) {
+      console.log(APP.token, 'token')
       if (!APP.token) {
         APP.history.push('/login')
       }

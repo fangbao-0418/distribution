@@ -8,11 +8,7 @@ export default class HomeController extends Controller {
     this.ctx.locals = {
       a: 2
     }
-    await this.ctx.render('pages/city', {
-      data: {
-        city: '北京'
-      }
-    });
+    await this.ctx.render('pages/city');
   }
 }
 
