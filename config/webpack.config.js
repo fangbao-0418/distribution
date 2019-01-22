@@ -11,10 +11,10 @@ function getCssLoaderConfig(dev, modules = false) {
     },
   };
 }
-import * as path from 'path';
-import webpack from 'webpack';
+const path = require('path')
+const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-export default (app, defaultConfig, dev) => {
+module.exports = (app, defaultConfig, dev) => {
   if (app && dev) {
     defaultConfig.entry = {
       app: [

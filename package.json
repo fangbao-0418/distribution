@@ -1,12 +1,13 @@
 {
   "name": "distribution",
-  "version": "1.0.10",
+  "version": "1.0.0",
   "description": "react-redux-router-typescript",
   "egg": {
     "typescript": true
   },
   "scripts": {
-    "start": "beidou stop && beidou start --port=6001",
+    "start": "beidou start",
+    "test-start": "EGG_SERVER_ENV=local beidou start",
     "debug": "beidou debug",
     "stop": "beidou stop",
     "dev": "beidou dev",
