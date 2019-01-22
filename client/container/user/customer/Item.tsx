@@ -38,12 +38,15 @@ class Main extends React.Component<Props> {
               {this.handleDate(data.createTime)}
             </span>
           </h3>
-          <p className='mt8'>153****7066</p>
+          <p className='mt8'>{data.contractPhone}</p>
           <p className='mt8'>
             {data.companyName}
-            <div className={cx('tags')}>
-              {data.status === 0 ? '未成交' : '已成交'}
-            </div>
+            {
+              data.status !== 0 &&
+              <div className={cx('tags')}>
+                {data.status === 1 ? '已退户' : '已成交'}
+              </div>
+            } 
           </p>
         </div>
       </div>
