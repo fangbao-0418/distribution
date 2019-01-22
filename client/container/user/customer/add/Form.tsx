@@ -22,16 +22,16 @@ const companyNature = [{
 }]
 const needsStatus = [{
   label: '记账服务',
-  value: 'AGENT'
+  value: '记账服务'
 }, {
   label: '注册变更',
-  value: 'REGISTE_CHANGE'
+  value: '注册变更'
 }, {
   label: '社保个税',
-  value: 'TAX'
+  value: '社保个税'
 }, {
   label: '地址服务',
-  value: 'ADDRESS_SERVICE'
+  value: '地址服务'
 }]
 class Main extends React.Component<Props> {
   payload: CustomerFormProps = {}
@@ -76,10 +76,10 @@ class Main extends React.Component<Props> {
           label='公司名称'
         >
           <input
-            {...getFieldProps('customerName')}
-            value={customer.customerName}
+            {...getFieldProps('companyName')}
+            value={customer.companyName}
             onChange={(e) => {
-              this.handleForm('customerName', e.target.value)
+              this.handleForm('companyName', e.target.value)
             }}
           />
         </FormItem>

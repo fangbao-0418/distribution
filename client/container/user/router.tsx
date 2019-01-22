@@ -6,6 +6,7 @@ import User from './index'
 import Customer from './customer'
 import CustomerAdd from './customer/add'
 import RegistrySuccess from './registry/RegistrySuccess'
+import Profile from './profile'
 import Auth from './Auth'
 import Logout from './Logout'
 class Main extends React.Component {
@@ -15,6 +16,7 @@ class Main extends React.Component {
         <Route path='/login' exact component={Login} />
         <Route path='/logout' exact component={Logout} />
         <Route path='/registry' exact component={Registry} />
+        <Route path='/profile' exact component={Profile} />
         <Auth>
           <Route path='/user' exact component={User} />
           <Route path='/user/customer' exact component={Customer} />
