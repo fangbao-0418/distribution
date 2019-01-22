@@ -23,11 +23,10 @@ class Main extends React.Component<Props> {
   }
   render () {
     const data = this.props.data
-    console.log(data, 'data')
     return (
       <div className={cx('item')}>
         <div className={cx('avatar')}>
-          {data.contractName.slice(0, 1)}
+          {(data.contractName || '').trim().slice(0, 1)}
         </div>
         <div className={cx('item-right')}>
           <h3>

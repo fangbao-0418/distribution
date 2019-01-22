@@ -9,11 +9,11 @@ const option = [
   },
   {
     label: '已成交',
-    value: '1'
+    value: '3'
   },
   {
     label: '已退户',
-    value: '0'
+    value: '2'
   }
 ]
 interface Props {
