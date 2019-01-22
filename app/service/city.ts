@@ -7,4 +7,3 @@ export default class extends Service {
     return res.data
   }
 }
-

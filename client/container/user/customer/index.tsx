@@ -10,7 +10,10 @@ const cx = classnames.bind(require('./style.module.sass'))
 class Main extends React.Component {
   payload = {
     pageCurrent: 1,
-    pageSize: 20
+    pageSize: 20,
+    status: undefined,
+    totalDate: undefined,
+    key: undefined
   }
   state = {
     dataSource: []
@@ -48,9 +51,23 @@ class Main extends React.Component {
         }}
       >
         <div className={cx('container')}>
-          <Filter />
+          <Filter
+            onChange={(value) => {
+              this.payload.status = value.customerStatus === '-1' ? undefined :  value.customerStatus 
+              this.payload.totalDate = value.date
+              this.payload.pageCurrent = 1
+              this.fetchData()
+            }}
+          />
           <div className={cx('scroll')}>
-            <Search className='mt10 mb15'/>
+            <Search
+              className='mt10 mb15'
+              onSearch={(value) => {
+                this.payload.pageCurrent = 1
+                this.payload.key = value
+                this.fetchData()
+              }}
+            />
             {
               dataSource.map((item) => {
                 return (
