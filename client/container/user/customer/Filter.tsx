@@ -31,6 +31,7 @@ const option = getMonthOption().map((item) => {
   }
 })
 interface Props {
+  total?: number
   onChange?: (values: {customerStatus: string, date: string}) => void
 }
 class Main extends React.Component<Props> {
@@ -40,7 +41,7 @@ class Main extends React.Component<Props> {
     dateStatusClicked: false,
     payload: {
       date: '',
-      customerStatus: '-1'
+      customerStatus: '0'
     }
   }
   customerStatus: any
@@ -101,7 +102,7 @@ class Main extends React.Component<Props> {
             clicked={customerStatusClicked}
             onClick={this.onCustomerClick.bind(this)}
           >
-            全部
+            {payload.customerStatus  === '0' ? '全部' : (payload.customerStatus  === '1' ? '已退户' : '已成交')}
           </Select>
         </Popup>
         <span
@@ -136,6 +137,7 @@ class Main extends React.Component<Props> {
             </Select>
           </Picker>
         </span>
+        <span className={cx('total-item')}>{this.props.total}个</span>
       </div>
     )
   }

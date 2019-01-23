@@ -5,15 +5,15 @@ const cx = classnames.bind(require('./style.module.sass'))
 const option = [
   {
     label: '全部',
-    value: '-1'
+    value: '0'
   },
   {
     label: '已成交',
-    value: '3'
+    value: '2'
   },
   {
     label: '已退户',
-    value: '2'
+    value: '1'
   }
 ]
 interface Props {

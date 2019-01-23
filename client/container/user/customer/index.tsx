@@ -53,7 +53,7 @@ class Main extends React.Component {
           const { records, total } = res.data
           this.setState({
             total,
-            dataSource: dataSource.concat(records)
+            dataSource: this.payload.pageCurrent === 1 ? records : dataSource.concat(records)
           })
           this.loading = false
         }
@@ -61,7 +61,7 @@ class Main extends React.Component {
     }
   }
   render () {
-    const { dataSource } = this.state
+    const { dataSource, total } = this.state
     return (
       <Layout
         goBack={() => {
@@ -76,9 +76,11 @@ class Main extends React.Component {
       >
         <div className={cx('container')}>
           <Filter
+            total={total}
             onChange={(value) => {
+              console.log(value, '111')
               this.payload.status = value.customerStatus === '-1' ? undefined :  value.customerStatus 
-              this.payload.totalDate = value.date + '-01'
+              this.payload.totalDate = value.date ? (value.date + '-01') : ''
               this.payload.pageCurrent = 1
               this.fetchData()
             }}
