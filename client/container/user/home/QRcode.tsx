@@ -7,6 +7,9 @@ class Main extends React.Component {
       <img
         className={cx('qr-code', 'mt10')}
         src={require('client/assets/icon_erweima@3x.png')}
+        onClick={() => {
+          APP.history.push('/profile')
+        }}
       />
     )
   }

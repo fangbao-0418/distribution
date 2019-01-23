@@ -96,11 +96,11 @@ class Main extends React.Component {
           <Button
             className='mt26'
             onClick={() => {
-              const params = {
-                phone: account,
-                password: showAccount ? password : code
-              }
               if (showAccount) {
+                const params = {
+                  phone: account,
+                  password: password
+                }
                 Services.loginAccount(params).then((res) => {
                   if (res.status === 200) {
                     APP.history.push('/user')
@@ -109,6 +109,10 @@ class Main extends React.Component {
                   }
                 })
               } else {
+                const params = {
+                  phone: account,
+                  checkCode: code
+                }
                 Services.loginPhone(params).then((res) => {
                   if (res.status === 200) {
                     APP.history.push('/user')
