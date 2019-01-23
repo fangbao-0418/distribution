@@ -27,6 +27,7 @@ export default class View extends React.Component<any> {
   }
   render() {
     const { html, state, helper, asset } = this.props;
+    console.log(this.props, 'layout')
     return (
       <html>
       <head>
@@ -53,8 +54,9 @@ export default class View extends React.Component<any> {
         {/* <!-- QQ应用模式 --> */}
         <meta name="x5-page-mode" content="app" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+        <link rel="icon" href={require('client/assets/favicon.ico')}></link>
         <link rel="stylesheet" href="https://cdn.staticfile.org/antd-mobile/2.2.8/antd-mobile.min.css"/>
-        <link rel="stylesheet" href={helper.asset(`app.css`)} />
+        <link rel="stylesheet" href={helper.asset('app.css?v=' + new Date().getTime())} />
         {/* <script
           src="https://os.alipayobjects.com/rmsportal/lvEQQbNgHsIxVfXLkmuX.js"
         /> */}
@@ -91,8 +93,8 @@ export default class View extends React.Component<any> {
       <script src="https://cdn.staticfile.org/react-router-dom/4.3.1/react-router-dom.min.js"></script>
       <script src="https://cdn.staticfile.org/antd-mobile/2.2.8/antd-mobile.min.js" />
     
-      <script src={helper.asset('manifest.js')}/>
-      <script src={helper.asset('app.js')}/>
+      <script src={helper.asset('manifest.js?v=' + new Date().getTime())}/>
+      <script src={helper.asset('app.js?v=' + new Date().getTime())}/>
       </body>
       </html>
     );
