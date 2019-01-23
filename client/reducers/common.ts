@@ -4,7 +4,8 @@ const initialState = {
   sourceCities: [],
   cities: [],
   selectCity: {},
-  user: {}
+  user: {},
+  loading: false
 };
 export default handleActions(
   {
@@ -12,6 +13,12 @@ export default handleActions(
       ...state,
       initialState,
     }),
+    [actions.loading]: (state, { payload }) => {
+      return ({
+        ...state,
+        loading: payload
+      })
+    },
     [actions.city.fetchSuccess]: (state, { payload }) => {
       return ({
         ...state,

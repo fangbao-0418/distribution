@@ -8,6 +8,7 @@ import actions from 'client/actions'
 import CitySelect from 'client/component/form/CitySelect'
 import * as Services from 'client/utils/service'
 import _ from 'lodash'
+import App from 'client/container/App';
 interface Props {
   form: any
   selectCity: CityProps
@@ -151,7 +152,9 @@ class Main extends React.Component<Props> {
               params.demandType = (customer.demandType || []).join(',') || ''
               params.cityCode = selectCity.code
               params.cityName = selectCity.name
+              APP.dispatch(actions.loading(true))
               Services.addCustomer(params).then((res) => {
+                APP.dispatch(actions.loading(false))
                 if (res.status === 200) {
                   APP.dispatch(actions.form.customer({}))
                   APP.history.push('/user/customer')

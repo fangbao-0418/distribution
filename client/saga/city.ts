@@ -23,7 +23,6 @@ export function sorter (cities) {
 function* filterData ({payload}) {
   const { sourceCities } = payload
   const text = (payload.text || '').toUpperCase()
-  console.log(text, 'text')
   if (!text) {
     yield put(actions.city.filterResult(sorter(sourceCities)))
     return

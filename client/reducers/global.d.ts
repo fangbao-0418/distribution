@@ -4,6 +4,8 @@ declare namespace State {
     sourceCities: CityProps[]
     selectCity: CityProps
     user: UserProps
+    /** 加载器显隐 */
+    loading: boolean
   }
   export interface Form {
     registry: RegistryFormProps,

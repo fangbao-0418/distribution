@@ -27,7 +27,6 @@ export default class View extends React.Component<any> {
   }
   render() {
     const { html, state, helper, asset } = this.props;
-    console.log(this.props, 'layout')
     return (
       <html>
       <head>
