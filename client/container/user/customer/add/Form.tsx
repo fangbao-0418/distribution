@@ -34,17 +34,17 @@ const needsStatus = [{
   value: '地址服务'
 }]
 class Main extends React.Component<Props> {
-  payload: CustomerFormProps = {}
+  payload: CustomerFormProps = this.props.customer
   selectCity () {
     APP.history.push('/city')
   }
   handleForm (field, value) {
     this.payload[field] = value
-    APP.dispatch(actions.form.customer(Object.assign(this.props.customer, this.payload)))
+    APP.dispatch(actions.form.customer(Object.assign({}, this.props.customer, this.payload)))
   }
   render () {
     const { selectCity, customer } = this.props
-    const { getFieldProps, getFieldError } = this.props.form
+    const { getFieldProps } = this.props.form
     return (
       <div>
         <FormItem
@@ -52,11 +52,15 @@ class Main extends React.Component<Props> {
           label='联系人'
         >
           <input
-            {...getFieldProps('contactPerson')}
-            value={customer.contactPerson}
-            onChange={(e) => {
-              this.handleForm('contactPerson', e.target.value)
-            }}
+            {...getFieldProps('contactPerson', {
+              initialValue: customer.contactPerson,
+              rules: [
+                {
+                  required: true,
+                  message: '联系人不能为空'
+                }
+              ]
+            })}
           />
         </FormItem>
         <FormItem
@@ -64,11 +68,15 @@ class Main extends React.Component<Props> {
           label='联系电话'
         >
           <input
-            {...getFieldProps('contactPhone')}
-            value={customer.contactPhone}
-            onChange={(e) => {
-              this.handleForm('contactPhone', e.target.value)
-            }}
+            {...getFieldProps('contactPhone', {
+              initialValue: customer.contactPhone,
+              rules: [
+                {
+                  required: true,
+                  message: '联系电话不能为空'
+                }
+              ]
+            })}
           />
         </FormItem>
         <CitySelect />
@@ -76,11 +84,9 @@ class Main extends React.Component<Props> {
           label='公司名称'
         >
           <input
-            {...getFieldProps('companyName')}
-            value={customer.companyName}
-            onChange={(e) => {
-              this.handleForm('companyName', e.target.value)
-            }}
+            {...getFieldProps('companyName', {
+              initialValue: customer.companyName
+            })}
           />
         </FormItem>
         <FormItem
@@ -127,24 +133,32 @@ class Main extends React.Component<Props> {
         <Button
           className='mt40'
           onClick={() => {
-            console.log(this.props.customer)
-            if (!this.props.customer.contactPerson) {
-              APP.toast('请填写联系人')
-              return
-            }
-            if (!this.props.customer.contactPhone) {
-              APP.toast('请填写联系人电话')
-              return
-            }
-            const params: any = _.cloneDeep(this.props.customer)
-            params.demandType = params.demandType && params.demandType.length > 0 ? params.demandType.join(',') : ''
-            params.cityCode = selectCity.code
-            params.cityName = selectCity.name
-            Services.addCustomer(params).then((res) => {
-              if (res && res.status === 200) {
-                APP.history.push('/user/customer')
-                APP.dispatch(actions.form.customer({}))
+            this.props.form.validateFields((errors: any, values) => {
+              if (errors) {
+                let message = ''
+                try {
+                  if (Object.values(errors)[0]) {
+                    const errs: any = Object.values(errors)[0] || {}
+                    message = errs.errors[0].message
+                  }  
+                } catch (e) {
+                }
+                APP.toast(message)
+                return
               }
+              console.log(values, 'validate')
+              const params = values
+              params.demandType = (customer.demandType || []).join(',') || ''
+              params.cityCode = selectCity.code
+              params.cityName = selectCity.name
+              Services.addCustomer(params).then((res) => {
+                if (res.status === 200) {
+                  APP.dispatch(actions.form.customer({}))
+                  APP.history.push('/user/customer')
+                } else {
+                  APP.toast(res.message)
+                }
+              })
             })
           }}
         >
@@ -161,4 +175,14 @@ export default connect(
       customer: form.customer
     }
   }
-)(createForm()(Main))
+)(createForm({
+  onFieldsChange: (props, fields) => {
+    console.log(props, 'props')
+    const key = Object.keys(fields)[0]
+    if (key) {
+      APP.dispatch(actions.form.customer(Object.assign(props.customer, {
+        [key]: fields[key].value
+      })))
+    }
+  }
+})(Main))

@@ -16,9 +16,9 @@ class Main extends React.Component<Props> {
     }
   }
   render () {
-    if (!this.props.user.phone) {
-      return null
-    }
+    // if (!this.props.user.phone) {
+    //   return null
+    // }
     return (
       <Switch>
         {this.props.children}

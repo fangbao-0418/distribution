@@ -8,11 +8,16 @@ import Item from './Item'
 import * as Services from 'client/utils/service'
 const cx = classnames.bind(require('./style.module.sass'))
 class Main extends React.Component {
+  loading = false
   payload = {
     pageCurrent: 1,
-    pageSize: 20
+    pageSize: 10,
+    status: undefined,
+    totalDate: undefined,
+    key: undefined
   }
   state = {
+    total: 0,
     dataSource: []
   }
   componentWillMount () {
@@ -20,15 +25,37 @@ class Main extends React.Component {
       this.fetchData()
     }
   }
+  componentDidMount () {
+    console.dir(this.refs.scroll, 'scroll')
+    const scroll: any = this.refs.scroll
+    scroll.onscroll = () => {
+      const size = this.payload.pageSize
+      const maxSize = Math.ceil(this.state.total / size)
+      const wrap: any = this.refs.wrap
+      const height = scroll.clientHeight
+      const wrapHeight = wrap.clientHeight
+      const scrollTop = scroll.scrollTop
+      if (scrollTop + height > wrapHeight) {
+        if (!this.loading && maxSize > this.payload.pageCurrent) {
+          this.payload.pageCurrent += 1
+          this.fetchData()
+        }
+      }
+    }
+  }
   fetchData () {
+    console.log('fetch data')
+    this.loading = true
     const { dataSource } = this.state
     if (__CLIENT__) {
       Services.getCustomerList(this.payload).then((res) => {
         if (res.status === 200) {
           const { records, total } = res.data
           this.setState({
+            total,
             dataSource: dataSource.concat(records)
           })
+          this.loading = false
         }
       })
     }
@@ -48,16 +75,35 @@ class Main extends React.Component {
         }}
       >
         <div className={cx('container')}>
-          <Filter />
-          <div className={cx('scroll')}>
-            <Search className='mt10 mb15'/>
-            {
-              dataSource.map((item) => {
-                return (
-                  <Item data={item} />
-                )
-              })
-            }
+          <Filter
+            onChange={(value) => {
+              this.payload.status = value.customerStatus === '-1' ? undefined :  value.customerStatus 
+              this.payload.totalDate = value.date + '-01'
+              this.payload.pageCurrent = 1
+              this.fetchData()
+            }}
+          />
+          <div
+            ref='scroll'
+            className={cx('scroll')}
+          >
+            <div ref='wrap'>
+              <Search
+                className='mt10 mb15'
+                onSearch={(value) => {
+                  this.payload.pageCurrent = 1
+                  this.payload.key = value
+                  this.fetchData()
+                }}
+              />
+              {
+                dataSource.map((item) => {
+                  return (
+                    <Item data={item} />
+                  )
+                })
+              }
+            </div>
           </div>
           <div className={cx('bottom')}>
             <Button

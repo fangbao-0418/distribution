@@ -5,23 +5,33 @@ const cx = classnames.bind(require('./style.module.sass'))
 const option = [
   {
     label: '全部',
-    value: 'all'
+    value: '-1'
   },
   {
     label: '已成交',
-    value: '1'
+    value: '3'
   },
   {
     label: '已退户',
     value: '2'
   }
 ]
-class Main extends React.Component {
+interface Props {
+  value?: string
+  onChange?: (value) => void
+}
+class Main extends React.Component<Props> {
   render () {
     return (
       <div className={cx('customer-status')}>
         <h3>客户状态</h3>
         <Select
+          value={this.props.value}
+          onChange={(value) => {
+            if (this.props.onChange) {
+              this.props.onChange(value)
+            }
+          }}
           option={option}
         />
       </div>

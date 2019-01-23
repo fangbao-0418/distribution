@@ -31,7 +31,6 @@ export default handleActions(
       })
     },
     [actions.user.info]: (state, { payload }) => {
-      console.log(payload, 'user info')
       return ({
         ...state,
         user: payload

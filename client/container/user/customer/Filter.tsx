@@ -30,10 +30,18 @@ const option = getMonthOption().map((item) => {
     value: item
   }
 })
-class Main extends React.Component {
+interface Props {
+  onChange?: (values: {customerStatus: string, date: string}) => void
+}
+class Main extends React.Component<Props> {
+  payload = {}
   state = {
     customerStatusClicked: false,
-    dateStatusClicked: false
+    dateStatusClicked: false,
+    payload: {
+      date: '',
+      customerStatus: '-1'
+    }
   }
   customerStatus: any
   componentWillUnmount () {
@@ -56,7 +64,7 @@ class Main extends React.Component {
     this.customerStatus.hide()
   }
   render () {
-    const { customerStatusClicked, dateStatusClicked } = this.state
+    const { customerStatusClicked, dateStatusClicked, payload } = this.state
     return (
       <div className={cx('filter')}>
         <Popup
@@ -72,7 +80,20 @@ class Main extends React.Component {
             })
           }}
           overlay={(
-            <CustomerStatus />
+            <CustomerStatus
+              value={payload.customerStatus}
+              onChange={(value) => {
+                payload.customerStatus = value
+                this.setState({
+                  payload,
+                  customerStatusClicked: false
+                })
+                this.customerStatus.hide()
+                if (this.props.onChange) {
+                  this.props.onChange(payload)
+                }
+              }}
+            />
           )}
         >
           <Select
@@ -87,8 +108,12 @@ class Main extends React.Component {
           className={cx('date-select')}
         >
           <Picker
-            onOk={(val) => {
-              console.log(val, 'val')
+            onOk={(value) => {
+              const res = value[0].split('/')
+              payload.date = res[1] + '-' + res[0]
+              if (this.props.onChange) {
+                this.props.onChange(payload)
+              }
               this.setState({
 
               })
@@ -107,7 +132,7 @@ class Main extends React.Component {
               clicked={dateStatusClicked}
               onClick={this.onDateClick.bind(this)}
             >
-              01/2029
+              {option[option.length - 1].value}
             </Select>
           </Picker>
         </span>

@@ -34,7 +34,7 @@ interface CustomerFormProps {
   /** 纳税人类别 */
   payTaxesNature?: string
   /** 需求状态 */
-  demandType?: string
+  demandType?: any
 }
 /** 用户信息 */
 interface UserProps {
