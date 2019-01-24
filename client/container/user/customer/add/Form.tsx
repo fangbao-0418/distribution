@@ -93,8 +93,18 @@ class Main extends React.Component<Props> {
         <CitySelect />
         <FormItem
           label='公司名称'
+          right={
+            <img
+              onClick={() => {
+                this.handleForm('companyName', '')
+              }}
+              hidden={!customer.companyName}
+              src={require('client/assets/icon_dele@3x.png')} width={15.4} height={15.4}
+            />
+          }
         >
           <CompanySelect
+            value={customer.companyName}
             onChange={(value) => {
               console.log(value, 'companyvalue')
               this.handleForm('companyName', value.name)

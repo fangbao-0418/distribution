@@ -6,12 +6,18 @@ interface Props {
   style?: React.CSSProperties
   className?: string
   onChange?: (value: {name: string}) => void
+  value?: string
 }
 class Main extends React.Component<Props> {
   state = {
     showPanel: false,
     data: [],
-    value: ''
+    value: this.props.value
+  }
+  componentWillReceiveProps (props: Props) {
+    this.setState({
+      value: props.value
+    })
   }
   componentDidMount () {
     window.addEventListener('click', (e) => {
