@@ -124,6 +124,7 @@ class Main extends React.Component {
           </div>
           <div className={cx('bottom')}>
             <Button
+              className='ml20 mr20'
               size='small'
               style={{
                 marginTop: '12.5px'

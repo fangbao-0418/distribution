@@ -142,7 +142,7 @@ class Main extends React.Component<Props> {
           />
         </FormItem>
         <Button
-          className='mt40'
+          className='mt40 ml20 mr20'
           onClick={() => {
             this.props.form.validateFields((errors: any, values) => {
               if (errors) {
