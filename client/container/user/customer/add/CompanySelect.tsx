@@ -16,7 +16,7 @@ class Main extends React.Component<Props> {
   componentDidMount () {
     window.addEventListener('click', (e) => {
       const el: any = this.refs.el
-      if (!el.contains(e.target)) {
+      if (el && !el.contains(e.target)) {
         this.setState({
           showPanel: false
         })
