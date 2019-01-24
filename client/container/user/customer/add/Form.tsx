@@ -77,6 +77,14 @@ class Main extends React.Component<Props> {
         >
           <input
             maxLength={11}
+            onBlur={(e) => {
+              if (!e.target.value) {
+                return
+              }
+              if (!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test(e.target.value)) {
+                APP.toast('手机号格式不正确')
+              }
+            }}
             {...getFieldProps('contactPhone', {
               initialValue: customer.contactPhone,
               rules: [
