@@ -76,6 +76,7 @@ class Main extends React.Component<Props> {
           label='联系电话'
         >
           <input
+            maxLength={11}
             {...getFieldProps('contactPhone', {
               initialValue: customer.contactPhone,
               rules: [
