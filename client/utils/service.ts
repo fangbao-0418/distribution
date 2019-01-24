@@ -35,8 +35,8 @@ export const loginAccount = (payload) => {
 /** 手机号验证码登录 */
 export const loginPhone = (payload) => {
   return http('/shop-user/v1/api/distribute/check_code', 'POST', payload).then((res) => {
-    if (res.token) {
-      APP.token = res.token
+    if (res.status === 200) {
+      APP.token = res.data.token
     }
     return res
   })

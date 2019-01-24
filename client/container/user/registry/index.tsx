@@ -16,11 +16,17 @@ interface Props {
 class Main extends React.Component<Props> {
   payload: RegistryFormProps = this.props.registry
   state = {
-    showPassWord: false
+    showPassWord: false,
+    disabled: true
   }
   handleForm (field, value) {
     this.payload[field] = value
     APP.dispatch(actions.form.registry(Object.assign({}, this.payload)))
+    if (this.props.registry.phone && this.props.registry.checkCode && this.props.registry.password && this.props.registry.surePassword) {
+      this.setState({
+        disabled: false
+      })
+    }
   }
   render () {
     const { showPassWord } = this.state
@@ -47,10 +53,16 @@ class Main extends React.Component<Props> {
               )}
             >
               <input
+                maxLength={11}
                 placeholder='请输入手机号码'
                 value={registry.phone}
                 onChange={(e) => {
                   this.handleForm('phone', e.target.value)
+                }}
+                onBlur={(e) => {
+                  if (!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test(e.target.value)) {
+                    APP.toast('手机号格式不正确')
+                  }
                 }}
               />
             </FormItem>
@@ -130,22 +142,17 @@ class Main extends React.Component<Props> {
             <CitySelect />
             <Button
               className='mt26'
+              disabled={this.state.disabled}
               onClick={() => {
-                // APP.history.push('/registry/success')
-                if (!registry.phone) {
-                  APP.toast('请填写账号')
-                  return
-                }
-                if (!registry.checkCode) {
-                  APP.toast('请填写验证码')
+                if (this.state.disabled) {
                   return
                 }
                 if (registry.checkCode.length != 6) {
-                  APP.toast('请填写验证码')
+                  APP.toast('请填写正确的验证码')
                   return
                 }
-                if (!registry.password) {
-                  APP.toast('请填写密码')
+                if (!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test(registry.phone)) {
+                  APP.toast('手机号格式不正确')
                   return
                 }
                 if (registry.password.length < 6) {
@@ -164,6 +171,7 @@ class Main extends React.Component<Props> {
                 params.cityCode = this.props.selectCity.code
                 params.cityName = this.props.selectCity.name
                 delete params.surePassword
+                console.log('2222')
                 Services.registry(params).then((res) => {
                   if (res.status !== 200) {
                     APP.toast(res.message)
