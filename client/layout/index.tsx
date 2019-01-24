@@ -9,7 +9,7 @@ Object.assign(APP, require('client/utils/app'))
 export default class View extends React.Component<any> {
   static doctype = '<!DOCTYPE html>';
   static defaultProps = {
-    title: '分销'
+    title: '噼里啪智能•财税'
   }
   static configureStore (initialState?: any) {
     return configureStore(initialState)
