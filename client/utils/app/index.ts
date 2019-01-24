@@ -2,7 +2,7 @@ import { Toast } from 'antd-mobile'
 import Cookies from 'js-cookie'
 Object.assign(APP, {
   toast: (message) => {
-    Toast.info(message || '未知错误')
+    Toast.info((message || '未知错误'), 1)
   }
 })
 if (__CLIENT__) {

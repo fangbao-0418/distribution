@@ -1,3 +1,4 @@
+import actions from 'client/actions'
 import http from './http'
 
 /** 获取城市列表 */
@@ -47,10 +48,14 @@ export const registry = (payload: RegistryFormProps) => {
 }
 /** 我的客户列表 */
 export const getCustomerList = (params) => {
-  console.log(params, 'getCustomerList')
   return http('/shop-user/v1/api/distribute/customers', 'GET', {params})
 }
 /** 新增客户 */
 export const addCustomer = (payload: CustomerFormProps) => {
+  APP.dispatch(actions.loading(true))
   return http('/shop-user/v1/api/distribute/customer-entry', 'POST', payload)
+}
+/** 天眼查查公司 */
+export const fetchTyCompanyList = (name: string) => {
+  return http(`/shop-user/v1/api/tianyan/list?name=${name}`, 'GET')
 }

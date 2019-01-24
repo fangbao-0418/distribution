@@ -1,3 +1,4 @@
+import actions from 'client/actions'
 import axios, { AxiosRequestConfig } from 'axios'
 export interface AjaxConfigProps extends AxiosRequestConfig {
   [field: string]: any
@@ -24,8 +25,10 @@ const http = (url: string, type: RequestTypeProps, config: AjaxConfigProps = {})
     params
   }
   return axios(ajaxConfig).then((res) => {
+    APP.dispatch(actions.loading(false))
     return res.data
   }, function (err) {
+    APP.dispatch(actions.loading(false))
     if (err.response.status === 500) {
       APP.toast('服务端异常')
     }
