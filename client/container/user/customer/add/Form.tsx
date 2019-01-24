@@ -168,11 +168,11 @@ class Main extends React.Component<Props> {
                 APP.toast(message)
                 return
               }
-              console.log(values, 'validate')
-              const params = Object.assign({}, values, this.payload)
+              const params = Object.assign({}, this.payload, values)
               params.demandType = (customer.demandType || []).join(',') || ''
               params.cityCode = selectCity.code
               params.cityName = selectCity.name
+              console.log(params, 'validate')
               Services.addCustomer(params).then((res) => {
                 if (res.status === 200) {
                   APP.dispatch(actions.form.customer({}))

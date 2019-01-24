@@ -5,7 +5,7 @@ const cx = classnames.bind(require('./style.module.sass'))
 const option = [
   {
     label: '全部',
-    value: '0'
+    value: '-1'
   },
   {
     label: '已成交',

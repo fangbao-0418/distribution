@@ -83,8 +83,11 @@ class Main extends React.Component {
           <Filter
             total={total}
             onChange={(value) => {
+              const date = value.date.replace(/(\d{2})\/(\d{4})/, function () {
+                return [arguments[2], arguments[1], '01'].join('-')
+              })
               this.payload.status = value.customerStatus === '-1' ? undefined :  value.customerStatus 
-              this.payload.totalDate = value.date ? (value.date + '-01') : ''
+              this.payload.totalDate = date
               this.payload.pageCurrent = 1
               this.fetchData()
             }}
@@ -103,7 +106,7 @@ class Main extends React.Component {
                 }}
               />
               {
-                dataSource.map((item, index) => {
+                dataSource.map((item) => {
                   return (
                     <Item
                       data={item}

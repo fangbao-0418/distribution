@@ -5,12 +5,16 @@ import Popup from 'client/component/action-sheet'
 import { Picker } from 'antd-mobile'
 import CustomerStatus from './CustomerStatus'
 const cx = classnames.bind(require('./style.module.sass'))
+const CustomerEnum = {
+  '-1': '全部',
+  '1': '已退户',
+  '2': '已成交'
+}
 function getMonthOption () {
   const startMonth = 1
   const startYear = 2019
   const endMonth = new Date().getMonth() + 1
   const endYear = new Date().getFullYear()
-  // const option = [startDate]
   let month = startMonth
   let year = startYear
   const option = [`0${startMonth}/${startYear}`]
@@ -40,14 +44,13 @@ class Main extends React.Component<Props> {
     customerStatusClicked: false,
     dateStatusClicked: false,
     payload: {
-      date: '',
-      customerStatus: '0'
+      date: option[option.length - 1].value,
+      customerStatus: '-1'
     }
   }
   customerStatus: any
   componentWillUnmount () {
     this.customerStatus.hide(0)
-    console.log('will unmount')
   }
   onCustomerClick () {
     const { customerStatusClicked } = this.state
@@ -102,16 +105,18 @@ class Main extends React.Component<Props> {
             clicked={customerStatusClicked}
             onClick={this.onCustomerClick.bind(this)}
           >
-            {payload.customerStatus  === '0' ? '全部' : (payload.customerStatus  === '1' ? '已退户' : '已成交')}
+            {CustomerEnum[payload.customerStatus]}
           </Select>
         </Popup>
         <span
           className={cx('date-select')}
         >
           <Picker
+            value={[payload.date]}
             onOk={(value) => {
-              const res = value[0].split('/')
-              payload.date = res[1] + '-' + res[0]
+              // const res = value[0].split('/')
+              // payload.date = res[1] + '-' + res[0]
+              payload.date = value[0]
               if (this.props.onChange) {
                 this.props.onChange(payload)
               }
@@ -133,7 +138,7 @@ class Main extends React.Component<Props> {
               clicked={dateStatusClicked}
               onClick={this.onDateClick.bind(this)}
             >
-              {option[option.length - 1].value}
+              {payload.date}
             </Select>
           </Picker>
         </span>
