@@ -6,9 +6,9 @@ import Filter from './Filter'
 import Search from './Search'
 import Item from './Item'
 import * as Services from 'client/utils/service'
+import { ActivityIndicator } from 'antd-mobile'
 const cx = classnames.bind(require('./style.module.sass'))
 class Main extends React.Component {
-  loading = false
   payload = {
     pageCurrent: 1,
     pageSize: 10,
@@ -17,6 +17,7 @@ class Main extends React.Component {
     key: undefined
   }
   state = {
+    loading: false,
     total: 0,
     dataSource: []
   }
@@ -36,7 +37,7 @@ class Main extends React.Component {
       const wrapHeight = wrap.clientHeight
       const scrollTop = scroll.scrollTop
       if (scrollTop + height > wrapHeight) {
-        if (!this.loading && maxSize > this.payload.pageCurrent) {
+        if (!this.state.loading && maxSize > this.payload.pageCurrent) {
           this.payload.pageCurrent += 1
           this.fetchData()
         }
@@ -45,7 +46,9 @@ class Main extends React.Component {
   }
   fetchData () {
     console.log('fetch data')
-    this.loading = true
+    this.setState({
+      loading: true
+    })
     const { dataSource } = this.state
     if (__CLIENT__) {
       Services.getCustomerList(this.payload).then((res) => {
@@ -55,13 +58,15 @@ class Main extends React.Component {
             total,
             dataSource: this.payload.pageCurrent === 1 ? records : dataSource.concat(records)
           })
-          this.loading = false
+          this.setState({
+            loading: false
+          })
         }
       })
     }
   }
   render () {
-    const { dataSource, total } = this.state
+    const { dataSource, total, loading } = this.state
     return (
       <Layout
         goBack={() => {
@@ -78,7 +83,6 @@ class Main extends React.Component {
           <Filter
             total={total}
             onChange={(value) => {
-              console.log(value, '111')
               this.payload.status = value.customerStatus === '-1' ? undefined :  value.customerStatus 
               this.payload.totalDate = value.date ? (value.date + '-01') : ''
               this.payload.pageCurrent = 1
@@ -99,12 +103,23 @@ class Main extends React.Component {
                 }}
               />
               {
-                dataSource.map((item) => {
+                dataSource.map((item, index) => {
                   return (
-                    <Item data={item} />
+                    <Item
+                      data={item}
+                    />
                   )
                 })
               }
+              <div
+                hidden={!loading}
+                className={cx('loading')}
+              >
+                <ActivityIndicator
+                  animating={loading}
+                  text='载入中...'
+                />
+              </div>
             </div>
           </div>
           <div className={cx('bottom')}>

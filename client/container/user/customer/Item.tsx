@@ -2,6 +2,8 @@ import React from 'react'
 import classnames from 'classnames/bind'
 const cx = classnames.bind(require('./style.module.sass'))
 interface Props {
+  className?: string
+  style?: React.CSSProperties
   data: {
     companyName: string
     contractName: string
@@ -24,7 +26,10 @@ class Main extends React.Component<Props> {
   render () {
     const data = this.props.data
     return (
-      <div className={cx('item')}>
+      <div
+        style={this.props.style}
+        className={cx('item', this.props.className)}
+      >
         <div className={cx('avatar')}>
           {(data.contractName || '').trim().slice(0, 1)}
         </div>
