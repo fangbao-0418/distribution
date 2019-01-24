@@ -45,6 +45,13 @@ class Main extends React.Component<Props> {
   render () {
     const { selectCity, customer } = this.props
     const { getFieldProps } = this.props.form
+    const validatePhone = (rule: any, value: any, callback: any) => {
+      if (!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test(value)) {
+        callback('手机号码格式不正确')
+        return
+      }
+      callback()
+    }
     return (
       <div>
         <FormItem
@@ -74,6 +81,9 @@ class Main extends React.Component<Props> {
                 {
                   required: true,
                   message: '联系电话不能为空'
+                },
+                {
+                  validator: validatePhone
                 }
               ]
             })}
