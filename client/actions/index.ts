@@ -1,6 +1,7 @@
 import { createActions } from 'redux-actions';
 
 export default createActions({
+  LOADING: status => status,
   CITY: {
     FILTER: undefined,
     FETCH: undefined,
