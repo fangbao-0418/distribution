@@ -9,6 +9,7 @@ import RegistrySuccess from './registry/RegistrySuccess'
 import Profile from './profile'
 import Auth from './Auth'
 import Logout from './Logout'
+import serviceError from './500'
 class Main extends React.Component {
   render () {
     return (
@@ -17,6 +18,8 @@ class Main extends React.Component {
         <Route path='/logout' exact component={Logout} />
         <Route path='/registry' exact component={Registry} />
         <Route path='/profile' exact component={Profile} />
+        <Route path='/profile' exact component={Profile} />
+        <Route path='/serviceError' exact component={serviceError} />
         <Auth>
           <Route path='/user' exact component={User} />
           <Route path='/user/customer' exact component={Customer} />
