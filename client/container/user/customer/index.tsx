@@ -103,6 +103,10 @@ class Main extends React.Component {
             <div ref='wrap'>
               <Search
                 className='mt10 mb15'
+                onChange={(value) => {
+                  console.log(value, '11111')
+                  this.payload.key = value
+                }}
                 onSearch={(value) => {
                   this.payload.pageCurrent = 1
                   this.payload.key = value

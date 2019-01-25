@@ -4,6 +4,7 @@ const cx = classnames.bind(require('./style.module.sass'))
 interface Props {
   className?: string
   onSearch?: (value) => void
+  onChange?: (value) => void
 }
 class Main extends React.Component<Props> {
   render () {
@@ -13,6 +14,7 @@ class Main extends React.Component<Props> {
       >
         <div className={cx('search-input')}>
           <input
+            onChange={(e) => { this.props.onChange(e.target.value) }}
             type="text"
             ref='input'
             placeholder='请输入姓名 / 电话 / 公司名称'
