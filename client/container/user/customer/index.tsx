@@ -8,12 +8,16 @@ import Item from './Item'
 import * as Services from 'client/utils/service'
 import { ActivityIndicator } from 'antd-mobile'
 const cx = classnames.bind(require('./style.module.sass'))
+const date = new Date()
+const year = date.getFullYear()
+const month = date.getMonth() < 10 ? ('-0' + (date.getMonth() + 1)) : (date.getMonth() + 1) + ''
+const defaultDate = year + month + '-01'
 class Main extends React.Component {
   payload = {
     pageCurrent: 1,
     pageSize: 10,
     status: undefined,
-    totalDate: undefined,
+    totalDate: defaultDate,
     key: undefined
   }
   state = {

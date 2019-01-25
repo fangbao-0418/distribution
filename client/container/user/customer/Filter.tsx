@@ -69,6 +69,7 @@ class Main extends React.Component<Props> {
   }
   render () {
     const { customerStatusClicked, dateStatusClicked, payload } = this.state
+    console.log(payload.date, '1212')
     return (
       <div className={cx('filter')}>
         <Popup
@@ -120,9 +121,6 @@ class Main extends React.Component<Props> {
               if (this.props.onChange) {
                 this.props.onChange(payload)
               }
-              this.setState({
-
-              })
             }}
             onVisibleChange={(visible) => {
               if (!visible) {
