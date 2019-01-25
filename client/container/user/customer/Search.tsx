@@ -8,6 +8,19 @@ interface Props {
   setBtnShow?: (value) => void
 }
 class Main extends React.Component<Props> {
+  componentDidMount () {
+    var originalHeight = document.documentElement.clientHeight || document.body.clientHeight
+    window.onresize = () => {
+      var resizeHeight = document.documentElement.clientHeight || document.body.clientHeight
+      if(resizeHeight - 0 < originalHeight - 0){
+        //当软键盘弹起，在此处操作
+        this.props.setBtnShow(false)
+      }else{
+        //当软键盘收起，在此处操作
+        this.props.setBtnShow(true)
+      }
+    }
+  }
   render () {
     return (
       <div
