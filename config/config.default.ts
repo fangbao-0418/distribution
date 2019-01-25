@@ -36,5 +36,12 @@ export default () => {
         },
       },
     },
+    onerror: {
+      // 线上页面发生异常时，重定向到这个页面上
+      errorPageUrl: '/error',
+    },
+    notfound: {
+      pageUrl: '/404',
+    }
   };
 };

@@ -40,18 +40,6 @@ export default class View extends React.Component<any> {
         <meta name="apple-mobile-web-app-title" content="react" />
         <meta content="telephone=no" name="format-detection"/>
         <meta content="email=no" name="format-detection"/>
-        {/* <!-- uc强制竖屏 --> */}
-        <meta name="screen-orientation" content="portrait" />
-        {/* <!-- UC强制全屏 --> */}
-        <meta name="full-screen" content="yes" />
-        {/* <!-- UC应用模式 --> */}
-        <meta name="browsermode" content="application" />
-        {/* <!-- QQ强制竖屏 --> */}
-         <meta name="x5-orientation" content="portrait" />
-        {/* <!-- QQ强制全屏 --> */}
-        <meta name="x5-fullscreen" content="true" />
-        {/* <!-- QQ应用模式 --> */}
-        <meta name="x5-page-mode" content="app" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         <link rel="icon" href={require('client/assets/favicon.ico')}></link>
         <link rel="stylesheet" href="https://cdn.staticfile.org/antd-mobile/2.2.8/antd-mobile.min.css"/>
@@ -67,8 +55,8 @@ export default class View extends React.Component<any> {
           __html: `window.__INITIAL_STATE__ = ${state}`,
         }}
       />
-      <script type="text/javascript" src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js" />
-      <script
+      {/* <script type="text/javascript" src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js" /> */}
+      {/* <script
         type="text/javascript"
         dangerouslySetInnerHTML={{
           __html: `
@@ -83,15 +71,14 @@ export default class View extends React.Component<any> {
           `
         }}
       >
-      </script>
+      </script> */}
       <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
       <script src="https://cdn.staticfile.org/moment.js/2.23.0/moment.min.js"></script>
-      <script src="https://cdn.staticfile.org/react/16.6.0/umd/react.production.min.js"></script>
-      <script src="https://cdn.staticfile.org/react-dom/16.6.1/umd/react-dom.production.min.js"></script>
+      <script src="https://cdn.staticfile.org/react/16.1.0/umd/react.production.min.js"></script>
+      <script src="https://cdn.staticfile.org/react-dom/16.1.0/umd/react-dom.production.min.js"></script>
       <script src="https://cdn.staticfile.org/react-router/4.3.1/react-router.min.js"></script>
       <script src="https://cdn.staticfile.org/react-router-dom/4.3.1/react-router-dom.min.js"></script>
-      <script src="https://cdn.staticfile.org/antd-mobile/2.2.8/antd-mobile.min.js" />
-    
+      <script src="https://cdn.staticfile.org/antd-mobile/2.2.8/antd-mobile.min.js" /> 
       <script src={helper.asset('manifest.js?v=' + new Date().getTime())}/>
       <script src={helper.asset('app.js?v=' + new Date().getTime())}/>
       </body>

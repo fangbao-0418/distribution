@@ -56,6 +56,7 @@ class Main extends React.Component<Props> {
                   }}
                   style={{
                     height: '45px',
+                    lineHeight: '45px',
                     marginRight: 10
                   }}
                 >
