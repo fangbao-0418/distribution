@@ -19,6 +19,14 @@ class Main extends React.Component<Props> {
     showPassWord: false,
     disabled: true
   }
+  componentWillMount () {
+    const { registry, selectCity } = this.props
+    if (registry.phone && registry.checkCode && registry.password && registry.surePassword && selectCity.name && selectCity.name) {
+      this.setState({
+        disabled: false
+      })
+    }
+  }
   handleForm (field, value) {
     this.payload[field] = value
     APP.dispatch(actions.form.registry(Object.assign({}, this.payload)))
