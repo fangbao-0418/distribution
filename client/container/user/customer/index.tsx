@@ -23,7 +23,8 @@ class Main extends React.Component {
   state = {
     loading: false,
     total: 0,
-    dataSource: []
+    dataSource: [],
+    showBtn: true
   }
   componentWillMount () {
     if (__CLIENT__) {
@@ -103,8 +104,13 @@ class Main extends React.Component {
             <div ref='wrap'>
               <Search
                 className='mt10 mb15'
+                setBtnShow={(value) => {
+                  this.setState({
+                    showBtn: value
+                  })
+                }}
                 onChange={(value) => {
-                  console.log(value, '11111')
+                  console.log('111')
                   this.payload.key = value
                 }}
                 onSearch={(value) => {
@@ -133,20 +139,23 @@ class Main extends React.Component {
               </div>
             </div>
           </div>
-          <div className={cx('bottom')}>
-            <Button
-              className='ml20 mr20'
-              size='small'
-              style={{
-                marginTop: '12.5px'
-              }}
-              onClick={() => {
-                APP.history.push('/user/customer/add')
-              }}
-            >
-              新增客户
-            </Button>
-          </div>
+          {
+            this.state.showBtn &&
+            <div className={cx('bottom')}>
+              <Button
+                className='ml20 mr20'
+                size='small'
+                style={{
+                  marginTop: '12.5px'
+                }}
+                onClick={() => {
+                  APP.history.push('/user/customer/add')
+                }}
+              >
+                新增客户
+              </Button>
+            </div>
+          }
         </div>
       </Layout>
     )
