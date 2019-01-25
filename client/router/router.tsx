@@ -6,7 +6,6 @@ const Router = __CLIENT__ ? BrowserRouter : StaticRouter;
 
 export default props => (
   <Router {...props}>
-    <App>
-    </App>
+    <App />
   </Router>
 );

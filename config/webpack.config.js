@@ -94,6 +94,7 @@ module.exports = (app, defaultConfig, dev) => {
           ],
 
           plugins: [
+            ["import", { "libraryName": "antd-mobile", "style": "css" }],
             [
               '@babel/transform-runtime',
               {
@@ -149,7 +150,9 @@ module.exports = (app, defaultConfig, dev) => {
           },
         ],
       ],
-      plugins: [],
+      plugins: [
+        ["import", { "libraryName": "antd-mobile", "style": "css" }] // `style: true` 会加载 less 文件
+      ],
       env: {
         development: {
           plugins: ['module:react-hot-loader/babel'],
@@ -170,12 +173,12 @@ module.exports = (app, defaultConfig, dev) => {
     chunkFilename: '[name].[chunkhash].js',
   };
   defaultConfig.externals = {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-    'react-router': 'ReactRouter',
-    'react-router-dom': 'ReactRouterDOM',
+    // react: 'React',
+    // 'react-dom': 'ReactDOM',
+    // 'react-router': 'ReactRouter',
+    // 'react-router-dom': 'ReactRouterDOM',
     axios: 'axios',
-    'antd-mobile': 'window[\'antd-mobile\']'
+    // 'antd-mobile': 'window[\'antd-mobile\']'
   }
   return defaultConfig;
 };

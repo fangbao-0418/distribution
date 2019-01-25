@@ -60,6 +60,7 @@
     "@types/react": "^16.4.6",
     "@types/react-router": "^4.4.3",
     "antd-mobile": "^2.2.8",
+    "babel-plugin-import": "^1.11.0",
     "egg-proxy": "^1.1.0",
     "mocha": "^5.2.0",
     "mocha-junit-reporter": "^1.18.0",
