@@ -19,6 +19,7 @@ class Main extends React.Component<Props> {
             return
           }
           if (!this.props.mobile) {
+            APP.toast('请输入手机号')
             return
           }
           this.setState({
