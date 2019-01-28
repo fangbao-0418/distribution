@@ -177,7 +177,7 @@ module.exports = (app, defaultConfig, dev) => {
     // 'react-dom': 'ReactDOM',
     // 'react-router': 'ReactRouter',
     // 'react-router-dom': 'ReactRouterDOM',
-    axios: 'axios',
+    // axios: 'axios',
     // 'antd-mobile': 'window[\'antd-mobile\']'
   }
   return defaultConfig;

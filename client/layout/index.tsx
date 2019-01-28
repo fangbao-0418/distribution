@@ -71,8 +71,6 @@ export default class View extends React.Component<any> {
         }}
       >
       </script>
-      <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
-      <script src="https://cdn.staticfile.org/moment.js/2.23.0/moment.min.js"></script>
       <script src={helper.asset('manifest.js?v=' + new Date().getTime())}/>
       <script src={helper.asset('app.js?v=' + new Date().getTime())}/>
       </body>
