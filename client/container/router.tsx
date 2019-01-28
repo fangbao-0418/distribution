@@ -4,12 +4,14 @@ import UserRouter from './user/router'
 import Active from './activities/bookkeeping'
 import City from './city'
 import Error from './500'
+import Gift from './activities/gift'
 class Main extends React.Component {
   render () {
     return (
       <Switch>
         <Route path='/city' component={City} />
         <Route path='/bookkeeping' component={Active} />
+        <Route path='/gift' component={Gift} />
         <Route path='/error' component={Error} />
         <Route path='/check' render={() => (<div></div>)} />
         <UserRouter />
