@@ -11,6 +11,7 @@ class Main extends React.Component {
         <Route path='/city' component={City} />
         <Route path='/bookkeeping' component={Active} />
         <Route path='/error' component={Error} />
+        <Route path='/check' render={() => (<div></div>)} />
         <UserRouter />
       </Switch>
     )
