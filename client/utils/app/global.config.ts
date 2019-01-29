@@ -15,7 +15,7 @@ declare namespace APP {
       goBack: any
     }
     /** 提示信息 */
-    toast: (message: string) => void
+    toast: (message: string, duration?: number) => void
     token: string
   }
 }

@@ -67,6 +67,10 @@ class Main extends React.Component {
             loading: false
           })
         }
+      }, () => {
+        this.setState({
+          loading: false
+        })
       })
     }
   }

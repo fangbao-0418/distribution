@@ -24,7 +24,9 @@ class Main extends React.Component<Props> {
     let phone = ''
     const result = this.props.location.search.match(/phone=(.*)&?/)
     if (result instanceof Array && result.length > 1) {
-      phone = result[1]
+      let phonelist = result[1].match(/phone=(.+?)&/)
+      console.log(phonelist, '1222')
+      phone = phonelist[1]
     }
     return phone
   }
@@ -68,7 +70,7 @@ class Main extends React.Component<Props> {
               }
               Services.addCustomerbyGift(params).then((res) => {
                 if (res.status === 200) {
-                  APP.toast('已为您安排专业顾问，会尽快与您联系')
+                  APP.toast('已为您安排专业顾问，会尽快与您联系', 3)
                   this.setState({
                     haveReceived: true
                   })
