@@ -59,3 +59,13 @@ export const addCustomer = (payload: CustomerFormProps) => {
 export const fetchTyCompanyList = (name: string) => {
   return http(`/shop-user/v1/api/tianyan/list?name=${name}`, 'GET')
 }
+/** 推广添加客户 */
+export const addCustomerbyGift  = (payload: {
+  /** 分销商电话 */
+  distributorPhone?: string
+  contactPhone?: string
+  cityCode?: string
+  cityName?: string
+}) => {
+  return http('/shop-user/v1/api/distribute/customer-share-entry', 'POST', payload)
+}

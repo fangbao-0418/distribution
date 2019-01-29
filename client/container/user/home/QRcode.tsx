@@ -12,7 +12,6 @@ class Main extends React.Component<Props> {
         src={require('client/assets/icon_erweima@3x.png')}
         onClick={() => {
           this.props.onShowModal()
-          // APP.history.push('/profile')
         }}
       />
     )

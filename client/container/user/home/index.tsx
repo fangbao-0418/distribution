@@ -62,9 +62,6 @@ class Main extends React.Component<Props> {
           footer={[]}
         >
           <Profile onClose={this.onClose.bind(this)}/>
-          {/* <div className={cx('bg')} onClick={() => {APP.history.push('/user')}}>
-            <img src={require('client/assets/label_erwi@3x.png')}/>
-          </div> */}
         </Modal>
       </div>
     )
