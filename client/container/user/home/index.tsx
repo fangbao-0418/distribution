@@ -14,6 +14,9 @@ class Main extends React.Component<Props> {
     modal: false
   }
   tips: any
+  componentWillUnmount () {
+    this.onClose()
+  }
   onShowModal (e) {
     this.tips = document.createElement('div')
     // this.tips.setAttribute('class', cx('tips'))
@@ -26,7 +29,9 @@ class Main extends React.Component<Props> {
     })
   }
   onClose () {
-    document.body.removeChild(this.tips)
+    if (document.body.contains(this.tips)) {
+      document.body.removeChild(this.tips)
+    }
     this.setState({
       modal: false
     })
