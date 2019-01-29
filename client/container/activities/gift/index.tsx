@@ -40,6 +40,8 @@ class Main extends React.Component<Props> {
     const { phone } = this.state
     return (
       <div className={cx('activity')}>
+        <img src={require('client/assets/activity-bg.png')}>
+        </img>
         <div className={cx('con')}>
           <div className={cx('form-card')}>
             <FormItem
