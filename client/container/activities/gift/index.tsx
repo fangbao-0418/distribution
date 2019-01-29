@@ -20,23 +20,13 @@ class Main extends React.Component<Props> {
       APP.dispatch(actions.city.fetchLocation())
     }
   }
-  getPhone () {
-    let phone = ''
-    if (this.props.location.search.length > 14) {
-      const phonelist = this.props.location.search.match(/phone=(.+?)&/)
-      if (phonelist instanceof Array && phonelist.length > 1) {
-        phone = phonelist[1]
-      }
-    } else {
-      const result = this.props.location.search.match(/phone=(.*)&?/)
-      if (result instanceof Array && result.length > 1) {
-        phone = result[1]
-      }
-    }
-    return phone
-  }
+  getQueryString(name) { 
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+    var r = window.location.search.substr(1).match(reg); 
+    if (r != null) return unescape(r[2]); 
+    return null; 
+  } 
   render () {
-    console.log(this.props)
     const { phone } = this.state
     return (
       <div className={cx('activity')}>
@@ -71,7 +61,7 @@ class Main extends React.Component<Props> {
                 return
               }
               const params = {
-                distributorPhone: this.getPhone(),
+                distributorPhone: this.getQueryString('u'),
                 contactPhone: this.state.phone,
                 cityCode: this.props.selectCity.code,
                 cityName: this.props.selectCity.name
