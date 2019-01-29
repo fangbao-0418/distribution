@@ -2,6 +2,7 @@
   .activity
     width: 100%
     height: 100%
+    overflow: auto
     background: url('client/assets/activity-bg.png') center 0 + / $width $height no-repeat
     
 @include allSize-PX(100%, auto)
@@ -20,13 +21,10 @@
     left: 0
     right: 0
     margin: 0 auto
-    bottom: 50px
+    top: 10px
   .form-card
-    position: absolute
-    bottom: 260px
-    left: 66px
-    width: 230px
-    color: rgba(121, 70, 29, 0)
+    margin: 340px auto 0
+    width: 225px
     .item
       border-bottom: 1px solid #7d3e07
       line-height: 45px
@@ -37,9 +35,7 @@
           color: #7d3e07
           font-size: 14px
   .btn
-    position: absolute
-    bottom: 185px
-    left: 63px
+    margin: 20px auto 0
     width: 240px
     height: 55px
     background: url('client/assets/activity-btn.png') center / 100% 100% no-repeat

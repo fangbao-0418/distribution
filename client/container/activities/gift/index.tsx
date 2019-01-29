@@ -33,52 +33,53 @@ class Main extends React.Component<Props> {
     const { phone } = this.state
     return (
       <div className={cx('activity')}>
-        <div className={cx('con')}></div>
-        <div className={cx('form-card')}>
-          <FormItem
-            className={cx('item')}
-          >
-            <input
-              type='text'
-              value={phone}
-              placeholder='请输入手机号码'
-              onChange={(e) => {
-                this.setState({
-                  phone: e.target.value
-                })
-              }}
-            />
-          </FormItem>
-        </div>
-        <div 
-          className={cx('btn')}
-          onClick={() => {
-            if (this.state.haveReceived) {
-              return
-            }
-            if (!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test(this.state.phone)) {
-              APP.toast('手机号格式不正确')
-              return
-            }
-            const params = {
-              distributorPhone: this.getPhone(),
-              contactPhone: this.state.phone,
-              cityCode: this.props.selectCity.code,
-              cityName: this.props.selectCity.name
-            }
-            Services.addCustomerbyGift(params).then((res) => {
-              if (res.status === 200) {
-                APP.toast('已为您安排专业顾问，会尽快与您联系')
-                this.setState({
-                  haveReceived: true
-                })
-              } else {
-                APP.toast(res.message)
+        <div className={cx('con')}>
+          <div className={cx('form-card')}>
+            <FormItem
+              className={cx('item')}
+            >
+              <input
+                type='text'
+                value={phone}
+                placeholder='请输入手机号码'
+                onChange={(e) => {
+                  this.setState({
+                    phone: e.target.value
+                  })
+                }}
+              />
+            </FormItem>
+          </div>
+          <div 
+            className={cx('btn')}
+            onClick={() => {
+              if (this.state.haveReceived) {
+                return
               }
-            })
-          }}
-        >
-          {this.state.haveReceived ? '已领取' : '点击领取'}
+              if (!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test(this.state.phone)) {
+                APP.toast('手机号格式不正确')
+                return
+              }
+              const params = {
+                distributorPhone: this.getPhone(),
+                contactPhone: this.state.phone,
+                cityCode: this.props.selectCity.code,
+                cityName: this.props.selectCity.name
+              }
+              Services.addCustomerbyGift(params).then((res) => {
+                if (res.status === 200) {
+                  APP.toast('已为您安排专业顾问，会尽快与您联系')
+                  this.setState({
+                    haveReceived: true
+                  })
+                } else {
+                  APP.toast(res.message)
+                }
+              })
+            }}
+          >
+            {this.state.haveReceived ? '已领取' : '点击领取'}
+          </div>
         </div>
       </div>
     )
