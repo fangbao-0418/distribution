@@ -24,9 +24,15 @@ class Main extends React.Component<Props> {
     let phone = ''
     const result = this.props.location.search.match(/phone=(.*)&?/)
     if (result instanceof Array && result.length > 1) {
-      let phonelist = result[1].match(/phone=(.+?)&/)
-      console.log(phonelist, '1222')
-      phone = phonelist[1]
+      console.log(result[1].match(/phone=(.+?)&/), '12121')
+      if (result[1].length === 11) {
+        phone = result[1]
+      } else {
+        let phonelist = result[1].match(/phone=(.+?)&/)
+        if (phonelist instanceof Array && phonelist.length > 1) {
+          phone = phonelist[1]
+        }
+      }
     }
     return phone
   }
