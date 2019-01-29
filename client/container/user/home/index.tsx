@@ -13,13 +13,20 @@ class Main extends React.Component<Props> {
   state = {
     modal: false
   }
+  tips: any
   onShowModal (e) {
-    // e.preventDefault()
+    this.tips = document.createElement('div')
+    // this.tips.setAttribute('class', cx('tips'))
+    this.tips.innerHTML = `<div class='${cx('tips',)}'>长按可下载图片或识别二维码</div>`
     this.setState({
       modal: true
+    }, () => {
+      document.body.appendChild(this.tips)
+      // document.body.appendChild(this.tips)
     })
   }
   onClose () {
+    document.body.removeChild(this.tips)
     this.setState({
       modal: false
     })
@@ -63,10 +70,11 @@ class Main extends React.Component<Props> {
         >
           <Profile onClose={this.onClose.bind(this)}/>
         </Modal>
-        {
+        {/* {
           this.state.modal &&
           <div className={cx('tips')}>长按可下载图片或识别二维码</div>
-        }    
+        } */}
+        {/* <div className={cx('tips')}>长按可下载图片或识别二维码</div> */}
       </div>
     )
   }
