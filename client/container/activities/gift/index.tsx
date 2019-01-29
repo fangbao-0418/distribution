@@ -46,6 +46,7 @@ class Main extends React.Component<Props> {
               className={cx('item')}
             >
               <input
+                maxLength={11}
                 type='text'
                 value={phone}
                 placeholder='请输入手机号码'
