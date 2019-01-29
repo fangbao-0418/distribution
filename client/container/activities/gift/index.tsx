@@ -22,7 +22,7 @@ class Main extends React.Component<Props> {
   }
   getPhone () {
     let phone = ''
-    if (this.props.location.search.length > 18) {
+    if (this.props.location.search.length > 14) {
       const phonelist = this.props.location.search.match(/phone=(.+?)&/)
       if (phonelist instanceof Array && phonelist.length > 1) {
         phone = phonelist[1]
