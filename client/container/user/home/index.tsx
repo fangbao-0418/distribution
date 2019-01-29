@@ -63,6 +63,10 @@ class Main extends React.Component<Props> {
         >
           <Profile onClose={this.onClose.bind(this)}/>
         </Modal>
+        {
+          this.state.modal &&
+          <div className={cx('tips')}>长按可下载图片或识别二维码</div>
+        }    
       </div>
     )
   }

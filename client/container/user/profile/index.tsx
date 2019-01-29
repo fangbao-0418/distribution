@@ -12,7 +12,6 @@ class Main extends React.Component<Props> {
     return (
       <div className={cx('bg')} onClick={() => { this.props.onClose()}}>
         <img src={user.qrCodeImageUrl}/>
-        <div className={cx('tips')}>长按可下载图片或识别二维码</div>
       </div>
     )
   }
