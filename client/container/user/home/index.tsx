@@ -18,14 +18,17 @@ class Main extends React.Component<Props> {
     this.onClose()
   }
   onShowModal (e) {
+    if (!this.props.user.qrCodeImageUrl) {
+      return APP.toast('暂无个人宣传图片')
+    }
     this.tips = document.createElement('div')
-    // this.tips.setAttribute('class', cx('tips'))
     this.tips.innerHTML = `<div class='${cx('tips',)}'>长按可下载图片或识别二维码</div>`
     this.setState({
       modal: true
     }, () => {
-      document.body.appendChild(this.tips)
-      // document.body.appendChild(this.tips)
+      if (document.body.contains(this.tips)) {
+        document.body.removeChild(this.tips)
+      }
     })
   }
   onClose () {

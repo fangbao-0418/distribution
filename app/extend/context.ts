@@ -10,7 +10,7 @@ module.exports = {
       httpOnly: false,
       signed: false
     })
-    let origin = this.origin
+    let origin = 'https://' + this.host
     if (env === 'local') {
       origin = 'https://x-sys.i-counting.cn'
     }
