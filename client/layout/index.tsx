@@ -73,6 +73,12 @@ export default class View extends React.Component<any> {
       </script>
       <script src={helper.asset('manifest.js?v=' + new Date().getTime())}/>
       <script src={helper.asset('app.js?v=' + new Date().getTime())}/>
+      <script
+        type="text/javascript"
+        dangerouslySetInnerHTML={{
+          __html: `var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1276106900'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s96.cnzz.com/z_stat.php%3Fid%3D1276106900' type='text/javascript'%3E%3C/script%3E"));`
+        }}
+      ></script>
       </body>
       </html>
     );
