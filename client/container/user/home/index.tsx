@@ -26,9 +26,12 @@ class Main extends React.Component<Props> {
     this.setState({
       modal: true
     }, () => {
-      if (document.body.contains(this.tips)) {
-        document.body.removeChild(this.tips)
-      }
+      document.body.append(this.tips)
+      setTimeout(() => {
+        if (document.body.contains(this.tips)) {
+          document.body.removeChild(this.tips)
+        }
+      }, 2500)
     })
   }
   onClose () {
