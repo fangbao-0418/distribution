@@ -61,7 +61,7 @@ class Main extends React.Component<Props> {
                 return
               }
               const params = {
-                distributorPhone: this.getQueryString('u'),
+                distributorPhone: this.getQueryString('u') || this.getQueryString('phone'),
                 contactPhone: this.state.phone,
                 cityCode: this.props.selectCity.code,
                 cityName: this.props.selectCity.name
