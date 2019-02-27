@@ -6,14 +6,14 @@
     "typescript": true
   },
   "scripts": {
-    "start": "beidou start",
+    "start": "EGG_SERVER_ENV=prod beidou start",
     "test-start": "EGG_SERVER_ENV=local beidou start",
     "debug": "beidou debug",
     "stop": "beidou stop",
     "dev": "beidou dev",
     "build:server": "ets && tsc -p tsconfig-server.json",
     "build:client": "beidou build",
-    "build": "ets clean && npm run build:client && npm run build:server",
+    "build": "EGG_SERVER_ENV=prod ets clean && npm run build:client && npm run build:server",
     "clean": "ets clean",
     "test-jenkins": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/test-results.xml"
   },
