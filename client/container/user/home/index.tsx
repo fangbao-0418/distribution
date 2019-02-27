@@ -2,6 +2,7 @@ import React from 'react'
 import classnames from 'classnames/bind'
 import QRcode from './QRcode'
 import Menu from './menu'
+import MyActive from './my-active'
 import Profile from '../profile'
 import { connect } from 'react-redux'
 import { Modal } from 'antd-mobile'
@@ -71,6 +72,8 @@ class Main extends React.Component<Props> {
           </div>
         </div>
         <Menu />
+        <div className={cx('advertisement')}></div>
+        <MyActive/>
         <Modal
           visible={this.state.modal}
           transparent

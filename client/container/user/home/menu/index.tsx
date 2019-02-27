@@ -7,14 +7,6 @@ class Main extends React.Component {
     return (
       <div className={cx('menu')}>
         <div
-          className={cx('menu-item', 'person')}
-          onClick={() => {
-            Toast.info('该功能暂未开放！')
-          }}
-        >
-          个人信息
-        </div>
-        <div
           className={cx('menu-item', 'customer')}
           onClick={() => {
             APP.history.push('/user/customer')
@@ -30,6 +22,14 @@ class Main extends React.Component {
         >
           我的钱包
         </div>
+        <div
+          className={cx('menu-item', 'call')}
+          onClick={() => {
+            Toast.info('该功能暂未开放！')
+          }}
+        >
+          联系客服
+        </div>  
       </div>
     )
   }
