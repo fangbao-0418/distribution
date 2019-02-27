@@ -18,7 +18,7 @@ class Main extends React.Component<Props> {
   componentWillUnmount () {
     this.onClose()
   }
-  onShowModal (e) {
+  onShowModal () {
     if (!this.props.user.qrCodeImageUrl) {
       return APP.toast('暂无个人宣传图片')
     }
@@ -58,18 +58,36 @@ class Main extends React.Component<Props> {
         </div>
         <div
           className={cx('profile')}
+          onClick={() => {
+            console.log('111')
+            APP.history.push('/user/customer')
+          }}
         >
           <div className={cx('avatar')} />
           <div className={cx('profile-right')}>
             <div
               className='font18'
             >
-              {user.phone}
+              张凯丽
+              {/* {user.phone} */}
             </div>
-            <div>
-              <QRcode onShowModal={this.onShowModal.bind(this)}/>
+            <div className={cx('phone', 'mt10')}>
+              <span>{user.phone}</span>
+              <span className={cx('right')}></span>
+              {/* <QRcode onShowModal={this.onShowModal.bind(this)}/> */}
             </div>
           </div>
+        </div>
+        <div className={cx('code')}
+          onClick={() => {
+            this.onShowModal()
+          }}
+        >
+          <img
+            className={cx('qr-code')}
+            src={require('client/assets/icon_erweima@3x.png')}
+          />
+          <span className={cx('ml26')}>分享</span>
         </div>
         <Menu />
         <div className={cx('advertisement')}></div>

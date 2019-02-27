@@ -8,7 +8,7 @@ class Main extends React.Component<Props> {
   render () {
     return (
       <img
-        className={cx('qr-code', 'mt10')}
+        className={cx('qr-code')}
         src={require('client/assets/icon_erweima@3x.png')}
         onClick={() => {
           this.props.onShowModal()
