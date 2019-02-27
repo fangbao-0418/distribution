@@ -5,7 +5,12 @@ import Tips from './Tips'
 class Main extends React.Component {
   render () {
     return (
-      <div className={cx('mt30')}>
+      <div
+        className={cx('mt30')}
+        onClick={() => {
+          APP.history.push('/gift')
+        }}
+      >
         <Tips title='我的活动'/>
         <div className={cx('active-item')}>
           <div className={cx('con', 'clear', 'ml26')}>
