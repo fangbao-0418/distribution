@@ -4,10 +4,11 @@ const cx = classnames.bind(require('./style.module.sass'))
 interface Props {
   checked?: boolean
   className?: string
+  onClick?: (val) => void
 }
 class Main extends React.Component<Props> {
   state = {
-    checked: false
+    checked: this.props.checked
   }
   render () {
     const { checked } = this.state
@@ -20,6 +21,7 @@ class Main extends React.Component<Props> {
           this.setState({
             checked: !checked
           })
+          this.props.onClick(!checked)
         }}
       >
         <i></i>

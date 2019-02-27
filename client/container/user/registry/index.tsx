@@ -21,7 +21,7 @@ class Main extends React.Component<Props> {
   }
   componentWillMount () {
     const { registry, selectCity } = this.props
-    if (registry.phone && registry.checkCode && registry.password && registry.surePassword && selectCity.name && selectCity.name) {
+    if (registry.userName && registry.phone && registry.checkCode && registry.password && registry.surePassword && selectCity.name && selectCity.name) {
       this.setState({
         disabled: false
       })
@@ -30,7 +30,7 @@ class Main extends React.Component<Props> {
   handleForm (field, value) {
     this.payload[field] = value
     APP.dispatch(actions.form.registry(Object.assign({}, this.payload)))
-    if (this.props.registry.phone && this.props.registry.checkCode && this.props.registry.password && this.props.registry.surePassword) {
+    if (this.props.registry.userName && this.props.registry.phone && this.props.registry.checkCode && this.props.registry.password && this.props.registry.surePassword) {
       this.setState({
         disabled: false
       })
@@ -48,6 +48,18 @@ class Main extends React.Component<Props> {
             <div className={cx('title')}>注册账号</div>
             <FormItem
               className='mt23'
+              label='用户名'
+              required
+            >
+              <input
+                placeholder='请输入您的用户名(不可更改)'
+                value={registry.userName}
+                onChange={(e) => {
+                  this.handleForm('userName', e.target.value)
+                }}
+              />
+            </FormItem>
+            <FormItem
               label='账号'
               required
               right={(

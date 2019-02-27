@@ -1,6 +1,7 @@
 import React from 'react'
 import classnames from 'classnames/bind'
 import FormItem from 'client/component/form/FormItem'
+import Checkbox from 'client/component/form/checkbox'
 import Button from 'client/component/button'
 import ValidateCode from 'client/container/user/registry/ValidateCode'
 import * as Services from 'client/utils/service'
@@ -14,7 +15,9 @@ class Main extends React.Component {
     /** 密码 */
     password: '',
     /** 验证码 */
-    code: ''
+    code: '',
+    /** 记住密码 */
+    remberPassword: false
   }
   public componentWillMount () {
     if (__CLIENT__) {
@@ -60,6 +63,9 @@ class Main extends React.Component {
               this.state.showAccount ?
               <div
                 onClick={() => {
+                  if (this.state.remberPassword) {
+                    return
+                  }
                   this.setState({
                     showPassWord: !showPassWord
                   })
@@ -93,6 +99,24 @@ class Main extends React.Component {
               }}
             />
           </FormItem>
+          <div className='mt10'>
+            <Checkbox
+              className={cx('checkout-box')}
+              checked={this.state.remberPassword}
+              onClick={(value: boolean) => {
+                console.log(value, 'value')
+                this.setState({
+                  remberPassword: value
+                })
+                if (value) {
+                  this.setState({
+                    showPassWord: false
+                  })
+                }
+              }}
+            />
+            <span className={cx('rember-password')}>记住密码</span>
+          </div>
           <Button
             className='mt26'
             onClick={() => {

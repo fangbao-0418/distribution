@@ -16,6 +16,7 @@ interface CityProps {
 }
 /** 注册 */
 interface RegistryFormProps {
+  userName?: string
   phone?: string
   password?: string
   surePassword?: string
