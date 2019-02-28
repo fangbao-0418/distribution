@@ -61,7 +61,7 @@ class Main extends React.Component<Props> {
             className={cx('con-label')}
             label='登录密码'
             right={(
-              <span>
+              <span onClick={() => {APP.history.push('/info/password')}}>
                 <span className={cx('color9', 'mr15')}>修改</span>
                 <img
                   src={require('client/assets/icon_huileft@3x.png')} width='5px' height='9px'

@@ -12,6 +12,7 @@ import Logout from './Logout'
 import Gift from '../activities/gift'
 import Info from './info'
 import Phone from './info/phone'
+import Password from './info/password'
 class Main extends React.Component {
   render () {
     return (
@@ -28,6 +29,7 @@ class Main extends React.Component {
           <Route path='/registry/success' exact component={RegistrySuccess} />
           <Route path='/info' exact component={Info} />
           <Route path='/info/phone' exact component={Phone} />
+          <Route path='/info/password' exact component={Password} />
         </Auth>
       </Switch>
     )

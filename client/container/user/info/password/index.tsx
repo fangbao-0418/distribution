@@ -7,15 +7,15 @@ import FormItem from 'client/component/form/FormItem'
 import Button from 'client/component/button'
 import { Modal } from 'antd-mobile'
 import BindNewPhone from './BindNewPhone'
+import ValidateCode from 'client/container/user/registry/ValidateCode'
 interface Props {
   user: UserProps
 }
 class Main extends React.Component<Props> {
   state = {
-    showPassWord: false,
-    password: '',
     disabled: true,
-    modal: false
+    modal: false,
+    checkCode: ''
   }
   onShowModal () {
     this.setState({
@@ -35,14 +35,13 @@ class Main extends React.Component<Props> {
     })
   }
   render () {
-    const { showPassWord, password } = this.state
     return (
       <Layout
         goBack={() => {
           APP.history.push('/info')
         }}
         title={(
-          <span>更换手机号</span>
+          <span>更换密码</span>
         )}
         contentStyle={{
           padding: 0
@@ -51,38 +50,21 @@ class Main extends React.Component<Props> {
         <div className={cx('phone')}>
           <div className={cx('phone-bg')}></div>
           <div className={cx('cur-phone')}>当前手机号 {this.props.user.phone}</div>
-          <div className={cx('tip-phone')}>更换手机号前，需验证您的登录密码</div>
+          <div className={cx('tip-phone')}>更换密码前，需验证您的手机号</div>
           <FormItem
-            noForm={true}
             right={(
-              <div
-                onClick={() => {
-                  this.setState({
-                    showPassWord: !showPassWord
-                  })
-                }}
-              >
-                {
-                  <img
-                    className={cx('show-password')}
-                    src={showPassWord ?
-                      require('client/assets/icon_zanshi@3x.png')
-                      :
-                      require('client/assets/icon_yican@3x.png')
-                    }
-                  />
-                }
-              </div>
+              <ValidateCode
+                mobile={this.props.user.phone}
+              />
             )}
           >
             <input
-              maxLength={12}
-              type={showPassWord ? 'text' : 'password'}
-              placeholder='请输入密码'
-              value={password}
+              placeholder='请输入验证码'
+              maxLength={6}
+              value={this.state.checkCode}
               onChange={(e) => {
                 this.setState({
-                  password: e.target.value
+                  checkCode: e.target.value
                 })
                 if (e.target.value) {
                   this.setState({
@@ -100,11 +82,10 @@ class Main extends React.Component<Props> {
             className={cx('mt40')}
             disabled={this.state.disabled}
             onClick={() => {
-              console.log(this.state.password)
               this.onShowModal()
             }}
           >
-            更换手机号
+            下一步
           </Button>
         </div>
         <Modal
@@ -112,7 +93,7 @@ class Main extends React.Component<Props> {
           transparent
           maskClosable={false}
           onClose={this.onClose.bind(this)}
-          title='更换手机号'
+          title='更换密码'
           footer={[]}
         >
           <BindNewPhone goInfo={this.goInfo.bind(this)}/>
