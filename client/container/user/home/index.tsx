@@ -93,6 +93,7 @@ class Main extends React.Component<Props> {
         <div className={cx('advertisement')}></div>
         <MyActive/>
         <Modal
+          className={cx('cover')}
           visible={this.state.modal}
           transparent
           maskClosable={false}

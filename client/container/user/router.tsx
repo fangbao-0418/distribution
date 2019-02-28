@@ -10,6 +10,8 @@ import Profile from './profile'
 import Auth from './Auth'
 import Logout from './Logout'
 import Gift from '../activities/gift'
+import Info from './info'
+import Phone from './info/phone'
 class Main extends React.Component {
   render () {
     return (
@@ -24,6 +26,8 @@ class Main extends React.Component {
           <Route path='/user/customer' exact component={Customer} />
           <Route path='/user/customer/add' component={CustomerAdd} />
           <Route path='/registry/success' exact component={RegistrySuccess} />
+          <Route path='/info' exact component={Info} />
+          <Route path='/info/phone' exact component={Phone} />
         </Auth>
       </Switch>
     )
