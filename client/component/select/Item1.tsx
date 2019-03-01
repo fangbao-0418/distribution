@@ -9,6 +9,7 @@ interface Props {
   value?: any
   type?: 'radio' | 'checkbox'
   theme?: '1' | '2' | '3'
+  isCustomer?: boolean
 }
 class Main extends React.Component<Props> {
   state = {
@@ -33,7 +34,7 @@ class Main extends React.Component<Props> {
                 style={{
                   width: (100 / flex) + '%'
                 }}
-                className={(cx('select-wrap'))}
+                className={(cx('select-wrap', this.props.isCustomer ? 'mt5' : ''))}
               >
                 <span
                   className={cx({
