@@ -7,8 +7,10 @@ import CustomerStatus from './CustomerStatus'
 const cx = classnames.bind(require('./style.module.sass'))
 const CustomerEnum = {
   '-1': '全部',
-  '1': '已退户',
-  '2': '已成交'
+  '0': '待跟进',
+  '1': '跟进中',
+  '2': '未成交',
+  '3': '已成交'
 }
 function getMonthOption () {
   const startMonth = 1

@@ -14,24 +14,13 @@ interface Props {
     status: string
   }
 }
-const option = [
-  {
-    label: '待跟进',
-    value: '0'
-  },
-  {
-    label: '跟进中',
-    value: '1'
-  },
-  {
-    label: '未成交',
-    value: '2'
-  },
-  {
-    label: '已成交',
-    value: '3'
-  }
-]
+const CustomerEnum = {
+  '-1': '全部',
+  '0': '待跟进',
+  '1': '跟进中',
+  '2': '未成交',
+  '3': '已成交'
+}
 class Main extends React.Component<Props> {
   handleDate (date: string) {
     const res = date.match(/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/) || []
@@ -55,15 +44,7 @@ class Main extends React.Component<Props> {
           <h3>
             {data.contractName}{data.type === 0 ? '（自留）' : ''}
             <div className={cx('tags')} style={{color : data.status === '3' ? '#FF604C' : '#666'}}>
-              {
-                option.map((item) => {
-                  if (item.value === String(data.status)) {
-                    return (
-                      <span>{item.label}</span>
-                    )
-                  }
-                })
-              }
+              {CustomerEnum[data.status]}
             </div>
             {/* {
               data.status !== 0 &&
