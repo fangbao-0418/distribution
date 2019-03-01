@@ -36,19 +36,26 @@ class Main extends React.Component<Props> {
         <div className={cx('item-right')}>
           <h3>
             {data.contractName}{data.type === 0 ? '（自留）' : ''}
-            <span>
-              {this.handleDate(data.createTime)}
-            </span>
-          </h3>
-          <p className='mt8'>{data.contractPhone}</p>
-          <p className='mt8'>
-            {data.companyName}
             {
               data.status !== 0 &&
               <div className={cx('tags')}>
                 {data.status === 1 ? '已退户' : '已成交'}
               </div>
             } 
+          </h3>
+          <p className='mt8'>
+            {data.contractPhone}
+            <span className={cx('time')}>
+              {this.handleDate(data.createTime)}
+            </span>
+          </p>
+          <p className='mt8'>
+            {data.companyName}
+          </p>
+          <p className={cx('active', 'mt10')}>
+            <span className={cx('active-name')}>新人大礼包</span>
+            <span className={cx('active-con')}>一个月免费记账</span>
+            <span className={cx('cui-tag')}>催</span>
           </p>
         </div>
       </div>
