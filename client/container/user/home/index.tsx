@@ -90,7 +90,12 @@ class Main extends React.Component<Props> {
           <span className={cx('ml26')}>分享</span>
         </div>
         <Menu />
-        <div className={cx('advertisement')}></div>
+        <div
+          className={cx('advertisement')}
+          onClick={() => {
+            APP.history.push('/gift')
+          }}
+        ></div>
         <MyActive/>
         <Modal
           className={cx('cover')}
