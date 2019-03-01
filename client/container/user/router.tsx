@@ -13,6 +13,7 @@ import Gift from '../activities/gift'
 import Info from './info'
 import Phone from './info/phone'
 import Password from './info/password'
+import Call from './home/call'
 class Main extends React.Component {
   render () {
     return (
@@ -30,6 +31,7 @@ class Main extends React.Component {
           <Route path='/info' exact component={Info} />
           <Route path='/info/phone' exact component={Phone} />
           <Route path='/info/password' exact component={Password} />
+          <Route path='/user/call' exact component={Call} />
         </Auth>
       </Switch>
     )
