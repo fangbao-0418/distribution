@@ -105,6 +105,7 @@ class Main extends React.Component<Props> {
           onClose={this.onClose.bind(this)}
           title=''
           footer={[]}
+          wrapClassName={cx('profile-wrap')}
         >
           <Profile onClose={this.onClose.bind(this)}/>
         </Modal>
