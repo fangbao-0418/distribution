@@ -1,6 +1,5 @@
 import React from 'react'
 import FormItem from 'client/component/form/FormItem'
-import ValidateCode from 'client/container/user/registry/ValidateCode'
 import Button from 'client/component/button'
 import classnames from 'classnames/bind'
 const cx = classnames.bind(require('../style.module.sass'))
@@ -9,56 +8,58 @@ interface Props {
 }
 class Main extends React.Component<Props> {
   state = {
-    phone: '',
-    checkCode: ''
+    showPassWord: false,
+    password: '',
+    surePassword: ''
   }
   render () {
-    const { phone, checkCode } = this.state
+    const { showPassWord, password, surePassword } = this.state
     return (
       <div>
         <FormItem
-          // right={(
-          //   <img
-          //     onClick={() => {
-          //       this.setState({
-          //         phone: ''
-          //       })
-          //     }}
-          //     hidden={!phone}
-          //     src={require('client/assets/icon_dele@3x.png')} width='15.4px' height='15.4px'
-          //   />
-          // )}
+          right={(
+            <div
+              onClick={() => {
+                this.setState({
+                  showPassWord: !showPassWord
+                })
+              }}
+            >
+              {
+                <img
+                  className={cx('show-password')}
+                  src={showPassWord ?
+                    require('client/assets/icon_zanshi@3x.png')
+                    :
+                    require('client/assets/icon_yican@3x.png')
+                  }
+                />
+              }
+            </div>
+          )}
         >
           <input
-            maxLength={11}
-            placeholder='请输入新手机号码'
-            value={phone}
+            maxLength={12}
+            type={showPassWord ? 'text' : 'password'}
+            placeholder='请输入新密码'
+            value={password}
             onChange={(e) => {
               this.setState({
-                phone: e.target.value
+                password: e.target.value
               })
-            }}
-            onBlur={(e) => {
-              if (!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test(e.target.value)) {
-                APP.toast('手机号格式不正确')
-              }
             }}
           />
         </FormItem>
         <FormItem
-          right={(
-            <ValidateCode
-              mobile={phone}
-            />
-          )}
         >
           <input
-            placeholder='请输入验证码'
-            maxLength={6}
-            value={checkCode}
+            maxLength={12}
+            type={showPassWord ? 'text' : 'password'}
+            placeholder='请再次确认密码'
+            value={surePassword}
             onChange={(e) => {
               this.setState({
-                checkCode: e.target.value
+                surePassword: e.target.value
               })
             }}
           />
@@ -66,11 +67,14 @@ class Main extends React.Component<Props> {
         <Button
           className='mt30'
           onClick={() => {
-            console.log(phone, checkCode)
+            if (password !== surePassword) {
+              APP.toast('两次密码不一致，请重新输入')
+              return
+            }
             this.props.goInfo()
           }}
         >
-          确定更换
+          确定提交
         </Button>
       </div>
     )

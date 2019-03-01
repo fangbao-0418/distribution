@@ -60,7 +60,7 @@ class Main extends React.Component<Props> {
           className={cx('profile')}
           onClick={() => {
             console.log('111')
-            APP.history.push('/user/customer')
+            APP.history.push('/info')
           }}
         >
           <div className={cx('avatar')} />
