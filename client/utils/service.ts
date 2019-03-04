@@ -79,3 +79,7 @@ export const updataInfo = (oldphone: string, payload: {
 }) => {
   return http(`/shop-user/v1/api/distribute/update_distributor/${oldphone}`, 'PUT', payload)
 }
+/** 获取活动查看量及成交客户量 */
+export const getActivity = () => {
+  return http(`/shop-user/v1/api/distribute/activity`, 'GET')
+}

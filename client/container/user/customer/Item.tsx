@@ -46,12 +46,6 @@ class Main extends React.Component<Props> {
             <div className={cx('tags')} style={{color : data.status === '3' ? '#FF604C' : '#666'}}>
               {CustomerEnum[data.status]}
             </div>
-            {/* {
-              data.status !== 0 &&
-              <div className={cx('tags')}>
-                {data.status === 1 ? '已退户' : '已成交'}
-              </div>
-            }  */}
           </h3>
           <p className='mt8'>
             {data.contractPhone}

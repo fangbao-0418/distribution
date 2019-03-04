@@ -45,4 +45,6 @@ interface UserProps {
   username?: string
   /** 个人二维码地址不加背景 */
   qrCodeSmallImageUrl?: string
+  cityName?: string
+  cityCode?: string
 }
