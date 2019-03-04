@@ -68,8 +68,7 @@ class Main extends React.Component<Props> {
             <div
               className='font18'
             >
-              张凯丽
-              {/* {user.phone} */}
+              {user.username}
             </div>
             <div className={cx('phone', 'mt10')}>
               <span>{user.phone}</span>

@@ -8,6 +8,7 @@ import Button from 'client/component/button'
 import { Modal } from 'antd-mobile'
 import BindNewPhone from './BindNewPhone'
 import ValidateCode from 'client/container/user/registry/ValidateCode'
+import * as Services from 'client/utils/service'
 interface Props {
   user: UserProps
 }
@@ -27,11 +28,19 @@ class Main extends React.Component<Props> {
       modal: false
     })
   }
-  goInfo () {
-    this.setState({
-      modal: false
-    }, () => {
-      APP.history.push('/info')
+  goInfo (params) {
+    console.log(params, 'params')
+    Services.updataInfo(this.props.user.phone, params).then((res) => {
+      if (res.status === 200) {
+        APP.toast('密码修改成功')
+        this.setState({
+          modal: false
+        }, () => {
+          APP.history.push('/info')
+        })
+      } else {
+        APP.toast('服务器异常')
+      }
     })
   }
   render () {
@@ -82,7 +91,16 @@ class Main extends React.Component<Props> {
             className={cx('mt40')}
             disabled={this.state.disabled}
             onClick={() => {
-              this.onShowModal()
+              Services.loginAccount({
+                phone: this.props.user.phone,
+                checkCode: this.state.checkCode
+              }).then((res) => {
+                if (res.status === 200) {
+                  this.onShowModal()
+                } else {
+                  APP.toast('验证码错误，请重新输入')
+                }
+              })
             }}
           >
             下一步

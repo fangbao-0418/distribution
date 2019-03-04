@@ -7,6 +7,7 @@ import FormItem from 'client/component/form/FormItem'
 import Button from 'client/component/button'
 import { Modal } from 'antd-mobile'
 import BindNewPhone from './BindNewPhone'
+import * as Services from 'client/utils/service'
 interface Props {
   user: UserProps
 }
@@ -27,11 +28,19 @@ class Main extends React.Component<Props> {
       modal: false
     })
   }
-  goInfo () {
-    this.setState({
-      modal: false
-    }, () => {
-      APP.history.push('/info')
+  goInfo (params) { // 确认修改手机号的回调 
+    console.log(params, 'params')
+    Services.updataInfo(this.props.user.phone, params).then((res) => {
+      if (res.status === 200) {
+        APP.toast('修改手机号成功')
+        this.setState({
+          modal: false
+        }, () => {
+          APP.history.push('/info')
+        })
+      } else {
+        APP.toast('服务器异常')
+      }
     })
   }
   render () {
@@ -78,7 +87,7 @@ class Main extends React.Component<Props> {
             <input
               maxLength={12}
               type={showPassWord ? 'text' : 'password'}
-              placeholder='请输入密码'
+              placeholder='请输入登录密码'
               value={password}
               onChange={(e) => {
                 this.setState({
@@ -101,7 +110,17 @@ class Main extends React.Component<Props> {
             disabled={this.state.disabled}
             onClick={() => {
               console.log(this.state.password)
-              this.onShowModal()
+              // 调登录接口 如果成功就修改 不成功提示
+              Services.loginAccount({
+                phone: this.props.user.phone,
+                password: this.state.password
+              }).then((res) => {
+                if (res.status === 200) {
+                  this.onShowModal()
+                } else {
+                  APP.toast('密码错误，请重新输入')
+                }
+              })
             }}
           >
             更换手机号

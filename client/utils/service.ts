@@ -69,3 +69,13 @@ export const addCustomerbyGift  = (payload: {
 }) => {
   return http('/shop-user/v1/api/distribute/customer-share-entry', 'POST', payload)
 }
+/** 修改个人信息 */
+export const updataInfo = (oldphone: string, payload: {
+  phone?: string
+  code?: string
+  password?: string
+  cityCode?: string
+  cityName?: string
+}) => {
+  return http(`/shop-user/v1/api/distribute/update_distributor/${oldphone}`, 'PUT', payload)
+}

@@ -4,7 +4,7 @@ import Button from 'client/component/button'
 import classnames from 'classnames/bind'
 const cx = classnames.bind(require('../style.module.sass'))
 interface Props {
-  goInfo?: () => void
+  goInfo?: (params) => void
 }
 class Main extends React.Component<Props> {
   state = {
@@ -67,11 +67,18 @@ class Main extends React.Component<Props> {
         <Button
           className='mt30'
           onClick={() => {
+            if (!password || !surePassword) {
+              APP.toast('请输入必填项')
+              return
+            }
             if (password !== surePassword) {
               APP.toast('两次密码不一致，请重新输入')
               return
             }
-            this.props.goInfo()
+            const params = {
+              password,
+            }
+            this.props.goInfo(params)
           }}
         >
           确定提交

@@ -16,7 +16,7 @@ interface CityProps {
 }
 /** 注册 */
 interface RegistryFormProps {
-  userName?: string
+  username?: string
   phone?: string
   password?: string
   surePassword?: string
@@ -42,4 +42,7 @@ interface UserProps {
   phone: string
   /** 二维码地址 */
   qrCodeImageUrl: string
+  username?: string
+  /** 个人二维码地址不加背景 */
+  qrCodeSmallImageUrl?: string
 }

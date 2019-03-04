@@ -1,7 +1,12 @@
 import React from 'react'
 import classnames from 'classnames/bind'
 const cx = classnames.bind(require('./style.module.sass'))
-class Main extends React.Component {
+import { connect } from 'react-redux'
+import user from 'client/saga/user';
+interface Props {
+  user: UserProps
+}
+class Main extends React.Component<Props> {
   state = {
     showShare: true
   }
@@ -13,7 +18,8 @@ class Main extends React.Component {
           <div className={cx('code')}>
             <div className={cx('share')}></div>
             <img
-              src={require('client/assets/icon_erweima@3x.png')}
+              // src={require('client/assets/icon_erweima@3x.png')}
+              src={this.props.user.qrCodeSmallImageUrl}
             /> 
           </div>
           <div
@@ -31,4 +37,8 @@ class Main extends React.Component {
     )
   }
 }
-export default Main
+export default connect(({common}: State.Props) => {
+  return {
+    user: common.user
+  }
+})(Main)

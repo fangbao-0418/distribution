@@ -38,7 +38,7 @@ class Main extends React.Component<Props> {
             className={cx('con-label')}
             label='用户名'
             right={(
-              <span className={cx('color9')}>张凯丽</span>
+              <span className={cx('color9')}>{this.props.user.username}</span>
             )}
             noForm={true}
           >

@@ -5,7 +5,7 @@ import Button from 'client/component/button'
 import classnames from 'classnames/bind'
 const cx = classnames.bind(require('../style.module.sass'))
 interface Props {
-  goInfo?: () => void
+  goInfo?: (params) => void
 }
 class Main extends React.Component<Props> {
   state = {
@@ -17,17 +17,6 @@ class Main extends React.Component<Props> {
     return (
       <div>
         <FormItem
-          // right={(
-          //   <img
-          //     onClick={() => {
-          //       this.setState({
-          //         phone: ''
-          //       })
-          //     }}
-          //     hidden={!phone}
-          //     src={require('client/assets/icon_dele@3x.png')} width='15.4px' height='15.4px'
-          //   />
-          // )}
         >
           <input
             maxLength={11}
@@ -67,7 +56,15 @@ class Main extends React.Component<Props> {
           className='mt30'
           onClick={() => {
             console.log(phone, checkCode)
-            this.props.goInfo()
+            if (!phone || !checkCode) {
+              APP.toast('请手机号码和验证码')
+              return
+            }
+            const params = {
+              phone,
+              code: checkCode
+            }
+            this.props.goInfo(params)
           }}
         >
           确定更换
