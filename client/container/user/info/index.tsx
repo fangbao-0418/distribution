@@ -21,6 +21,7 @@ class Main extends React.Component<Props> {
       Services.updataInfo(this.props.user.phone, params).then((res) => {
         if (res.status === 200) { // 需要更新用户信息
           APP.toast('地区修改成功')
+          APP.dispatch(actions.user.fetch())
         } else {
           APP.toast(res.message)
         }
@@ -88,7 +89,7 @@ class Main extends React.Component<Props> {
             label='地区'
             right={(
               <span onClick={this.selectCity.bind(this)}>
-                <span className={cx('color9', 'mr15')}>{this.props.selectCity.code ? this.props.selectCity.name : this.props.user.cityName}</span>
+                <span className={cx('color9', 'mr15')}>{this.props.user.cityName}</span>
                 <img
                   src={require('client/assets/icon_huileft@3x.png')} width='5px' height='9px'
                 />

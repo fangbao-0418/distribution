@@ -91,7 +91,7 @@ class Main extends React.Component<Props> {
             className={cx('mt40')}
             disabled={this.state.disabled}
             onClick={() => {
-              Services.loginAccount({
+              Services.loginPhone({
                 phone: this.props.user.phone,
                 checkCode: this.state.checkCode
               }).then((res) => {

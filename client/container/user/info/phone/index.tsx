@@ -8,6 +8,7 @@ import Button from 'client/component/button'
 import { Modal } from 'antd-mobile'
 import BindNewPhone from './BindNewPhone'
 import * as Services from 'client/utils/service'
+import actions from 'client/actions'
 interface Props {
   user: UserProps
 }
@@ -37,6 +38,7 @@ class Main extends React.Component<Props> {
           modal: false
         }, () => {
           APP.history.push('/info')
+          APP.dispatch(actions.user.fetch())
         })
       } else {
         APP.toast('服务器异常')
