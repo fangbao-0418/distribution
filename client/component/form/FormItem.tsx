@@ -7,6 +7,7 @@ interface Props {
   right?: React.ReactNode
   style?: React.CSSProperties
   className?: string
+  noForm?: boolean
   onClick?: () => void
 }
 class Main extends React.Component<Props> {
@@ -24,7 +25,7 @@ class Main extends React.Component<Props> {
         {
           this.props.label && (
             <div className={cx('label')}>
-              {this.props.required && <span className={cx('required')}>*</span>}{this.props.label}:
+              {this.props.required && <span className={cx('required')}>*</span>}{this.props.label}{this.props.noForm ? '' : ':'}
             </div>
           )
         }

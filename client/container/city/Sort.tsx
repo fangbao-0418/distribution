@@ -52,6 +52,7 @@ class Main extends React.Component<Props> {
                 <FormItem
                   onClick={() => {
                     APP.dispatch(actions.city.select(item2))
+                    console.log(item2, '选择的城市')
                     APP.history.goBack()
                   }}
                   style={{

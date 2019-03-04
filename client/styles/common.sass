@@ -1,4 +1,28 @@
 @import './antd.sass'
+@media screen and (max-width: 320px)
+  html
+    font-size: 42.6667PX
+@media screen and (min-width: 320px)
+  html
+    font-size: 42.6667PX
+@media screen and (min-width: 360px)
+  html
+    font-size: 48PX
+@media screen and (min-width: 375px)
+  html
+    font-size: 50PX
+@media screen and (min-width: 411px)
+  html
+    font-size: 54.8PX
+@media screen and (min-width: 414px)
+  html
+    font-size: 55.2PX
+@media screen and (min-width: 768px)
+  html
+    font-size: 102.4PX
+@media screen and (min-width: 1024px)
+  html
+    font-size: 136.533PX
 html, body, #app
   overflow: scroll!important
   -webkit-overflow-scrolling: touch
@@ -6,11 +30,12 @@ html, body, #app
   padding: 0px
   width: 100%
   height: 100%
-  font-size: 12px
   background: #FFFFFF
   font-family: -apple-system-font, "Helvetica Neue", sans-serif
   .text-center
     text-align: center
+  .mt5
+    margin-top: 5px
   .mt8
     margin-top: 8px
   .mt10
@@ -29,6 +54,8 @@ html, body, #app
     margin-top: 30px
   .mt40
     margin-top: 40px
+  .mt50
+    margin-top: 50px
   .mr48
     margin-right: 48px
   .mb15
@@ -37,11 +64,24 @@ html, body, #app
     margin-bottom: 30px
   .ml20
     margin-left: 20px
+  .ml26
+    margin-left: 26px
+  .mr15
+    margin-right: 15px
   .mr20
     margin-right: 20px
+  .mr10
+    margin-right: 10px
   .font14
     font-size: 14px
   .font18
     font-size: 18px
   .inline-block
     display: inline-block
+  .color9
+    color: #999
+  .clear
+    &:after
+      content: ''
+      display: block
+      clear: both

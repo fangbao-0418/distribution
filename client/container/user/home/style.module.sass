@@ -1,4 +1,5 @@
 .container
+  position: relative
   padding: 0 15px
   background: url('client/assets/label_yangshi@3x.png') no-repeat
   background-size: 55.5px 96px
@@ -27,10 +28,37 @@
       margin-top: 10px
       float: left
       margin-left: 21px
-      .qr-code
-        width: 16px
-        height: 16px
-        cursor: pointer
+      .phone
+        font-family: PingFangSC-Medium
+        font-size: 14px
+        color: #999999
+        .right
+          display: inline-block
+          margin-left: 7px
+          width: 6px
+          height: 11px
+          background: url('client/assets/icon_huileft@3x.png') 0 0 / 100% 100% no-repeat
+  .code
+    float: right
+    width: 62px
+    height: 24px
+    line-height: 24px
+    background: #55A4FF
+    border-radius: 11.98px 0 0 11.98px
+    position: absolute
+    top: 90px
+    right: 0
+    font-family: PingFangSC-Regular
+    font-size: 13.3px
+    color: #FFFFFF
+    text-align: center
+    .qr-code
+      width: 14px
+      height: 14px
+      cursor: pointer
+      position: absolute
+      left: 10px
+      top: 5px
 .tips
   opacity: 0.48
   background: #000000
@@ -52,3 +80,20 @@
   bottom: 36px
   z-index: 1999
   transform: translateZ(10px)
+.advertisement
+  margin-top: 5px
+  width: 100%
+  height: 80px
+  background: url('client/assets/label_yaoqing@3x.png') 0 0 / 100% 100% no-repeat
+.profile-wrap
+  &:global(.am-modal-wrap)
+    align-items: start
+    \:global
+      .am-modal-transparent
+        width: 100%
+        .am-modal-content
+          padding: 0 !important
+          .am-modal-body
+            padding: 0 !important
+
+
