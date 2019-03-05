@@ -45,7 +45,7 @@ class Main extends React.Component<Props> {
                 </div>
                 <div>
                   <span>成交量：</span>
-                  <span>{item.tradingVolume}/{item.customerVolume}</span>
+                  <span>{item.tradingVolume}/{item.customerVolume ? item.customerVolume : 0}</span>
                 </div>
               </div>
             </div>
