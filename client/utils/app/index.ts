@@ -3,7 +3,8 @@ import Cookies from 'js-cookie'
 Object.assign(APP, {
   toast: (message, duration = 1) => {
     Toast.info((message || '未知错误'), duration)
-  }
+  },
+  Cookies
 })
 if (__CLIENT__) {
   Object.defineProperty(APP, 'token', {

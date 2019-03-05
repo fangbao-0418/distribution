@@ -19,16 +19,18 @@ class Main extends React.Component {
     /** 记住密码 */
     remberPassword: false
   }
-  public componentWillMount () {
-    if (__CLIENT__) {
-      if (APP.token) {
-        APP.history.push('/user')
-      }
+  public componentDidMount () {
+    this.setState({
+      account: APP.Cookies.get('account'),
+      password: APP.Cookies.get('password'),
+      remberPassword: APP.Cookies.get('account') && APP.Cookies.get('password') ? true : false
+    })
+    if (APP.token) {
+      APP.history.push('/user')
     }
   }
   render () {
-    const { showPassWord, account, showAccount, password, code } = this.state
-    console.log(showPassWord, 'showPassWord')
+    const { showPassWord, remberPassword, account, showAccount, password, code } = this.state
     return (
       <div className={cx('login')}>
         <div className={cx('card')}>
@@ -63,9 +65,6 @@ class Main extends React.Component {
               this.state.showAccount ?
               <div
                 onClick={() => {
-                  if (this.state.remberPassword) {
-                    return
-                  }
                   this.setState({
                     showPassWord: !showPassWord
                   })
@@ -100,22 +99,19 @@ class Main extends React.Component {
             />
           </FormItem>
           <div className='mt10'>
-            <Checkbox
-              className={cx('checkout-box')}
-              checked={this.state.remberPassword}
-              onClick={(value: boolean) => {
-                console.log(value, 'value')
+            <span
+              onClick={() => {
                 this.setState({
-                  remberPassword: value
+                  remberPassword: !remberPassword
                 })
-                if (value) {
-                  this.setState({
-                    showPassWord: false
-                  })
-                }
               }}
-            />
-            <span className={cx('rember-password')}>记住密码</span>
+            >
+              <Checkbox
+                className={cx('checkout-box')}
+                checked={remberPassword}
+              />
+              <span className={cx('rember-password')}>记住密码</span>
+            </span>
           </div>
           <Button
             className='mt26'
@@ -127,6 +123,21 @@ class Main extends React.Component {
                 }
                 Services.loginAccount(params).then((res) => {
                   if (res.status === 200) {
+                    if (remberPassword) {
+                      APP.Cookies.set('account', account, {
+                        expires: 100000
+                      })
+                      APP.Cookies.set('password', password, {
+                        expires: 100000
+                      })
+                    } else {
+                      APP.Cookies.set('account', account, {
+                        expires: -1
+                      })
+                      APP.Cookies.set('password', password, {
+                        expires: -1
+                      })
+                    }
                     APP.history.push('/user')
                   } else {
                     APP.toast(res.message)

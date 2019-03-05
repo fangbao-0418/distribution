@@ -8,6 +8,15 @@ declare namespace APP {
   interface Dispatch<A extends Action = AnyAction> {
     <T extends A>(action: T): T
   }
+  export interface CookiesOptionProps {
+    domain?: string
+    expires?: number
+    path?: string
+  }
+  export interface CookiesProps {
+    set: (field: string, value: string | number, options?: CookiesOptionProps) => void
+    get: <T = any>(field: string, options?: CookiesOptionProps) => T
+  }
   export interface Props {
     dispatch: Dispatch
     history: {
@@ -17,5 +26,6 @@ declare namespace APP {
     /** 提示信息 */
     toast: (message: string, duration?: number) => void
     token: string
+    Cookies: CookiesProps
   }
 }
