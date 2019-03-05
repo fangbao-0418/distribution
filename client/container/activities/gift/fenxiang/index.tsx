@@ -8,12 +8,14 @@ interface Props {
 }
 class Main extends React.Component<Props> {
   state = {
-    showShare: true
+    showShare: this.props.user.phone ? true : false
+  }
+  componentWillMount () {
+    console.log(this.props.user.phone, '11111')
   }
   render () {
     return (
-      <div className={cx('outer')} style={{display: this.state.showShare ? '' : 'none'}}>
-        <div className={cx('box')}></div>
+      <div className={cx('outer')} style={{display: this.state.showShare ? 'block' : 'none'}}>
         <div className={cx('con')}>
           <div className={cx('code')}>
             <div className={cx('share')}></div>
@@ -25,6 +27,7 @@ class Main extends React.Component<Props> {
           <div
             className={cx('btn', 'mt30')}
             onClick={() => {
+              console.log('11')
               this.setState({
                 showShare: false
               })
