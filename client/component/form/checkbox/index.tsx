@@ -10,8 +10,14 @@ class Main extends React.Component<Props> {
   state = {
     checked: this.props.checked
   }
+  componentWillReceiveProps (props: Props) {
+    this.setState({
+      checked: props.checked
+    })
+  }
   render () {
     const { checked } = this.state
+    console.log(checked, 'checked')
     return (
       <span
         className={cx('checkbox', {
@@ -21,7 +27,9 @@ class Main extends React.Component<Props> {
           this.setState({
             checked: !checked
           })
-          this.props.onClick(!checked)
+          if (this.props.onClick) {
+            this.props.onClick(!checked)
+          }
         }}
       >
         <i></i>

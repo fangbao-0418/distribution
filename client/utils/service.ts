@@ -44,6 +44,7 @@ export const loginPhone = (payload) => {
 }
 /** 注册 */
 export const registry = (payload: RegistryFormProps) => {
+  APP.dispatch(actions.loading(true))
   return http('/shop-user/v1/api/distribute/add_distributor', 'POST', payload)
 }
 /** 我的客户列表 */
