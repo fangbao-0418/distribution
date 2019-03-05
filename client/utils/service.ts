@@ -83,3 +83,7 @@ export const updataInfo = (oldphone: string, payload: {
 export const getActivity = () => {
   return http(`/shop-user/v1/api/distribute/activity`, 'GET')
 }
+/** 分享次数 */
+export const getVp = (phone) => {
+  return http(`/shop-user/v1/api/distribute/share?phone=${phone}`, 'GET')
+}

@@ -92,10 +92,14 @@ class Main extends React.Component<Props> {
         <div
           className={cx('advertisement')}
           onClick={() => {
-            APP.history.push('/gift')
+            APP.history.push(`/gift?u=${this.props.user.phone}`)
           }}
         ></div>
-        <MyActive/>
+        <MyActive
+          onClick={() => {
+            APP.history.push(`/gift?u=${this.props.user.phone}`)
+          }}
+        />
         <Modal
           className={cx('cover')}
           visible={this.state.modal}

@@ -20,8 +20,15 @@ class Main extends React.Component<Props> {
     if (__CLIENT__) {
       APP.dispatch(actions.city.fetchLocation())
     }
+    this.getViewTimes()
   }
-  getQueryString(name) { 
+  getViewTimes () {
+    const phone = this.getQueryString('u') || this.getQueryString('phone')
+    Services.getVp(phone).then(() => {
+      console.log('aa')
+    })
+  }
+  getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
     var r = window.location.search.substr(1).match(reg); 
     if (r != null) return unescape(r[2]); 
