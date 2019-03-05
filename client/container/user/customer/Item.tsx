@@ -12,6 +12,10 @@ interface Props {
     createTime: string
     type: number
     status: string
+    distributorActivity?: {
+      title?: string
+      discountCoupon?: string
+    }
   }
 }
 const CustomerEnum = {
@@ -46,12 +50,6 @@ class Main extends React.Component<Props> {
             <div className={cx('tags')} style={{color : data.status === '3' ? '#FF604C' : '#666'}}>
               {CustomerEnum[data.status]}
             </div>
-            {/* {
-              data.status !== 0 &&
-              <div className={cx('tags')}>
-                {data.status === 1 ? '已退户' : '已成交'}
-              </div>
-            }  */}
           </h3>
           <p className='mt8'>
             {data.contractPhone}
@@ -65,7 +63,7 @@ class Main extends React.Component<Props> {
           <p className={cx('active', 'mt10')}>
             <span className={cx('active-name')}>新人大礼包</span>
             <span className={cx('active-con')}>一个月免费记账</span>
-            <span className={cx('cui-tag')}>催</span>
+            {/* <span className={cx('cui-tag')}>催</span> */}
           </p>
         </div>
       </div>

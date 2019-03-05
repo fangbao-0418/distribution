@@ -25,7 +25,7 @@ class Main extends React.Component {
         <div
           className={cx('menu-item', 'call')}
           onClick={() => {
-            Toast.info('该功能暂未开放！')
+            APP.history.push('/user/call')
           }}
         >
           联系客服

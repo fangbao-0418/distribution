@@ -4,21 +4,34 @@ import FormItem from 'client/component/form/FormItem'
 import { connect } from 'react-redux'
 import classnames from 'classnames/bind'
 const cx = classnames.bind(require('./style.module.sass'))
+import Button from 'client/component/button'
 import actions from 'client/actions'
+import * as Services from 'client/utils/service'
 interface Props {
   user: UserProps
   selectCity: CityProps
 }
 class Main extends React.Component<Props> {
   componentWillMount () {
-    if (__CLIENT__) {
-      if (!this.props.selectCity.code) {
-        APP.dispatch(actions.city.fetchLocation())
+    if (this.props.selectCity.code && this.props.selectCity.code !== this.props.user.cityCode) { // 修改地区
+      const params = {
+        cityCode: this.props.selectCity.code,
+        cityName: this.props.selectCity.name
       }
+      Services.updataInfo(this.props.user.phone, params).then((res) => {
+        if (res.status === 200) { // 需要更新用户信息
+          APP.toast('地区修改成功')
+          APP.dispatch(actions.user.fetch())
+        } else {
+          APP.toast(res.message)
+        }
+      })
     }
+    console.log(this.props.selectCity.code, 'code')
   }
   selectCity () {
     APP.history.push('/city')
+    console.log(this.props.selectCity.code, this.props.selectCity.name)
   }
   render () {
     return (
@@ -76,7 +89,7 @@ class Main extends React.Component<Props> {
             label='地区'
             right={(
               <span onClick={this.selectCity.bind(this)}>
-                <span className={cx('color9', 'mr15')}>{this.props.selectCity.name}</span>
+                <span className={cx('color9', 'mr15')}>{this.props.user.cityName}</span>
                 <img
                   src={require('client/assets/icon_huileft@3x.png')} width='5px' height='9px'
                 />
@@ -85,6 +98,14 @@ class Main extends React.Component<Props> {
             noForm={true}
           >
           </FormItem>
+          <Button
+            className={cx('mt50')}
+            onClick={() => {
+              APP.history.push('/logout')
+            }}
+          >
+            退出账号
+          </Button>
         </div>
       </Layout>
     )
