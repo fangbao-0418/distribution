@@ -1,3 +1,5 @@
+@function convert($n)
+  @return $n / 50 + rem
 @keyframes blink
   0%
     opacity: 1
@@ -96,7 +98,7 @@
   .yaoqing
     position: absolute
     bottom: 21px
-    left: 153px
+    left: convert(153)
     color: #FADC9E
     font-size: 14px
     border-bottom: 1px solid #FADC9E
