@@ -1,3 +1,8 @@
+@keyframes blink
+  0%
+    opacity: 1
+  100%
+    opacity: 0
 .container
   position: relative
   padding: 0 15px
@@ -35,15 +40,15 @@
         .right
           display: inline-block
           margin-left: 7px
-          width: 6px
-          height: 11px
-          background: url('client/assets/icon_huileft@3x.png') 0 0 / 100% 100% no-repeat
+          width: 11px
+          height: 12px
+          background: url('client/assets/icon_bianji@3x.png') 0 0 / 100% 100% no-repeat
   .code
     float: right
     width: 62px
     height: 24px
     line-height: 24px
-    background: #55A4FF
+    background-image: linear-gradient(90deg, #43C5FF 2%, #0E7BFA 99%)
     border-radius: 11.98px 0 0 11.98px
     position: absolute
     top: 90px
@@ -81,10 +86,19 @@
   z-index: 1999
   transform: translateZ(10px)
 .advertisement
+  position: relative
   margin-top: 5px
   width: 100%
   height: 80px
   background: url('client/assets/label_yaoqing@3x.png') 0 0 / 100% 100% no-repeat
+  .yaoqing
+    position: absolute
+    bottom: 20px
+    left: 153px
+    color: #FADC9E
+    font-size: 12px
+    border-bottom: 1px solid #FADC9E
+    animation: blink 1s linear infinite
 .profile-wrap
   &:global(.am-modal-wrap)
     align-items: start
@@ -95,5 +109,3 @@
           padding: 0 !important
           .am-modal-body
             padding: 0 !important
-
-
