@@ -37,7 +37,7 @@ class Main extends React.Component<Props> {
   render () {
     const { phone } = this.state
     return (
-      <div style={{position: 'relative'}}>
+      <div>
         <div className={cx('activity')}>
           <img src={require('client/assets/activity-bg2.png')}>
           </img>

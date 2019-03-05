@@ -94,7 +94,9 @@ class Main extends React.Component<Props> {
           onClick={() => {
             APP.history.push(`/gift?u=${this.props.user.phone}`)
           }}
-        ></div>
+        >
+          <i className={cx('yaoqing')}>立即邀请</i>
+        </div>
         <MyActive
           onClick={() => {
             APP.history.push(`/gift?u=${this.props.user.phone}`)

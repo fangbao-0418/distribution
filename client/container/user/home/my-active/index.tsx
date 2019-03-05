@@ -37,7 +37,7 @@ class Main extends React.Component<Props> {
           this.state.activities.length > 0 &&
           this.state.activities.map((item) => {
             return (
-              <div className={cx('active-item', 'mb5')}>
+              <div className={cx('active-item', 'mb5')} key={item.id}>
               <div className={cx('con', 'clear', 'ml26')}>
                 <div className={cx('mr20')}>
                   <span className={cx('eye', 'mr10')}></span>
@@ -45,7 +45,7 @@ class Main extends React.Component<Props> {
                 </div>
                 <div>
                   <span>成交量：</span>
-                  <span>{item.tradingVolume}/{item.customerVolume}</span>
+                  <span>{item.tradingVolume}/{item.customerVolume ? item.customerVolume : 0}</span>
                 </div>
               </div>
             </div>
