@@ -20,7 +20,7 @@ class Main extends React.Component<Props> {
       }
       Services.updataInfo(this.props.user.phone, params).then((res) => {
         if (res.status === 200) { // 需要更新用户信息
-          APP.toast('地区修改成功')
+          // APP.toast('地区修改成功')
           APP.dispatch(actions.user.fetch())
         } else {
           APP.toast(res.message)

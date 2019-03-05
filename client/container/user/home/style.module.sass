@@ -1,11 +1,15 @@
+@function convert($n)
+  @return $n / 50 + rem
 @keyframes blink
   0%
     opacity: 1
+  50%
+    opacity: .48
   100%
-    opacity: 0
+    opacity: 1
 .container
   position: relative
-  padding: 0 15px
+  padding: 0 15px 20px
   background: url('client/assets/label_yangshi@3x.png') no-repeat
   background-size: 55.5px 96px
   background-position-x: right
@@ -93,12 +97,12 @@
   background: url('client/assets/label_yaoqing@3x.png') 0 0 / 100% 100% no-repeat
   .yaoqing
     position: absolute
-    bottom: 20px
-    left: 153px
+    bottom: 21px
+    left: convert(153)
     color: #FADC9E
-    font-size: 12px
+    font-size: 14px
     border-bottom: 1px solid #FADC9E
-    animation: blink 1s linear infinite
+    animation: blink 1.2s linear infinite
 .profile-wrap
   &:global(.am-modal-wrap)
     align-items: start
