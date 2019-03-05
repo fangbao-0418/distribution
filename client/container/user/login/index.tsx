@@ -52,7 +52,7 @@ class Main extends React.Component {
             <input
               type='text'
               value={account}
-              placeholder={this.state.showAccount ? '请输入账号' : '请输入手机号'}
+              placeholder={showAccount ? '请输入账号' : '请输入手机号'}
               onChange={(e) => {
                 this.setState({
                   account: e.target.value
@@ -98,7 +98,7 @@ class Main extends React.Component {
               }}
             />
           </FormItem>
-          <div className='mt10'>
+          {showAccount && <div className='mt10'>
             <span
               onClick={() => {
                 this.setState({
@@ -112,7 +112,7 @@ class Main extends React.Component {
               />
               <span className={cx('rember-password')}>记住密码</span>
             </span>
-          </div>
+          </div>}
           <Button
             className='mt26'
             onClick={() => {

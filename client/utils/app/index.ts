@@ -4,7 +4,20 @@ Object.assign(APP, {
   toast: (message, duration = 1) => {
     Toast.info((message || '未知错误'), duration)
   },
-  Cookies
+  Cookies,
+  getEnv: () => {
+    let env = 'browser'
+    if (__CLIENT__) {
+      if (/micromessenger/ig.test(window.navigator.userAgent)) {
+        env = 'wechat'
+      }
+    } else if (APP.ctx) {
+      if (/micromessenger/ig.test(APP.ctx.req.headers['user-agent'])) {
+        env = 'wechat'
+      }
+    }
+    return env
+  }
 })
 if (__CLIENT__) {
   Object.defineProperty(APP, 'token', {
@@ -16,3 +29,4 @@ if (__CLIENT__) {
     }
   })
 }
+

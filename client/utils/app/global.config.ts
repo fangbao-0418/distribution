@@ -27,5 +27,7 @@ declare namespace APP {
     toast: (message: string, duration?: number) => void
     token: string
     Cookies: CookiesProps
+    ctx: any
+    getEnv: () => 'browser' | 'wechat'
   }
 }

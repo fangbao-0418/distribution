@@ -15,6 +15,7 @@ export default class View extends React.Component<any> {
     return configureStore(initialState)
   }
   static getPartial({ store, ctx }) {
+    APP.ctx = ctx
     const html = (
       <Provider store={store}>
         <Router

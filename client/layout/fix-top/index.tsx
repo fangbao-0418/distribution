@@ -8,15 +8,16 @@ interface Props {
   goBack?: () => void
 }
 class Main extends React.Component<Props> {
+  env = APP.getEnv()
   render () {
     return (
       <div
         className={cx('layout')}
       >
-        <Top
+        {this.env === 'browser' && <Top
           goBack={this.props.goBack}
           title={this.props.title}
-        />
+        />}
         <div
           style={this.props.contentStyle}
           className={cx('content')}
