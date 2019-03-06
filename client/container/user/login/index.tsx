@@ -64,13 +64,13 @@ class Main extends React.Component {
             right={(
               this.state.showAccount ?
               <div
-                onClick={() => {
-                  this.setState({
-                    showPassWord: !showPassWord
-                  })
-                }}
+                // onClick={() => {
+                //   this.setState({
+                //     showPassWord: !showPassWord
+                //   })
+                // }}
               >
-                {
+                {/* {
                   <img
                     className={cx('show-password')}
                     src={showPassWord ?
@@ -79,7 +79,7 @@ class Main extends React.Component {
                       require('client/assets/icon_yican@3x.png')
                     }
                   />
-                }
+                } */}
               </div> :
               <ValidateCode
                 mobile={this.state.account}
