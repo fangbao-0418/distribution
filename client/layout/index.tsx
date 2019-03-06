@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import 'babel-polyfill'
 import configureStore from '../store';
 import { run } from '../saga';
 import Router from '../router/router';
@@ -43,10 +44,8 @@ export default class View extends React.Component<any> {
         <meta content="email=no" name="format-detection"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         <link rel="icon" href={require('client/assets/favicon.ico')}></link>
+        <link rel="stylesheet" href={helper.asset('vendor.css?v=' + new Date().getTime())} />
         <link rel="stylesheet" href={helper.asset('app.css?v=' + new Date().getTime())} />
-        {/* <script
-          src="https://os.alipayobjects.com/rmsportal/lvEQQbNgHsIxVfXLkmuX.js"
-        /> */}
       </head>
       <body>
       <div id="app" dangerouslySetInnerHTML={{ __html: html }}/>
@@ -73,6 +72,7 @@ export default class View extends React.Component<any> {
       >
       </script>
       <script src={helper.asset('manifest.js?v=' + new Date().getTime())}/>
+      <script src={helper.asset('vendor.js?v=' + new Date().getTime())}/>
       <script src={helper.asset('app.js?v=' + new Date().getTime())}/>
       <script
         type="text/javascript"

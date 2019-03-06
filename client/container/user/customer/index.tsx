@@ -34,17 +34,19 @@ class Main extends React.Component {
   componentDidMount () {
     console.dir(this.refs.scroll, 'scroll')
     const scroll: any = this.refs.scroll
-    scroll.onscroll = () => {
-      const size = this.payload.pageSize
-      const maxSize = Math.ceil(this.state.total / size)
-      const wrap: any = this.refs.wrap
-      const height = scroll.clientHeight
-      const wrapHeight = wrap.clientHeight
-      const scrollTop = scroll.scrollTop
-      if (scrollTop + height > wrapHeight) {
-        if (!this.state.loading && maxSize > this.payload.pageCurrent) {
-          this.payload.pageCurrent += 1
-          this.fetchData()
+    if (scroll) {
+      scroll.onscroll = () => {
+        const size = this.payload.pageSize
+        const maxSize = Math.ceil(this.state.total / size)
+        const wrap: any = this.refs.wrap
+        const height = scroll.clientHeight
+        const wrapHeight = wrap.clientHeight
+        const scrollTop = scroll.scrollTop
+        if (scrollTop + height > wrapHeight) {
+          if (!this.state.loading && maxSize > this.payload.pageCurrent) {
+            this.payload.pageCurrent += 1
+            this.fetchData()
+          }
         }
       }
     }

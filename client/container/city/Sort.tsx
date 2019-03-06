@@ -9,6 +9,7 @@ const cx = classnames.bind(require('./style.module.sass'))
 interface Props extends State.Common, RouteComponentProps<any> {}
 class Main extends React.Component<Props> {
   area = {}
+  env = APP.getEnv()
   componentWillMount () {
     if (__CLIENT__) {
       APP.dispatch(actions.city.fetch())
@@ -29,7 +30,7 @@ class Main extends React.Component<Props> {
   toFixed (key) {
     const el = findDOMNode(this.area[key])
     const parent = document.querySelector(`.${cx('city')}`).parentElement
-    parent.scrollTop = el.offsetTop - 53
+    parent.scrollTop = el.offsetTop - (this.env === 'browser' ? 53 : 0)
   }
   render () {
     const { cities } = this.props

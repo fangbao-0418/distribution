@@ -10,8 +10,10 @@ class Main extends React.Component<Props> {
   state = {
     activities: []
   }
-  componentWillMount () {
-    this.getActivities()
+  componentDidMount () {
+    if (__CLIENT__) {
+      this.getActivities()
+    }
   }
   getActivities () {
     Services.getActivity().then((res) => {
@@ -29,7 +31,9 @@ class Main extends React.Component<Props> {
       <div
         className={cx('mt30')}
         onClick={() => {
-          this.props.onClick()
+          if (this.props.onClick) {
+            this.props.onClick()
+          }
         }}
       >
         <Tips title='我的活动'/>

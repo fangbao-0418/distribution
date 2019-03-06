@@ -5,7 +5,6 @@ import * as Services from 'client/utils/service'
 const cx = classnames.bind(require('./style.module.sass'))
 import { withRouter, RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import actions from 'client/actions'
 import FenXiang from './fenxiang'
 interface Props extends RouteComponentProps {
@@ -19,8 +18,8 @@ class Main extends React.Component<Props> {
   componentWillMount () {
     if (__CLIENT__) {
       APP.dispatch(actions.city.fetchLocation())
+      this.getViewTimes()
     }
-    this.getViewTimes()
   }
   getViewTimes () {
     const phone = this.getQueryString('u') || this.getQueryString('phone')

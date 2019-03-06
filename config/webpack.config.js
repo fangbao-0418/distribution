@@ -13,17 +13,26 @@ function getCssLoaderConfig(dev, modules = false) {
 }
 const path = require('path')
 const webpack = require('webpack')
+var Visualizer = require('webpack-visualizer-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = (app, defaultConfig, dev) => {
   if (app && dev) {
     defaultConfig.entry = {
       app: [
-        `${require.resolve('webpack-dev-server/client')}?http://0.0.0.0:6002`,
+        // require.resolve('babel-polyfill'),
+        // `${require.resolve('webpack-dev-server/client')}?http://0.0.0.0:6002`,
         require.resolve('webpack/hot/only-dev-server'),
-        require.resolve('babel-polyfill'),
         path.join(__dirname, '../client/pages/index')
       ]
-    },
+    }
+    defaultConfig.plugins.unshift(
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: function (module) {
+          return module.context && module.context.includes('node_modules');
+        }
+      })
+    )
     defaultConfig.plugins.push(
       new webpack.DefinePlugin({
         __ENV__: JSON.stringify('daily'),
@@ -35,15 +44,24 @@ module.exports = (app, defaultConfig, dev) => {
       }),
       new webpack.ProvidePlugin({
         APP: path.resolve(__dirname, '../client/utils/app')
-      })
+      }),
+      new Visualizer()
     );
   } else {
     defaultConfig.entry = {
       app: [
-        require.resolve('babel-polyfill'),
+        // require.resolve('babel-polyfill'),
         path.join(__dirname, '../client/pages/index')
       ]
     },
+    defaultConfig.plugins.unshift(
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: function (module) {
+          return module.context && module.context.includes('node_modules');
+        }
+      })
+    )
     defaultConfig.plugins.push(
       new webpack.DefinePlugin({
         __ENV__: JSON.stringify('prod'),
@@ -58,7 +76,8 @@ module.exports = (app, defaultConfig, dev) => {
       }),
       new webpack.ProvidePlugin({
         APP: path.resolve(__dirname, '../client/utils/app')
-      })
+      }),
+      new Visualizer()
     );
   }
 
@@ -94,7 +113,6 @@ module.exports = (app, defaultConfig, dev) => {
           ],
 
           plugins: [
-            ["import", { "libraryName": "antd-mobile", "style": "css" }],
             [
               '@babel/transform-runtime',
               {
@@ -102,6 +120,20 @@ module.exports = (app, defaultConfig, dev) => {
                 regenerator: true,
               },
             ],
+            [
+              "import",
+              { "libraryName": "antd-mobile", "style": "css" },
+              'ant-mobile'
+            ],
+            [
+              "import",
+              {
+                "libraryName": "lodash",
+                "libraryDirectory": "",
+                "camel2DashComponentName": false,  // default: true
+              },
+              'loadsh'
+            ]
           ],
           env: {
             development: {
@@ -150,9 +182,7 @@ module.exports = (app, defaultConfig, dev) => {
           },
         ],
       ],
-      plugins: [
-        ["import", { "libraryName": "antd-mobile", "style": "css" }] // `style: true` 会加载 less 文件
-      ],
+      plugins: [],
       env: {
         development: {
           plugins: ['module:react-hot-loader/babel'],
@@ -172,6 +202,15 @@ module.exports = (app, defaultConfig, dev) => {
     publicPath: '/public/',
     chunkFilename: '[name].[chunkhash].js',
   };
+  // new webpack.optimize.CommonsChunkPlugin({
+  //   name: 'vendor',
+  //   // filename: "vendor.js"
+  //   // (给 chunk 一个不同的名字)
+
+  //   minChunks: Infinity,
+  //   // (随着 entry chunk 越来越多，
+  //   // 这个配置保证没其它的模块会打包进 vendor chunk)
+  // })
   defaultConfig.externals = {
     // react: 'React',
     // 'react-dom': 'ReactDOM',
@@ -180,5 +219,6 @@ module.exports = (app, defaultConfig, dev) => {
     // axios: 'axios',
     // 'antd-mobile': 'window[\'antd-mobile\']'
   }
+  console.log(defaultConfig, 'defaultConfig')
   return defaultConfig;
 };

@@ -1,6 +1,5 @@
 import React from 'react'
 import classnames from 'classnames/bind'
-import QRcode from './QRcode'
 import Menu from './menu'
 import MyActive from './my-active'
 import Profile from '../profile'
