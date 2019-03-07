@@ -111,7 +111,12 @@ class Main extends React.Component<Props> {
           footer={[]}
           wrapClassName={cx('profile-wrap')}
         >
-          <Profile onClose={this.onClose.bind(this)}/>
+          <Profile
+            imgOnLoaded={() => {
+              document.querySelector(`.${cx('profile-wrap')}`).setAttribute('style', 'overflow: auto;')
+            }}
+            onClose={this.onClose.bind(this)}
+          />
         </Modal>
         {/* {
           this.state.modal &&
