@@ -26,13 +26,8 @@ class Main extends React.Component {
     dataSource: [],
     showBtn: true
   }
-  componentWillMount () {
-    if (__CLIENT__) {
-      this.fetchData()
-    }
-  }
   componentDidMount () {
-    console.dir(this.refs.scroll, 'scroll')
+    this.fetchData()
     const scroll: any = this.refs.scroll
     if (scroll) {
       scroll.onscroll = () => {
@@ -52,7 +47,6 @@ class Main extends React.Component {
     }
   }
   fetchData () {
-    console.log('fetch data')
     this.setState({
       loading: true
     })
@@ -126,15 +120,16 @@ class Main extends React.Component {
                 }}
               />
               {
-                dataSource.map((item) => {
+                dataSource.map((item, index) => {
                   return (
                     <Item
+                      key={`customer-item-${index}`}
                       data={item}
                     />
                   )
                 })
               }
-              <div
+              {<div
                 hidden={!loading}
                 className={cx('loading')}
               >
@@ -142,7 +137,7 @@ class Main extends React.Component {
                   animating={loading}
                   text='载入中...'
                 />
-              </div>
+              </div>}
             </div>
           </div>
           {

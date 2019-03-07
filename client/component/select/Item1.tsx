@@ -28,9 +28,10 @@ class Main extends React.Component<Props> {
     return (
       <div className={cx('select-type-1')}>
         {
-          option.map((item) => {
+          option.map((item, index) => {
             return (
               <div
+                key={`select-type-1-${index}`}
                 style={{
                   width: (100 / flex) + '%'
                 }}

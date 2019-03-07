@@ -36,6 +36,7 @@ class Main extends React.Component<Props> {
   }
   render () {
     const data = this.props.data
+    const { distributorActivity } = data
     return (
       <div
         style={this.props.style}
@@ -60,11 +61,11 @@ class Main extends React.Component<Props> {
           <p className='mt8'>
             {data.companyName}
           </p>
-          <p className={cx('active', 'mt10')}>
-            <span className={cx('active-name')}>新人大礼包</span>
-            <span className={cx('active-con')}>一个月免费记账</span>
+          {(distributorActivity.title || distributorActivity.discountCoupon) && <p className={cx('active', 'mt10')}>
+            {distributorActivity.title && <span className={cx('active-name')}>{distributorActivity.title}</span>}
+            <span className={cx('active-con')}>{distributorActivity.discountCoupon}</span>
             {/* <span className={cx('cui-tag')}>催</span> */}
-          </p>
+          </p>}
         </div>
       </div>
     )

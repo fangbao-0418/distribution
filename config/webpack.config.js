@@ -19,8 +19,7 @@ module.exports = (app, defaultConfig, dev) => {
   if (app && dev) {
     defaultConfig.entry = {
       app: [
-        // require.resolve('babel-polyfill'),
-        // `${require.resolve('webpack-dev-server/client')}?http://0.0.0.0:6002`,
+        `${require.resolve('webpack-dev-server/client')}?http://0.0.0.0:6002`,
         require.resolve('webpack/hot/only-dev-server'),
         path.join(__dirname, '../client/pages/index')
       ]
@@ -50,7 +49,6 @@ module.exports = (app, defaultConfig, dev) => {
   } else {
     defaultConfig.entry = {
       app: [
-        // require.resolve('babel-polyfill'),
         path.join(__dirname, '../client/pages/index')
       ]
     },
