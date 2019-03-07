@@ -3,7 +3,7 @@ import http from './http'
 
 /** 获取城市列表 */
 export const fetchCities = () => {
-  return http('/product/v1/api/region/cities?wapOpen=true', 'GET')
+  return http('/shop-user/v1/api/distribute/city', 'GET')
 }
 /** 获取当前城市 */
 export const fetchLocation = () => {

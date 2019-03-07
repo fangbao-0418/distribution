@@ -37,9 +37,10 @@ class Main extends React.Component<Props> {
     return (
       <div className={cx('sort')}>
         {
-          cities.map((item) => {
+          cities.map((item, index) => {
             const nodes = [(
               <FormItem
+                key={`city-key-${index}`}
                 ref={(ref) => {
                   this.area[item.key] = ref
                 }}
@@ -48,9 +49,10 @@ class Main extends React.Component<Props> {
                 {item.key}
               </FormItem>
             )]
-            item.list.map((item2) => {
+            item.list.map((item2, index2) => {
               nodes.push(
                 <FormItem
+                  key={`city-key-${index}-${index2}`}
                   onClick={() => {
                     APP.dispatch(actions.city.select(item2))
                     console.log(item2, '选择的城市')
@@ -74,6 +76,7 @@ class Main extends React.Component<Props> {
             this.getInitials().map((key) => {
               return (
                 <li
+                  key={`city-alpha-${key}`}
                   onClick={this.toFixed.bind(this, key)}
                 >
                   {key}

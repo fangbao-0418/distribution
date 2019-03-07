@@ -47,7 +47,7 @@ class Main extends React.Component<Props> {
         <div className={cx('item-right')}>
           <h3>
             {data.contractName}{data.type === 0 ? '（自留）' : ''}
-            <div className={cx('tags')} style={{color : data.status === '3' ? '#FF604C' : '#666'}}>
+            <div className={cx('tags')} style={{color : String(data.status) === '3' ? '#FF604C' : '#666'}}>
               {CustomerEnum[data.status]}
             </div>
           </h3>
