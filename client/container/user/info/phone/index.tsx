@@ -41,7 +41,7 @@ class Main extends React.Component<Props> {
           APP.dispatch(actions.user.fetch())
         })
       } else {
-        APP.toast('服务器异常')
+        APP.toast(res.message)
       }
     })
   }

@@ -41,6 +41,9 @@ class Main extends React.Component<Props> {
           <img src={require('client/assets/activity-bg2.png')}>
           </img>
           <div className={cx('con')}>
+            <div className={cx('activity-desc')}>
+              新人输入手机号，噼里啪智能·财税可以为您提供免费财税咨询服务，并赠送您一个月免费代理记账服务。
+            </div>
             <div className={cx('form-card')}>
               <FormItem
                 className={cx('item')}

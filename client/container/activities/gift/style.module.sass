@@ -1,3 +1,5 @@
+@function convert($n)
+  @return ($n / 50) + rem
 @mixin allSize-PX($width: 100%, $height: auto)
   .activity
     width: 100%
@@ -16,50 +18,49 @@
     width: 100%
     height: auto
   .con
-    width: 350px
-    height: 460px
-    background: url('client/assets/activity-con2.png') 0px 20px / 100% auto no-repeat
+    width: convert(350)
+    height: convert(460)
+    background: url('client/assets/activity-con2.png') 0px convert(20) / 100% auto no-repeat
     position: absolute
     left: 0
     right: 0
     margin: 0 auto
-    top: 110px
-    @media screen and (max-width: 321px)
-      width: 300px
-      height: 400px
-      .form-card
-        margin: 242px auto 0
-        width: 190px
-        .item
-          line-height: 38px
-          input
-            height: 38px
-      .btn
-        width: 200px
-        height: 44px
-        font-size: 16px
-        line-height: 40px
+    top: convert(110)
+  .activity-desc
+    position: absolute
+    top: convert(190)
+    left: 0
+    right: 0
+    width: convert(275)
+    font-size: convert(14)
+    margin: 0 auto
+    padding: 0 convert(12)
+    line-height: convert(24)
+    box-sizing: border-box
+    color: #666
   .form-card
-    margin: 282px auto 0
-    width: 270px
+    margin: convert(282) auto 0
+    width: convert(270)
     .item
       border-bottom: none
-      line-height: 38px
-      background: #ffd7d7
-      border-radius: 5px
       input
         color: #f2292d
-        height: 38px
-        padding-left: 10px
+        height: convert(38)
+        line-height: convert(38)
+        padding-left: convert(10)
+        font-size: convert(14)
+        background: #ffd7d7
+        border-radius: 5px
         &::-webkit-input-placeholder
           color: #f2292d
-          font-size: 14px
+          line-height: convert(38)
+          font-size: convert(14)
   .btn
-    margin: 10px auto 0
-    width: 270px
-    height: 45px
+    margin: convert(10) auto 0
+    width: convert(270)
+    height: convert(45)
     background: url('client/assets/activity-btn2.png') center / 100% 100% no-repeat
     text-align: center
-    line-height: 45px
+    line-height: convert(45)
     color: #fff
-    font-size: 14px
+    font-size: convert(14)

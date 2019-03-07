@@ -39,7 +39,7 @@ class Main extends React.Component<Props> {
           APP.history.push('/info')
         })
       } else {
-        APP.toast('服务器异常')
+        APP.toast(res.message)
       }
     })
   }
