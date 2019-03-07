@@ -35,9 +35,11 @@ class Main extends React.Component<Props> {
           {selectCity.code && <img
             style={{
               verticalAlign: 'middle',
-              marginRight: '6px'
+              margin: '0 6px 2px 0'
             }}
-            src={require('client/assets/icon_diz@3x.png')} width='12px' height='14.6px'
+            src={require('client/assets/icon_diz@3x.png')}
+            width='12px'
+            height='14.6px'
           />}
           {selectCity.name}
         </div>
