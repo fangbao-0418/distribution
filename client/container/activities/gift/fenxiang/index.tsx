@@ -7,6 +7,7 @@ interface Props {
   user: UserProps
 }
 class Main extends React.Component<Props> {
+  env = APP.getEnv()
   state = {
     showShare: this.props.user.phone ? true : false
   }
@@ -18,9 +19,8 @@ class Main extends React.Component<Props> {
       <div className={cx('outer')} style={{display: this.state.showShare ? 'block' : 'none'}}>
         <div className={cx('con')}>
           <div className={cx('code')}>
-            <div className={cx('share')}></div>
+            {this.env === 'wechat' && <div className={cx('share')}></div>}
             <img
-              // src={require('client/assets/icon_erweima@3x.png')}
               src={this.props.user.qrCodeSmallImageUrl}
             /> 
           </div>

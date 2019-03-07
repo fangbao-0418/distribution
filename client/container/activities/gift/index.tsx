@@ -21,6 +21,13 @@ class Main extends React.Component<Props> {
       this.getViewTimes()
     }
   }
+  componentDidMount () {
+    // const hiddenEl: any = this.refs.hidden
+    // const event1 = document.createEvent('HTMLEvents');
+    // event1.initEvent("onmousedown", true, true);
+    // // event1.eventType = 'message';
+    // hiddenEl.dispatchEvent(event1)
+  }
   getViewTimes () {
     const phone = this.getQueryString('u') || this.getQueryString('phone')
     Services.getVp(phone).then(() => {
@@ -37,6 +44,10 @@ class Main extends React.Component<Props> {
     const { phone } = this.state
     return (
       <div>
+        <div
+          style={{display: 'none'}}
+          ref='hidden'
+        >xxxx</div>
         <div className={cx('activity')}>
           <img src={require('client/assets/activity-bg2.png')}>
           </img>

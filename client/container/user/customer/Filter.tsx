@@ -41,6 +41,7 @@ interface Props {
   onChange?: (values: {customerStatus: string, date: string}) => void
 }
 class Main extends React.Component<Props> {
+  env = APP.getEnv()
   payload = {}
   state = {
     customerStatusClicked: false,
@@ -78,7 +79,7 @@ class Main extends React.Component<Props> {
             this.customerStatus = ref
           }}
           style={{
-            top: '94px'
+            top: this.env === 'browser' ? '94px' : '42px'
           }}
           onExited={() => {
             this.setState({
