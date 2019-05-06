@@ -1,3 +1,4 @@
+import { ViewProps } from 'beidou';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -5,9 +6,9 @@ import 'babel-polyfill'
 import configureStore from '../store';
 import { run } from '../saga';
 import Router from '../router/router';
-import 'client/styles/common'
+import '../styles/common.sass'
 Object.assign(APP, require('client/utils/app'))
-export default class View extends React.Component<any> {
+export default class View extends React.Component<ViewProps> {
   static doctype = '<!DOCTYPE html>';
   static defaultProps = {
     title: '噼里啪智能•财税'
@@ -71,7 +72,7 @@ export default class View extends React.Component<any> {
         }}
       >
       </script>
-      <script src={helper.asset('manifest.js?v=' + new Date().getTime())}/>
+      {/* <script src={helper.asset('manifest.js?v=' + new Date().getTime())}/> */}
       <script src={helper.asset('vendor.js?v=' + new Date().getTime())}/>
       <script src={helper.asset('app.js?v=' + new Date().getTime())}/>
       <script

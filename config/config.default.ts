@@ -1,14 +1,25 @@
 'use strict';
+import { EggAppConfig, PowerPartial } from 'beidou';
+import { Configuration } from 'webpack';
+// 应用本身的配置 Scheme
+interface A {
+  [field: string]: any
+}
+export interface Config extends EggAppConfig {
+  // webpack?: Configuration
+}
+
 import * as path from 'path';
 export default () => {
-  return {
+  let config: any = {};
+  config = {
     keys: 'secret',
     proxy: {
       host: 'https://x-sys.i-counting.cn',
       match: /\/(json|sys|mock)/
     },
     react: {
-      assetPath: '/public',
+      assetPath: '/build',
     },
 
     view: {
@@ -19,15 +30,32 @@ export default () => {
       exts: ['.tsx'],
     },
     isomorphic: {
-      babel: false,
+      // babel: false,
     },
     webpack: {
       // your webpack config file
       custom: {
-        configPath: path.resolve(__dirname, './webpack.config.js'),
+        configPath: path.resolve(__dirname, './webpack.config.ts'),
+      },
+      optimization: {
+        splitChunks: {
+          chunks (chunk) {
+            // exclude `my-excluded-chunk`
+            return true
+          },
+          name: 'vendor',
+          // cacheGroups: {
+          //   default: false,
+          //   vendors: false,
+          //   manifest: {
+          //     test: /[\\/]node_modules[\\/]/,
+          //   },
+          // },
+        },
+        noEmitOnErrors: true,
       },
       devServer: {
-        publicPath: '/public/',
+        publicPath: '/build/',
       },
       resolve: {
         extensions: ['.json', '.js', '.jsx', '.ts', '.tsx', '.sass'],
@@ -44,4 +72,5 @@ export default () => {
       pageUrl: '/404',
     }
   };
+  return config
 };

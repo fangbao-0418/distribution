@@ -3,8 +3,8 @@ export default appInfo => {
   return {
     proxy: false,
     static: {
-      prefix: '/public/',
-      dir: path.join(appInfo.baseDir, 'app/public'),
+      prefix: '/build/',
+      dir: path.join(appInfo.baseDir, 'build'),
       dynamic: false,
       preload: true,
     }

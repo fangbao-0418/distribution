@@ -1,9 +1,5 @@
-// This file is created by egg-ts-helper
+// This file is created by egg-ts-helper@1.25.2
 // Do not modify this file!!!!!!!!!
 
-import 'egg';
-declare module 'egg' {
-  export interface Context {
-    fetch: (payload: any) => any
-  }
-}
+import 'beidou';
+export as namespace Egg;

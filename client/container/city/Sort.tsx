@@ -28,7 +28,7 @@ class Main extends React.Component<Props> {
     })
   }
   toFixed (key) {
-    const el = findDOMNode(this.area[key])
+    const el = findDOMNode(this.area[key]) as HTMLElement
     const parent = document.querySelector(`.${cx('city')}`).parentElement
     parent.scrollTop = el.offsetTop - (this.env === 'browser' ? 53 : 0)
   }

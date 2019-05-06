@@ -1,8 +1,8 @@
-module.exports = {
+export default {
   fetch (
     payload: {
       url: string,
-      method: string
+      method?: string
     }
   ) {
     const env = this.app.config.env

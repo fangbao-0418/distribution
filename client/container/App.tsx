@@ -4,7 +4,7 @@ import Router from './router'
 import { withRouter, RouteComponentProps } from 'react-router'
 import { ActivityIndicator }  from 'antd-mobile'
 import { connect } from 'react-redux'
-interface Props extends RouteComponentProps {
+interface Props extends RouteComponentProps<{}> {
   loading: boolean
 }
 class Main extends React.Component<Props> {

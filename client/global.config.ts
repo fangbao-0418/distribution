@@ -1,5 +1,4 @@
 let __DEV__: any;
-let __CLIENT__: any;
 let FastClick: any;
 let _babelPolyfill: boolean;
 declare const APP: APP.Props;

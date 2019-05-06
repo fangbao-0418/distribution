@@ -6,4 +6,3 @@ export default class View extends Layout {
     return store
   }
 }
-

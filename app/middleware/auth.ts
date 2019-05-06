@@ -1,4 +1,4 @@
-module.exports = () => {
+export default () => {
   return async function (ctx, next) {
     await next()
     const token = ctx.cookies.get('token', {

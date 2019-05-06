@@ -1,11 +1,11 @@
-// This file is created by egg-ts-helper
+// This file is created by egg-ts-helper@1.25.2
 // Do not modify this file!!!!!!!!!
 
-import 'egg';
+import 'beidou';
 import ExportHome from '../../../app/controller/home';
 import ExportUser from '../../../app/controller/user';
 
-declare module 'egg' {
+declare module 'beidou' {
   interface IController {
     home: ExportHome;
     user: ExportUser;

@@ -1,15 +1,11 @@
 {
   "compilerOptions": {
+    "noEmit": true,
     "baseUrl": "./",
-    "outDir": "./build/dist",
+    "outDir": "./build/server",
     "module": "commonjs",
     "target": "es6",
-    "lib": [
-      "es2015",
-      "es2016",
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es6", "dom"],
     "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
@@ -19,5 +15,5 @@
       "client/*": ["./client/*"]
     }
   },
-  "exclude": ["app", "config", "node_modules*", "build"]
+  "exclude": ["app", "config", "node_modules", "build", "scripts"]
 }
