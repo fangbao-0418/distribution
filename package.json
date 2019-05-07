@@ -3,7 +3,7 @@
   "version": "2.1.0",
   "description": "distribution",
   "scripts": {
-    "start": "beidou start",
+    "start": "beidou start --workers=2",
     "debug": "beidou debug --inspect",
     "stop": "beidou stop",
     "dev": "beidou dev",
