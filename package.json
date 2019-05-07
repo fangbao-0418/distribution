@@ -8,10 +8,10 @@
     "stop": "beidou stop",
     "dev": "beidou dev",
     "check": "tsc",
-    "build": "tsc && beidou build",
+    "build": "yarn clean && tsc && beidou build",
     "build:node": "tsc && beidou build --target=node",
-    "clean": "ets clean",
-    "test-jenkins": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/test-results.xml"
+    "test-jenkins": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/test-results.xml",
+    "clean": "rimraf build/**"
   },
   "license": "MIT",
   "dependencies": {
@@ -41,8 +41,10 @@
     "@types/webpack": "^4.4.20",
     "babel-plugin-import": "^1.11.0",
     "egg-proxy": "^1.1.0",
+    "imagemin-webpack-plugin": "^2.4.2",
     "mocha-junit-reporter": "^1.22.0",
     "node-sass": "^4.12.0",
+    "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-visualizer-plugin": "^0.1.11"

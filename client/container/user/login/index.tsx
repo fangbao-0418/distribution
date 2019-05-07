@@ -21,8 +21,8 @@ class Main extends React.Component {
   }
   public componentDidMount () {
     this.setState({
-      account: APP.Cookies.get('account'),
-      password: APP.Cookies.get('password'),
+      account: APP.Cookies.get('account') || '',
+      password: APP.Cookies.get('password') || '',
       remberPassword: APP.Cookies.get('account') && APP.Cookies.get('password') ? true : false
     })
     if (APP.token) {
@@ -31,6 +31,7 @@ class Main extends React.Component {
   }
   render () {
     const { showPassWord, remberPassword, account, showAccount, password, code } = this.state
+    console.log(this.state, 'status')
     return (
       <div className={cx('login')}>
         <div className={cx('card')}>
