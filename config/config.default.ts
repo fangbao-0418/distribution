@@ -2,9 +2,7 @@
 import { EggAppConfig, PowerPartial } from 'beidou';
 import { Configuration } from 'webpack';
 // 应用本身的配置 Scheme
-interface A {
-  [field: string]: any
-}
+
 export interface Config extends EggAppConfig {
   // webpack?: Configuration
 }
@@ -23,6 +21,7 @@ export default () => {
     },
 
     view: {
+      // useHashAsset: true,
       defaultExtension: '.tsx',
     },
     router: {
@@ -37,25 +36,51 @@ export default () => {
       custom: {
         configPath: path.resolve(__dirname, './webpack.config.ts'),
       },
+      output: {
+        path: path.resolve(__dirname, '../build'),
+        filename: '[name].js?[hash]',
+        chunkFilename: '[name].js',
+        publicPath: '/build/',
+      },
       optimization: {
         splitChunks: {
-          chunks (chunk) {
-            // exclude `my-excluded-chunk`
-            return true
-          },
-          name: 'vendor',
-          // cacheGroups: {
-          //   default: false,
-          //   vendors: false,
-          //   manifest: {
-          //     test: /[\\/]node_modules[\\/]/,
-          //   },
-          // },
+          chunks: 'all',
+          minSize: 30000,
+          minChunks: 1,
+          maxAsyncRequests: 5,
+          maxInitialRequests: 3,
+          automaticNameDelimiter: '~',
+          name: true,
+          cacheGroups: {
+            default: false,
+            redux: {
+              name: 'redux',
+              test: /[\\/]node_modules[\\/]redux/,
+              priority: -2
+            },
+            corejs: {
+              name: 'corejs',
+              test: /core-js/,
+              priority: -1
+            },
+            react: {
+              name: 'base',
+              test: /(react|redux)/,
+              priority: 0
+            },
+            vendors: {
+              name: 'commons',
+              test: /[\\/]node_modules[\\/](?!(core-js|react|redux))/,
+              priority: 1,
+              reuseExistingChunk: true
+            }
+          }
         },
         noEmitOnErrors: true,
       },
       devServer: {
         publicPath: '/build/',
+        hot: false
       },
       resolve: {
         extensions: ['.json', '.js', '.jsx', '.ts', '.tsx', '.sass'],

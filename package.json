@@ -6,10 +6,10 @@
     "start": "beidou start --workers=2",
     "debug": "beidou debug --inspect",
     "stop": "beidou stop",
-    "dev": "beidou dev",
+    "dev": "beidou dev --inspect",
     "check": "tsc",
-    "build": "yarn clean && tsc && beidou build",
-    "build:node": "tsc && beidou build --target=node",
+    "build": "tsc && beidou build --inspect-brk",
+    "build:node": "yarn clean && tsc && beidou build --target=node",
     "test-jenkins": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/test-results.xml",
     "clean": "rimraf build/**"
   },

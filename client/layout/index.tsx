@@ -8,6 +8,8 @@ import { run } from '../saga';
 import Router from '../router/router';
 import '../styles/common.sass'
 Object.assign(APP, require('client/utils/app'))
+// const suffix = '?v=' + new Date().getTime()
+const suffix = ''
 export default class View extends React.Component<ViewProps> {
   static doctype = '<!DOCTYPE html>';
   static defaultProps = {
@@ -45,8 +47,8 @@ export default class View extends React.Component<ViewProps> {
         <meta content="email=no" name="format-detection"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         <link rel="icon" href={require('client/assets/favicon.ico')}></link>
-        <link rel="stylesheet" href={helper.asset('vendor.css?v=' + new Date().getTime())} />
-        <link rel="stylesheet" href={helper.asset('app.css?v=' + new Date().getTime())} />
+        <link rel="stylesheet" href={helper.asset(`vendor.css${suffix}`)} />
+        <link rel="stylesheet" href={helper.asset(`app.css${suffix}`)} />
       </head>
       <body>
       <div id="app" dangerouslySetInnerHTML={{ __html: html }}/>
@@ -72,9 +74,9 @@ export default class View extends React.Component<ViewProps> {
         }}
       >
       </script>
-      {/* <script src={helper.asset('manifest.js?v=' + new Date().getTime())}/> */}
-      <script src={helper.asset('vendor.js?v=' + new Date().getTime())}/>
-      <script src={helper.asset('app.js?v=' + new Date().getTime())}/>
+      {/* <script src={helper.asset('manifest.js+ subfix}/> */}
+      <script src={helper.asset(`vendor.js${suffix}`)}/>
+      <script src={helper.asset(`app.js${suffix}`)}/>
       <script
         type="text/javascript"
         dangerouslySetInnerHTML={{

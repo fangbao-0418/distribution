@@ -20,6 +20,11 @@
       "plugins": [
         ["transform-remove-console"]
       ]
+    },
+    "svt": {
+      "plugins": [
+        ["transform-remove-console"]
+      ]
     }
   }
 }

@@ -11,29 +11,20 @@ const BundleAnalyzerPlugin = new BundleAnalyzer.BundleAnalyzerPlugin({
 })
 
 export default (app: EggAppInfo, defaultConfig: Configuration, dev: boolean ): Configuration => {
+  defaultConfig.plugins.push(
+    new webpack.ProvidePlugin({
+      APP: path.resolve(__dirname, '../client/utils/app')
+    })
+  );
   if (app && dev) {
-    defaultConfig.entry = {
-      app: [
-        `${require.resolve('webpack-dev-server/client')}?http://0.0.0.0:6002`,
-        require.resolve('webpack/hot/only-dev-server'),
-        path.join(__dirname, '../client/pages/index')
-      ]
-    }
-    defaultConfig.plugins.push(
-      new webpack.ProvidePlugin({
-        APP: path.resolve(__dirname, '../client/utils/app')
-      })
-    );
+    /** ... */
   } else {
     defaultConfig.entry = {
       app: [
         path.join(__dirname, '../client/pages/index')
       ]
-    },
+    }
     defaultConfig.plugins.push(
-      new webpack.ProvidePlugin({
-        APP: path.resolve(__dirname, '../client/utils/app')
-      }),
       BundleAnalyzerPlugin,
       new ImageminPlugin(),
       new webpack.DefinePlugin({

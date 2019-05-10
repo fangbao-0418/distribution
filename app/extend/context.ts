@@ -20,7 +20,7 @@ export default {
       method,
       headers: {
         from: 2,
-        token: token
+        token
       }
     }).then((response) => {
       const { status, data } = response
