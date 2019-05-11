@@ -48,31 +48,25 @@ export default () => {
           minSize: 30000,
           minChunks: 1,
           maxAsyncRequests: 5,
-          maxInitialRequests: 3,
+          maxInitialRequests: 6,
           automaticNameDelimiter: '~',
-          name: true,
+          name: false,
           cacheGroups: {
             default: false,
-            redux: {
-              name: 'redux',
-              test: /[\\/]node_modules[\\/]redux/,
-              priority: -2
-            },
             corejs: {
               name: 'corejs',
-              test: /core-js/,
-              priority: -1
+              test: /[\\/]node_modules[\\/]core-js/,
+              priority: 8
             },
             react: {
               name: 'base',
-              test: /(react|redux)/,
-              priority: 0
+              test: /[\\/]node_modules[\\/](react|redux)/,
+              priority: 7
             },
             vendors: {
-              name: 'commons',
+              name: 'vendor',
               test: /[\\/]node_modules[\\/](?!(core-js|react|redux))/,
-              priority: 1,
-              reuseExistingChunk: true
+              priority: 6
             }
           }
         },

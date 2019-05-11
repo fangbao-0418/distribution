@@ -8,7 +8,7 @@
     "stop": "beidou stop",
     "dev": "beidou dev --inspect",
     "check": "tsc",
-    "build": "tsc && beidou build --inspect-brk",
+    "build": "yarn clean && tsc && beidou build",
     "build:node": "yarn clean && tsc && beidou build --target=node",
     "test-jenkins": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/test-results.xml",
     "clean": "rimraf build/**"
@@ -46,6 +46,7 @@
     "node-sass": "^4.12.0",
     "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
+    "vconsole": "^3.3.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-visualizer-plugin": "^0.1.11"
   },

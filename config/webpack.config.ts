@@ -16,22 +16,17 @@ export default (app: EggAppInfo, defaultConfig: Configuration, dev: boolean ): C
       APP: path.resolve(__dirname, '../client/utils/app')
     })
   );
+  defaultConfig.entry = {
+    app: [
+      path.join(__dirname, '../client/pages/index')
+    ]
+  }
   if (app && dev) {
     /** ... */
   } else {
-    defaultConfig.entry = {
-      app: [
-        path.join(__dirname, '../client/pages/index')
-      ]
-    }
     defaultConfig.plugins.push(
       BundleAnalyzerPlugin,
-      new ImageminPlugin(),
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify('production'),
-        },
-      })
+      new ImageminPlugin()
     );
   }
   defaultConfig.mode = dev ? 'development' : 'production';

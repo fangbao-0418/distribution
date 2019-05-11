@@ -7,9 +7,9 @@ import configureStore from '../store';
 import { run } from '../saga';
 import Router from '../router/router';
 import '../styles/common.sass'
+import vconsole from 'vconsole'
 Object.assign(APP, require('client/utils/app'))
-// const suffix = '?v=' + new Date().getTime()
-const suffix = ''
+const suffix = '?v=' + new Date().getTime()
 export default class View extends React.Component<ViewProps> {
   static doctype = '<!DOCTYPE html>';
   static defaultProps = {
@@ -75,7 +75,9 @@ export default class View extends React.Component<ViewProps> {
       >
       </script>
       {/* <script src={helper.asset('manifest.js+ subfix}/> */}
+      <script src={helper.asset(`corejs.js${suffix}`)}/>
       <script src={helper.asset(`vendor.js${suffix}`)}/>
+      <script src={helper.asset(`base.js${suffix}`)}/>
       <script src={helper.asset(`app.js${suffix}`)}/>
       <script
         type="text/javascript"
@@ -98,4 +100,7 @@ if (__CLIENT__) {
   );
   run();
   ReactDOM.hydrate(app, document.getElementById('app'));
+  if (/debug=true/.test(window.location.href)) {
+    new vconsole()
+  }
 }
