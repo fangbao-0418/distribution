@@ -102,5 +102,6 @@ if (__CLIENT__) {
   ReactDOM.hydrate(app, document.getElementById('app'));
   if (/debug=true/.test(window.location.href)) {
     new vconsole()
+    console.log(process.env.NODE_ENV, 'NODE_ENV')
   }
 }
