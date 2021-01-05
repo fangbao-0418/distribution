@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "antd-mobile": "^2.2.13",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "beidou": "^2.1.0",
     "beidou-cli": "^2.0.1",
